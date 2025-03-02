@@ -11,11 +11,16 @@
       die();
     }
 
-
+    //$value =REQUESTED_URI
     //return boolean after compaer $value with request_uri
     //used in navbar.php
     function urlIs($value){
       return $_SERVER['REQUEST_URI'] === $value;
     }
+
+
+
+
+
 
  ?>

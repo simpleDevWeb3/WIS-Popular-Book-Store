@@ -4,6 +4,17 @@
 <?=require 'partials/navbar.php';?>
 
 
+ <?php
+      
+      $config = require('config.php');
+
+      $db = new Database($config['database']);
+
+      //Fetch only fetch single record
+      //Fetch all it select whole table
+      $products = $db ->query("SELECT * FROM products WHERE category_id = '1'")->fetchAll();
+      
+  ?>
 
   <main>
         <h2 style=
@@ -12,66 +23,34 @@
         </h2>  
       
         <hr>
+  
       
-      
-      <section class="category">
-        <a href="https:/example.com">
-          <div> 
-            <div class="circle">
-              <img src="Img/Category/Novel.jpg">
-            </div>
-            <h3>Novel</h3>
-          </div>
-        </a>
-          
-        <a href="https:/example.com">
-          <div> 
-            <div class="circle">
-            <img src="Img/Category/Revision.jpg">
-            </div>
-            <h3>Revision</h3>
-          </div>
-        </a>
+        <section class="product-grid">
+          <?php foreach($products as $product): ?>            
+              <div class="product-details">
+                  <a href="/product">
+                      <!-- Ensure correct image path -->
+                      <img src="<?=$product['image']?>">
+
+                      <a class="title"><?=$product['name']?></a>
+
+                      <div class="rating">
+                          <span><?= number_format($product['rating'], 1) ?></span>
+                          
+                          <?php
+                              // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
+                              $ratingImg = $product['rating'] * 10;  
+                          ?>
+                          
+                          <img src="Img/Ratings/rating-<?=$ratingImg?>.png">
+                      </div>
+                      
+                      <div class="price">RM<?=$product['price']?></div> 
+                  </a>
+              </div>
+          <?php endforeach; ?>
+</section>        
         
-        <a href="https:/example.com"">
-          <div> 
-            <div class="circle">
-              <img src="Img/Category/Self_Help.jpg" alt="">
-            </div>
-            <h3>Self Help</h3>
-          </div>
-        </a>
-          
-      </section>
-      
-        <hr>
-      
-        <h2 style
-        ="text-align: center;">
-        Top Selling
-        </h2>  
-      
-      
-      <section class="product-grid">
-        
-        <div class="product-details">
-          <a href="/product">
-            <img  src="Img/Product/Example1.jpg">
-      
-            <a class="title">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</a>
-      
-            <div class="rating">
-              <span>5.0</span>
-              <img src="Img/Ratings/rating-45.png">
-            </div>
-            <div class="price">RM40.00</div> 
-          </a>
-          
-        </div>
-      
-      
-      </section> 
-     
   </main>
 
  <?= require 'partials/footer.php';?>

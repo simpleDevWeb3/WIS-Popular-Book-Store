@@ -207,7 +207,7 @@ nav{
   right:0;
   top: 60px;
   padding-left: 55px;
-  margin-top: 26px;
+  margin-top: 24px;
   display: flex;
   column-gap: 10px;
   align-items: center;
@@ -217,7 +217,7 @@ nav{
 }
 
 nav >a{ 
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
   padding:10px 20px 10px 20px ;
   cursor: pointer;
@@ -344,7 +344,6 @@ hr{
 
 
 .product-details{
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -357,8 +356,11 @@ hr{
   transition: background-color 0.15s;
 }
 
-.product-details img{
-  width: 100%;
+.product-details a> img{
+  width: 241px;
+  height: 241px;
+  object-fit: cover; 
+  
  
 }
 

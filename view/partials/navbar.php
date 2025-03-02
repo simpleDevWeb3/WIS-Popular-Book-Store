@@ -1,3 +1,7 @@
+<!--Navigation Bar 
+  Used library: urlIs()
+-->
+
 <nav>
 
   <a href="/" class="<?= urlIs('/') ? 'active' : ''; ?>">All</a>

@@ -3,28 +3,46 @@
 <?=require 'partials/header.php';?>
 <?=require 'partials/navbar.php';?>
 
+ <?php
+  
+  $config = require('config.php');
 
+  $db = new Database($config['database']);
 
+  //Fetch only fetch single record
+  //Fetch all it select whole table
+  $products = $db ->query("SELECT * FROM products")->fetchAll();
+ ?>
 
   <main>
-    <h1>Hot Deals</h1>
-    <section class="product-grid">
-        <div class="product-details">
-          <a href="/product">
-            <img  src="Img/Product/Example1.jpg">
+  <h2 style=
+        "text-align: center;">
+        All
+        </h2>  
+      
+        <hr>
+   <section class="product-grid">
+          <?php foreach($products as $product ):?>            
+            <div class="product-details">
+              <a href="/product">
+                <img src="<?=$product['image']?>">
+                <a class="title"><?=$product['name']?></a>
+                <div class="rating">
+                  <span><?= number_format($product['rating'], 1) ?></span>
 
-            <a class="title">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</a>
-
-            <div class="rating">
-              <span>5.0</span>
-              <img src="Img/Ratings/rating-45.png">
+                  <?php
+                       // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
+                      $ratingImg = $product['rating'] * 10;  
+                   ?>
+                  <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
+                </div>
+                <div class="price">RM<?=$product['price']?></div> 
+              </a>
             </div>
-            <div class="price">RM40.00</div> 
-          </a>
-
-        </div>
+          <?php endforeach;?>
     </section> 
-
   </main>
+
+  
 
  <?= require 'partials/footer.php';?>

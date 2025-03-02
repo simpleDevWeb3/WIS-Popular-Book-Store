@@ -1,5 +1,5 @@
 <?php 
-// router 
+// router = directory to page base on requested URI
 //used in index.php
 
 // parse_url  ['path] avoid conflict between path and qurey happen
