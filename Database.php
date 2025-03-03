@@ -28,13 +28,13 @@ class Database{
   }
 
 
-  public function query($query,$params = [])
+  public function query($query,$product_Id = [])
   {
 
    
     //$stmt = get sql query and execute
     $stmt = $this->conn->prepare($query);
-    $stmt->execute($params);
+    $stmt->execute($product_Id);
 
     //query for getting all products
     //fetch_assoc ->remove duplciate data

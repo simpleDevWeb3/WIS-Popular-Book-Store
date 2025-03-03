@@ -26,6 +26,7 @@ $id = (int) $_GET['id']; // Convert to integer
 $product = $db->query("SELECT * FROM products WHERE id = :id", ['id' => $id])->fetch();
 $product_details = $db->query("SELECT * FROM product_details WHERE product_id = :id", ['id' => $id])->fetch();
 
+
 if (!$product) {
   die("
     <main>
@@ -38,6 +39,8 @@ if (!$product) {
 
 
 ?>
+
+
   <main>
     <div class="view-product">
       <div class="product-detail-view">
@@ -51,6 +54,8 @@ if (!$product) {
             </div>
         
         </section>
+
+        
         
         <section class="product-detail">
           <!--header-->
@@ -104,49 +109,88 @@ if (!$product) {
     
       <br>
       <section class="product-desc">
+      <h1>Product Detail</h1>
+        <?php if($product_details['category_id'] == 1): ?>
+          
+            <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
+            <table>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td><?=$product['name']?></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Author</strong></td>
+                <td><?=$product_details['author']?></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Publisher</strong></td>
+                <td><?=$product_details['publisher']?></td>
+              </tr>
+        
+              <tr>
+                <td><strong>Publish Date</strong></td>
+                <td><?=$product_details['publish_date']?></td>
+              </tr>
+        
+              <tr>
+                <td><strong>Stock</strong></td>
+                <td><?=$product_details['stock']?></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Category</strong></td>
+                <td><?=implode(", ", json_decode($product_details['genre'], true)) ?></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Genre</strong></td>
+                <td><?=implode(", ", json_decode($product_details['keywords'], true)) ?></td>
+              </tr>
+            </table>
+            
+            
+          </section>
+        <?php endif ?>
+
+        <?php if($product_details['category_id'] == 2): ?>
+          
+          <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
+          <table>
+            <tr>
+              <td><strong>Name</strong></td>
+              <td><?=$product['name']?></td>
+            </tr>
+          
+            <tr>
+              <td><strong>Brand</strong></td>
+              <td><?=$product_details['brand']?></td>
+            </tr>
+          
+            <tr>
+              <td><strong>Material</strong></td>
+              <td><?=$product_details['material']?></td>
+            </tr>
+      
+         
+      
+            <tr>
+              <td><strong>Stock</strong></td>
+              <td><?=$product_details['stock']?></td>
+            </tr>
+          
+           
+            <tr>
+              <td><strong>Category</strong></td>
+              <td><?=implode(", ", json_decode($product_details['keywords'], true)) ?></td>
+            </tr>
+          </table>
+          
+          
+        </section>
+      <?php endif ?>
        
-        <h1>Product Detail</h1>
-        <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
-        <table>
-          <tr>
-            <td><strong>Name</strong></td>
-            <td><?=$product['name']?></td>
-          </tr>
-        
-          <tr>
-            <td><strong>Author</strong></td>
-            <td><?=$product_details['author']?>n</td>
-          </tr>
-        
-          <tr>
-            <td><strong>Publisher</strong></td>
-            <td><?=$product_details['publisher']?></td>
-          </tr>
-    
-          <tr>
-            <td><strong>Publish Date</strong></td>
-            <td><?=$product_details['publish_date']?></td>
-          </tr>
-    
-          <tr>
-            <td><strong>Stock</strong></td>
-            <td><?=$product_details['stock']?></td>
-          </tr>
-        
-          <tr>
-            <td><strong>Category</strong></td>
-            <td><?=implode(", ", json_decode($product_details['genre'], true)) ?></td>
-          </tr>
-        
-          <tr>
-            <td><strong>Genre</strong></td>
-            <td><?=implode(", ", json_decode($product_details['keywords'], true)) ?></td>
-          </tr>
-        </table>
-        
-        
-      </section>
-    
       <br>
     
        <h1> For You</h1>
@@ -166,20 +210,11 @@ if (!$product) {
           </a>
          
         </div>
-
-        
-      
-        
-
-      
-      </section> 
-    
-    
-      
-    
-    
-      
+         
+      </section>    
      
     </div>
+
+
   </main>
 <?=require 'partials/footer.php' ?>
