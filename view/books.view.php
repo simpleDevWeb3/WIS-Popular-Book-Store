@@ -12,7 +12,8 @@
 
       //Fetch only fetch single record
       //Fetch all it select whole table
-      $products = $db ->query("SELECT * FROM products WHERE category_id = '1'")->fetchAll();
+      $products = $db ->query("SELECT * FROM products WHERE category_id IN (1,22,23,24);
+      ")->fetchAll();
       
   ?>
 

@@ -14,7 +14,7 @@
         <span class="order-text">Order & Return</span>
         <span class="cart">
           <div class="cart-container">  
-            <div class="cart-quantity">10</div>
+            <div id="cart-count" class="cart-quantity">0</div>
             <img src="Img/Icon/Icon.svg">
             </svg>
     

@@ -87,15 +87,20 @@ if (!$product) {
             "color:gray; font-weight: 600;">Quantity</p><br>
       
             <div class="quantity-control">
-              <button class="decrease">-</button>
-              <input class="quantity-input" type="number" value="1" >
-              <button class="increase">+</button>
+              <button id="decrease" class="decrease"">-</button>
+              <input id="quantity" class="quantity-input" type="number" value="1" >
+              <button id="increase" class="increase">+</button>
+              <span style="color:gray; font-size:15px;">&nbsp;&nbsp;<?=$product_details['stock']?> Available</span>
             </div>
+          
            
             <br>
-            <button class="add-to-cart-button">
+           
+            <button id="add-to-cart-btn" class="add-to-cart-button ">
               Add To Cart
             </button>
+
+            
       
             <button class="order-now-button">
              Order Now
@@ -193,26 +198,6 @@ if (!$product) {
        
       <br>
     
-       <h1> For You</h1>
-       <section class="product-grid">
-      
-        <div class="product-details">
-          <a href="Product_Detail.html">
-            <img  src="Img/Product/Example1.jpg">
-      
-            <a class="title">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</a>
-      
-            <div class="rating">
-              <span>5.0</span>
-              <img src="Img/Ratings/rating-45.png">
-            </div>
-            <div class="price">RM40.00</div> 
-          </a>
-         
-        </div>
-         
-      </section>    
-     
     </div>
 
 
