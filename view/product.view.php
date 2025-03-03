@@ -1,11 +1,49 @@
+
 <?=require 'partials/head.php' ?>
 <?=require 'partials/header.php' ?>
+
+
+
+<?php 
+
+$config = require('config.php');
+
+$db = new Database($config['database']);
+
+
+// Check if 'id' is set in the URL
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+  die("
+    <main>
+       <br>
+       <h1>Invalid product ID. </h1>
+    </main>
+    ");
+}
+
+// fetch product data
+$id = (int) $_GET['id']; // Convert to integer
+$product = $db->query("SELECT * FROM products WHERE id = :id", ['id' => $id])->fetch();
+$product_details = $db->query("SELECT * FROM product_details WHERE product_id = :id", ['id' => $id])->fetch();
+
+if (!$product) {
+  die("
+    <main>
+    <br>
+      <h1>Product not found.</h1>
+    </main>
+  ");
+}
+
+
+
+?>
   <main>
     <div class="view-product">
       <div class="product-detail-view">
         <section class="product-thumbnail">
             <div class="product-thumbnail-container">
-              <img src="Img/Product/Example1.jpg" >
+              <img src="<?=$product['image']?>" >
       
               <section class="view-item">
                
@@ -17,10 +55,15 @@
         <section class="product-detail">
           <!--header-->
           <div>
-            <h1 class="product-name">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</h1>
+            <h1 class="product-name"><?=$product['name']?></h1>
             <div class="status">
-              <span class="rate">5.0</span>
-              <img src="Img/Ratings/rating-50.png">
+              <span class="rate"><?= number_format($product['rating'], 1)?></span>
+
+              <?php
+                    // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
+                  $ratingImg = $product['rating'] * 10;  
+              ?>
+              <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
               <span class="total-solded">100 Solded </span>
               <span class="item-stats">Available</span>
             </div>
@@ -30,10 +73,11 @@
          
           </div>
       
+      
          
           <!--Bottom-->
           <div>
-            <h2 class="item-price">RM40.00</h2>
+            <h2 class="item-price">RM<?=$product['price']?></h2>
             <p style=
             "color:gray; font-weight: 600;">Quantity</p><br>
       
@@ -58,7 +102,7 @@
        
       </div>
     
-    
+      <br>
       <section class="product-desc">
        
         <h1>Product Detail</h1>
@@ -66,37 +110,37 @@
         <table>
           <tr>
             <td><strong>Name</strong></td>
-            <td>OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</td>
+            <td><?=$product['name']?></td>
           </tr>
         
           <tr>
             <td><strong>Author</strong></td>
-            <td>Koshi Noko Noko Koshi Tan Tan</td>
+            <td><?=$product_details['author']?>n</td>
           </tr>
         
           <tr>
             <td><strong>Publisher</strong></td>
-            <td>Kadakowa</td>
+            <td><?=$product_details['publisher']?></td>
           </tr>
     
           <tr>
-            <td><strong>Publish Year</strong></td>
-            <td>2021</td>
+            <td><strong>Publish Date</strong></td>
+            <td><?=$product_details['publish_date']?></td>
           </tr>
     
           <tr>
             <td><strong>Stock</strong></td>
-            <td>200</td>
+            <td><?=$product_details['stock']?></td>
           </tr>
         
           <tr>
             <td><strong>Category</strong></td>
-            <td>Novel</td>
+            <td><?=implode(", ", json_decode($product_details['genre'], true)) ?></td>
           </tr>
         
           <tr>
             <td><strong>Genre</strong></td>
-            <td>Drama, Mystery</td>
+            <td><?=implode(", ", json_decode($product_details['keywords'], true)) ?></td>
           </tr>
         </table>
         
@@ -122,45 +166,11 @@
           </a>
          
         </div>
-      
-         <div class="product-details">
-          <img  src="Img/Product/Example1.jpg">
-          <a class="title">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</a>
-          <div class="rating">
-            <span>5.0</span>
-            <img src="Img/Ratings/rating-45.png">
-          </div>
-          <div class="price">RM40.00</div> 
-        </div>
-      
-         <div class="product-details">
-          <img  src="Img/Product/Example1.jpg">
-          <a class="title">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</a>
-          <div class="rating">
-            <span>5.0</span>
-            <img src="Img/Ratings/rating-45.png">
-          </div>
-          <div class="price">RM40.00</div> 
-        </div>
-      
-         <div class="product-details">
-          <img  src="Img/Product/Example1.jpg">
-          <a class="title">OSHI NO KO 我推的孩子S2 V1-13 E(DVD9)</a>
-          <div class="rating">
-            <span>5.0</span>
-            <img src="Img/Ratings/rating-45.png">
-          </div>
-          <div class="price">RM40.00</div> 
-        </div>
+
         
       
         
-      
-      
-      
-      
-      
-       
+
       
       </section> 
     
