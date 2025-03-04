@@ -28,19 +28,20 @@
   border: solid 1px rgb(212, 210, 206);
   border-radius: 5px;
   gap: 40px;
+  transition: background-color 0.15s;
  
 }
 
 .product-details-row img{
   padding-top: 10px;
   padding-bottom: 10px;
-  border: solid 1px rgb(207, 207, 207);
   background-color: rgb(255, 255, 255);
+ 
 }
 
 .product-details-row:hover,
 .product-details-row:hover .product-details-container:hover img {
-  background-color: rgb(244, 242, 242); /* Or any other effect */
+  background-color: rgb(249, 249, 249); /* Or any other effect */
 }
 
 

@@ -66,11 +66,11 @@ $(document).ready(function () {
   
 
 
-  $("#search").click(function(){
+  $("#search").click(function(e){
     //console.log($("#search-bar").val());
-   
+   e.preventDefault();
     console.log($(this).val());
-    window.location.href='/search?keyword=' + $(this).val();
+    window.location.href='/search?keyword=' + $("#search-bar").val();
 
     
   })

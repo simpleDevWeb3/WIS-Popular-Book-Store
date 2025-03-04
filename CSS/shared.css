@@ -8,7 +8,17 @@ body{
   background-color: rgba(245, 245, 245, 0.515);
   display: flex;
   flex-direction: column;
+
+ 
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 
 *{
   margin: 0;
@@ -18,6 +28,8 @@ body{
 }
 main{
   flex: 1; 
+  
+ 
 }
 
 a{

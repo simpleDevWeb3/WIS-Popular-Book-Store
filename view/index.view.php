@@ -3,17 +3,7 @@
 <?=require 'partials/header.php';?>
 <?=require 'partials/navbar.php';?>
 
- <?php
-  
-
-
-  $db = new Database();
-
-  //Fetch only fetch single record
-  //Fetch all it select whole table
-  $products = $db ->query("SELECT * FROM products")->fetchAll();
- ?>
-
+ 
   <main>
   <h2 style=
         "text-align: center;">
