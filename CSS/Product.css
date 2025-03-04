@@ -176,8 +176,13 @@ div> .increase{
 }
 
 .add-to-cart-button:hover{
-  background-color: rgb(165, 42, 42);
-  color: white;
+  
+  background-color: rgb(255, 255, 255);
+}
+
+.add-to-cart-button:active{
+
+  background-color: rgba(247, 49, 31, 0.316);
 }
 .order-now-button{
 
@@ -185,18 +190,22 @@ div> .increase{
   font-size: 18px;
   border: none;
   border-radius: 5px;
-  color: rgb(214, 215, 227);
-  border: solid 1px;
-  background-color: rgb(45, 25, 199);
+  color: rgb(255, 255, 255);
+  border: solid 1px orange;
+  background-color: rgb(240, 84, 0);
   cursor: pointer;
-  transition: opacity 0.15s;
-
+  transition: opacity 0.15s,background-color 0.15s;
+  font-weight: 600;
 }
 
 .order-now-button:hover{
-  opacity: 0.7;
+  background-color: rgb(238, 105, 33);
 }
 
+.order-now-button:active{
+  opacity: 1;
+  background-color: rgb(224, 79, 1);
+}
 
 
 

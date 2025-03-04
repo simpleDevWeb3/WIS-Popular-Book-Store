@@ -398,7 +398,33 @@ main{
   width: 100%;
   margin-bottom: 20px;
 }
+#info{
+  position:fixed;
+  color: red;
+  z-index: 100;
+  background-color: rgba(225, 22, 22, 0.21);
+  border-radius: 4px;
+  padding:10px;
+  translate: -50% 0;
+  border:solid 1px;
+  left: 50%;
+  top: -100px;
+ 
+ 
+}
 
+
+
+.pop{
+  animation:fade 5s;
+}
+
+@keyframes fade{
+  0%{top: -100px; opacity:0;}
+  10%{top: 100px; opacity:1;}
+  90%{top: 100px; opacity:1;}
+  100%{top: -100px; opacity:0;}
+}
 
 
 

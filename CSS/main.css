@@ -35,13 +35,12 @@
   padding-top: 10px;
   padding-bottom: 10px;
   border: solid 1px rgb(207, 207, 207);
-  background-color: rgb(244, 244, 244);
+  background-color: rgb(255, 255, 255);
 }
 
 .product-details-row:hover,
-.product-details-row:hover .product-details-container,
-.product-details-row:hover img {
-  background-color: rgb(241, 241, 241); /* Or any other effect */
+.product-details-row:hover .product-details-container:hover img {
+  background-color: rgb(244, 242, 242); /* Or any other effect */
 }
 
 
@@ -59,7 +58,7 @@
 }
 
 .product-details-container .rating>span{
- font-size: 15px;
+ font-size: 18px;
  font-weight: 600;
  
 }
@@ -70,7 +69,7 @@
   background: none;
 }
 .product-details-container .price{
- font-size: 20px;
+ font-size: 18px;
 }
 
 

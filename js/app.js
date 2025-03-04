@@ -5,7 +5,7 @@ $(document).ready(function () {
   /////////////////////////////////////
 
   let cartCount = parseInt($("#cart-count").text()); //FOR UPDATE CART 
-
+  let timeout;
  
 
    /////////////////////////////////////////////////////
@@ -17,12 +17,24 @@ $(document).ready(function () {
     let quantity = parseInt($("#quantity").val()); // Get updated quantity
     cartCount += quantity; // Add the selected quantity to cart count
     $("#cart-count").text(cartCount); // Update cart UI
+    $("#info")
+    .html("The item has added to cart!")
+    .show()
+    .addClass("pop");
+
+    if(timeout){
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(()=>{
+      $("#info").removeClass("pop").hide();
+    },1400);// after 1.4 sec remove pop
 
         
       $.ajax({
         url:'function.php',
         type:'POST',
-        data:{add_quantity: quantity},
+        data:{add_quantity: quantity}
+
       });
 
   });
@@ -43,6 +55,38 @@ $(document).ready(function () {
 
 
   //////////////////////////////////////////////////////////////////////////
+
+
+
+  /////////////////////////////////////////////////////
+  ////////           SEARCHING           ///////////
+  ////////////////////////////////////////////////
+
+  /////GLOBAL VARIABLE////
+  
+
+
+  $("#search").click(function(){
+    //console.log($("#search-bar").val());
+   
+    console.log($(this).val());
+    window.location.href='/search?keyword=' + $(this).val();
+
+    
+  })
+
+  $("#search-bar").on("keypress",function(e){
+    if(e.key === "Enter"){
+      e.preventDefault();
+      console.log($(this).val());
+      window.location.href='/search?keyword=' + $(this).val();
+   
+    }
+  })
+
+
+
+
 });
 
 

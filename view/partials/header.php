@@ -6,8 +6,8 @@
       </div>
 
       <div class="popular-center-head">
-          <input class="search-bar" type="text"> 
-          <span><img class="search-icon"  width="20px" height="20px" src="Img/Icon/search-icon.png"></span>
+          <input id="search-bar" class="search-bar" type="text"> 
+          <span id="search"><img class="search-icon"  width="20px" height="20px" src="Img/Icon/search-icon.png"></span>
       </div>
 
       <div class="popular-right-head">

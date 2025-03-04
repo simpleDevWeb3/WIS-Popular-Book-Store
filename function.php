@@ -14,6 +14,7 @@
       $_SESSION['cart_count']+= $quantity;
 
       echo $_SESSION['cart_count'];
+    
     }
 
  
@@ -38,7 +39,17 @@
     }
 
 
-    
+    function is_get(){
+      return $_SERVER['REQUEST_METHOD']=='GET';
+    }
+
+    function is_post(){
+      return $_SERVER['REQUEST_METHOD']=='POST';
+    }
+
+
+
+
 
 
 
