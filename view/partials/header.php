@@ -14,7 +14,11 @@
         <span class="order-text">Order & Return</span>
         <span class="cart">
           <div class="cart-container">  
-            <div id="cart-count" class="cart-quantity">0</div>
+            <?php
+            
+              $cartCount = $_SESSION['cart_count']??0;
+            ?>
+            <div id="cart-count" class="cart-quantity"><?=$cartCount;?></div>
             <img src="Img/Icon/Icon.svg">
             </svg>
     

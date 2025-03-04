@@ -6,16 +6,18 @@
 
  <?php
       
-      $config = require('config.php');
+      
 
-      $db = new Database($config['database']);
+      $db = new Database();
 
       //Fetch only fetch single record
       //Fetch all it select whole table
-      $products = $db ->query("SELECT * FROM products WHERE category_id IN (1,22,23,24);
+      $products = $db ->query("SELECT * FROM products WHERE category_id IN (1);
       ")->fetchAll();
       
   ?>
+
+  
 
   <main>
         <h2 style=

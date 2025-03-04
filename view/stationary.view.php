@@ -5,9 +5,9 @@
 
 <?php
       
-      $config = require('config.php');
+    
 
-      $db = new Database($config['database']);
+      $db = new Database();
 
       //Fetch only fetch single record
       //Fetch all it select whole table
