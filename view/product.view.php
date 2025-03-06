@@ -62,7 +62,7 @@
            
             <br>
            
-            <button id="add-to-cart-btn" class="add-to-cart-button ">
+            <button id="add-to-cart-btn" class="add-to-cart-button " data-product-id="<?=$product_details['product_id']?>">
               Add To Cart
             </button>
 

@@ -1,102 +1,72 @@
 $(document).ready(function () {
 
   /////////////////////////////////////
-  ///////GLOBAL VARIABLE////////////////
+  ///////GLOBAL VARIABLE///////////////
   /////////////////////////////////////
 
-  let cartCount = parseInt($("#cart-count").text
-  ()); //FOR UPDATE CART 
+  let cartCount = parseInt($("#cart-count").text()); // Update cart UI count
   
-  let timeout;
- 
+  let stock = parseInt(product_details.stock); // Ensure stock is a number
+  let productId = product_details.product_id; 
 
-   /////////////////////////////////////////////////////
-  //ADDING TO CART                                   / /
-  /////////////////////////////////////////////////////
-
-
-  $("#add-to-cart-btn").click(function () {
-    let quantity = parseInt($("#quantity").val
-    ()); // Get updated quantity
-
-
-    $.ajax({
-      url:'/product',
-      type:'GET',
-      data:{stock: stock}
-
-    });
-
-    
-
- 
-     
-  if(!stock || stock <=0){
-    alert("User already exceed the purchase limit");
+  // Store initial stock in localStorage if not set
+  if (!localStorage.getItem(`stock_${productId}`)) {
+    localStorage.setItem(`stock_${productId}`, stock);
   }
 
-    $("#quantity").on("input",function(){
-      this.value = this.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
-    })
+  let buy_limit = parseInt(localStorage.getItem(`stock_${productId}`));
 
-    if(quantity <= stock && quantity > 0){
-      cartCount += quantity;
-      stock -= quantity;
-      console.log(stock);
-      
-      // Add the selected quantity to cart count
-      $("#cart-count").text(cartCount); // Update cart UI
-      $("#info")
-      .html("The item has added to cart!")
+  let timeout;
+
+  /////////////////////////////////////////////////////
+  // ADDING TO CART
+  /////////////////////////////////////////////////////
+
+  $("#add-to-cart-btn").click(function () {
+    let quantity = parseInt($("#quantity").val()); // Get user-selected quantity
+
+    let storedStock = parseInt(localStorage.getItem(`stock_${productId}`));
+
+    console.log("Stored Stock: " + storedStock);
+    console.log("User Wants to Buy: " + quantity);
+
+    // Prevent user from buying more than allowed
+    if (quantity > storedStock || quantity <= 0 || !quantity) {
+      alert("User have been exceeds buying  limit");
+
+      return; // Stop further execution
+    }
+
+    // Decrease buy limit
+    storedStock -= quantity;
+    localStorage.setItem(`stock_${productId}`, storedStock); // Update localStorage
+
+    cartCount += quantity;
+    $("#cart-count").text(cartCount); // Update cart UI
+
+    $("#info")
+      .html("The item has been added to cart!")
       .show()
       .addClass("pop");
 
-      if(timeout){
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(()=>{
-        $("#info").removeClass("pop").hide();
-      },1400);// after 1.4 sec remove pop
-
-    
-          
-        $.ajax({
-          url:'function.php',
-          type:'POST',
-          data:{add_quantity: quantity}
-         
-        });
+    if (timeout) {
+      clearTimeout(timeout);
     }
-    
-    else if(quantity > stock || quantity <= 0 || !quantity){
+    timeout = setTimeout(() => {
+      $("#info").removeClass("pop").hide();
+    }, 1400);
 
-        $("#info")
-        .html("Invalid Quantity")
-        .show()
-        .addClass("pop");
-     
-
-       
-      
-      if(timeout){
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(()=>{
-        $("#info").removeClass("pop").hide();
-      },1400);// after 1.4 sec remove pop
-      
-      
-     quantity = 1;
-
-    $("#quantity").val
-    (quantity);
-    
-    }
-
-   
-
-
+    // Send quantity update to backend
+    $.ajax({
+      url: "function.php",
+      type: "POST",
+      data: { add_quantity: quantity, product_id: productId }
+    });
   });
+
+  /////////////////////////////////////////////////////
+  // INCREASE/DECREASE QUANTITY
+  /////////////////////////////////////////////////////
 
   $("#increase").click(function () {
     let quantity = parseInt($("#quantity").val()); // Get updated value
@@ -113,41 +83,32 @@ $(document).ready(function () {
   });
 
 
-  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////
+  //quantity-input validation//
+  ///////////////////////////
+  
+   // Ensure only numeric input for quantity
+   $("#quantity").on("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
 
 
 
   /////////////////////////////////////////////////////
-  ////////           SEARCHING           ///////////
-  ////////////////////////////////////////////////
+  // SEARCH FUNCTIONALITY
+  /////////////////////////////////////////////////////
 
-
-  $("#search").click(function(e){
-    //console.log($("#search-bar").val());
-   e.preventDefault();
-   // console.log($(this).val());
-    window.location.href='/search?keyword=' + $("#search-bar").val();
-
-    
-  })
-
-  $("#search-bar").on("keypress",function(e){
-    if(e.key === "Enter"){
-      e.preventDefault();
-      //console.log($(this).val());
-      window.location.href='/search?keyword=' + $(this).val();
-   
-    }
-  })
-
-  // Apply input filter globally
-  $(document).ready(function () {
-    $("#quantity").on("input", function () {
-      this.value = this.value.replace(/[^0-9]/g, ""); // Allow only numbers
-    });
+  $("#search").click(function (e) {
+    e.preventDefault();
+    window.location.href = "/search?keyword=" + $("#search-bar").val();
   });
 
+  $("#search-bar").on("keypress", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      window.location.href = "/search?keyword=" + $(this).val();
+    }
+  });
 
+ 
 });
-
-
