@@ -140,7 +140,12 @@ $(document).ready(function () {
     }
   })
 
-
+  // Apply input filter globally
+  $(document).ready(function () {
+    $("#quantity").on("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, ""); // Allow only numbers
+    });
+  });
 
 
 });
