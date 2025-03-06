@@ -4,18 +4,25 @@
 
    // code to ensure when page refresh cart quantity will not become 0
    function processCartRequest(){
-    if(!isset($_SESSION['cart_count'])){
-        $_SESSION['cart_count']=0; // 
-    }
 
+    if(!isset($_SESSION['cart_count'])){
+        $_SESSION['cart_count']=0; //
+        
+     
+    }
 
     if(isset($_POST['add_quantity'])){
       $quantity = intval($_POST['add_quantity']);
       $_SESSION['cart_count']+= $quantity;
 
-      echo $_SESSION['cart_count'];
+      return $_SESSION['cart_count'];
+    
+
+    
     
     }
+
+
 
  
 

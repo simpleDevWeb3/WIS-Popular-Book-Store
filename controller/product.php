@@ -22,6 +22,10 @@ $id = (int) $_GET['id']; // Convert to integer
 $product = $db->query("SELECT * FROM products WHERE id = :id", ['id' => $id])->fetch();//GET THE PRODUCT DATA
 $product_details = $db->query("SELECT * FROM product_details WHERE product_id = :id", ['id' => $id])->fetch(); //GET THE PRODUCT DETAILS
 
+$currentStock = $product_details['stock'];
+
+
+
 
 if (!$product) {
   die("
@@ -33,9 +37,20 @@ if (!$product) {
 }
 
 
+
 require 'view/product.view.php';
 
 
 
 
 ?>
+
+
+<script>
+//get the data from php
+const product_details = <?php echo json_encode($product_details); ?>;
+
+ let stock = product_details.stock; 
+ let product_id = product_details.product_id;
+ console.log(stock);
+</script>

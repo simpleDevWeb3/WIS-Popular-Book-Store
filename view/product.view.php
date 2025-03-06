@@ -1,6 +1,6 @@
 
-<?=require 'partials/head.php' ?>
-<?=require 'partials/header.php' ?>
+<?php require 'partials/head.php' ?>
+<?php require 'partials/header.php' ?>
 
 
 
@@ -54,7 +54,7 @@
       
             <div class="quantity-control">
               <button id="decrease" class="decrease"">-</button>
-              <input id="quantity" class="quantity-input" type="number" value="1" >
+              <input id="quantity" class="quantity-input" type="number" value="1" min="1" max ="<?=$product_details['stock']?> " require >
               <button id="increase" class="increase">+</button>
               <span style="color:gray; font-size:15px;">&nbsp;&nbsp;<?=$product_details['stock']?> Available</span>
             </div>
@@ -168,4 +168,4 @@
 
 
   </main>
-<?=require 'partials/footer.php' ?>
+<?php require 'partials/footer.php' ?>

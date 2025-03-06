@@ -68,6 +68,6 @@ function routeToController($uri,$routes){
   }
 
 
-routeToController($uri,$routes);
+routeToController($uri,$routes);//by default it will start in page index 
 
 ?>
