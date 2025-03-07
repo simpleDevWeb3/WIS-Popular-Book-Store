@@ -47,10 +47,17 @@ require 'view/product.view.php';
 
 
 <script>
-//get the data from php
-const product_details = <?php echo json_encode($product_details); ?>;
+//get the data from php da
+
+// const product_details = {"stock":10,"product_id":5};
+
+const product_details = <?php echo json_encode($product_details ); ?>;
 
  let stock = product_details.stock; 
  let product_id = product_details.product_id;
  console.log(stock);
+
+
 </script>
+
+<script src="/js/cart.js" ></script>

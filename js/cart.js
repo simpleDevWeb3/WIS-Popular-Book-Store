@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
   /////////////////////////////////////
   ///////GLOBAL VARIABLE///////////////
   /////////////////////////////////////
@@ -31,9 +32,15 @@ $(document).ready(function () {
     console.log("User Wants to Buy: " + quantity);
 
     // Prevent user from buying more than allowed
-    if (quantity > storedStock || quantity <= 0 || !quantity) {
-      alert("User have been exceeds buying  limit");
+    if (quantity > storedStock || quantity <= 0 ) {
+      alert("User have been exceeds buying limits (Stock: " + storedStock + " User want to Buy: " + quantity + ")" );
+      $("#quantity").val(1);
+      return; // Stop further execution
+    }
 
+    if(!quantity){
+      alert("User must input quantity");
+      $("#quantity").val(1);
       return; // Stop further execution
     }
 
@@ -91,24 +98,4 @@ $(document).ready(function () {
    $("#quantity").on("input", function () {
     this.value = this.value.replace(/[^0-9]/g, "");
   });
-
-
-
-  /////////////////////////////////////////////////////
-  // SEARCH FUNCTIONALITY
-  /////////////////////////////////////////////////////
-
-  $("#search").click(function (e) {
-    e.preventDefault();
-    window.location.href = "/search?keyword=" + $("#search-bar").val();
-  });
-
-  $("#search-bar").on("keypress", function (e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      window.location.href = "/search?keyword=" + $(this).val();
-    }
-  });
-
- 
 });
