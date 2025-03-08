@@ -6,7 +6,9 @@ $db = new Database();
 
 
 $subParent_id =  $_GET['parent_id'];
-//dd($subParent_id);
+
+
+$all_sub_Subcategory = getAllSubCategory($db,$subParent_id);
 
 $subParent_Cat =$db->query("SELECT * FROM categories WHERE category_id = :category_id",[
   'category_id' => $subParent_id

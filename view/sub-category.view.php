@@ -3,35 +3,13 @@
 <?php require 'partials/header.php';?>
 <?php require 'partials/navbar.php';?>
 
-
-
-  <main>
-        <h2 style=
-        "text-align: center;">
-        <?=$subParent_Cat['category_name']?>
-        </h2>  
+<main>
+<h2 style= "text-align: center;">
+     <?=$sub_SubCat['category_name']?>
+</h2>  
        
 
-        <hr>
-        
-        <section class="category">       
-          <?php foreach($all_sub_Subcategory as $category): ?>
-                <a href="/subcategory?parent_id=<?=$category['category_id']?>">
-                    <div> 
-                        <div class="circle">
-                        <img src="<?=$category['category_picture']?>">
-                        </div>
-                        <h3><?=$category['category_name']?></h3>
-                    </div>
-                </a>
-            <?php endforeach ?>
-        </section>
- 
-        <hr>
- 
-     
-   
-        <section class="product-grid">
+<section class="product-grid">
             <?php foreach($products as $product): ?>        
                 <div class="product-details">
                     <a href="/product?product_id=<?=($product['product_id']) ?>">
@@ -57,6 +35,6 @@
             <?php endforeach; ?>
          </section>        
         
-  </main>
+</main>
 
- <?php  require 'partials/footer.php';?>
+<?php  require 'partials/footer.php';?>
