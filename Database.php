@@ -8,7 +8,7 @@ class Database{
   public function __construct(){
      //$dsn = arrange connection to mysql 
     
-   $dsn = "mysql:host=localhost;port=3306;dbname=populardb;charset=utf8mb4;";
+   $dsn = "mysql:host=localhost;port=3306;dbname=mypopulardb;charset=utf8mb4;";
    $username = "root";
    $password = ""; 
           

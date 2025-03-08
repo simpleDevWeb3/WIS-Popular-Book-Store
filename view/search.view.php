@@ -13,7 +13,7 @@
         <h1 style="margin-left: 30px; margin-top: 20px;">Search Result(<?=count($products)?>) "<?=$searchResult?>"</h1>
          <br><br>
         <?php foreach($products as $product): ?>
-          <a class="product-details-row" style="opacity:1;" href="/product?id=<?=$product['id']?>" style="text-decoration: none; color: inherit;">
+          <a class="product-details-row" style="opacity:1;" href="/product?product_id=<?=$product['product_id']?>" style="text-decoration: none; color: inherit;">
             <img src="<?=$product['image']?>" alt="<?=$product['name']?>">
             <div class="product-details-container">
               <span class="title" style="font-size: 18px;"><?=$product['name']?></span>

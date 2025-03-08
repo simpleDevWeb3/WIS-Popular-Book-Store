@@ -15,7 +15,7 @@ $(document).ready(function () {
     localStorage.setItem(`stock_${productId}`, stock);
   }
 
-  let buy_limit = parseInt(localStorage.getItem(`stock_${productId}`));
+
 
   let timeout;
 

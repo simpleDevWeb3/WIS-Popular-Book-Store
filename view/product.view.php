@@ -81,8 +81,8 @@
       <br>
       <section class="product-desc">
       <h1>Product Detail</h1>
-        <?php if($product_details['category_id'] == 1): ?>
-          
+        <?php if($parent_category === 'BOOK-MAIN-001'): ?>
+            
             <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
             <table>
               <tr>
@@ -125,7 +125,7 @@
           </section>
         <?php endif ?>
 
-        <?php if($product_details['category_id'] == 2): ?>
+        <?php if($parent_category === 'STAT-MAIN-002'): ?>
           
           <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
           <table>

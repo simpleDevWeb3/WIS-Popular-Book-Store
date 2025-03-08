@@ -7,8 +7,9 @@
 $db = new Database();
 
 
+
 // Check if 'id' is set in the URL eg./product?id=null or /product?id=1
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+if (!isset($_GET['product_id']) || !is_string($_GET['product_id'])) {
   die("
     <main>
        <br>
@@ -18,12 +19,11 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 }
 
 // fetch product data
-$id = (int) $_GET['id']; // Convert to integer
-$product = $db->query("SELECT * FROM products WHERE id = :id", ['id' => $id])->fetch();//GET THE PRODUCT DATA
-$product_details = $db->query("SELECT * FROM product_details WHERE product_id = :id", ['id' => $id])->fetch(); //GET THE PRODUCT DETAILS
+$product_id =  $_GET['product_id']; // Convert to integer
+$product = $db->query("SELECT * FROM products WHERE product_id = :product_id", ['product_id' => $product_id])->fetch();//GET THE PRODUCT DATA
+$product_details = $db->query("SELECT * FROM product_details WHERE product_id = :product_id", ['product_id' => $product_id])->fetch(); //GET THE PRODUCT DETAILS
 
 $currentStock = $product_details['stock'];
-
 
 
 
@@ -35,6 +35,42 @@ if (!$product) {
     </main>
   ");
 }
+
+
+
+
+function getParentCategory($db, $category_id) {
+  // Get parent_id of the given category_id
+  $category = $db->query("SELECT parent_id FROM categories WHERE category_id = :category_id", [
+      'category_id' => $category_id
+  ])->fetch();
+
+  // If no parent_id (NULL), this is the top category, return it
+  if (!$category || !$category['parent_id']) {
+      return $category_id; // This is the main category
+  }
+
+  // Recursively find the top-level parent category
+  return getParentCategory($db, $category['parent_id']);
+}
+
+function getSubCategory($db, $category_id){
+   $category = $db->query("SELECT parent_id FROM categories WHERE category_id = :category_id", [
+      'category_id' => $category_id
+  ])->fetch();
+
+  // If no parent_id (Main-category)return it
+  if ($category['parent_id'] === 'STAT-MAIN-002'||$category['parent_id'] === 'BOOK-MAIN-001') {
+      return $category_id; // This is the main category
+  }
+
+  // Recursively find the top-level parent category
+  return getSubCategory($db, $category['parent_id']);
+}
+
+$sub_SubCategory =  $product_details['category_id'];
+$sub_category = getSubCategory($db, $product_details['category_id']);
+$parent_category = getParentCategory($db, $product_details['category_id']);
 
 
 
