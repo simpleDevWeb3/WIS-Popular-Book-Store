@@ -20,7 +20,7 @@
                 <a href="/category?parent_id=<?=$category['category_id']?>">
                     <div> 
                         <div class="circle">
-                        <img src="Img/Category/images.jpg">
+                        <img src="<?=$category['category_picture']?>">
                         </div>
                         <h3><?=$category['category_name']?></h3>
                     </div>
