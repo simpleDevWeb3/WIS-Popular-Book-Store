@@ -8,7 +8,7 @@
   <main>
         <h2 style=
         "text-align: center;">
-        Books
+        <?=$subParent_Cat['category_name']?>
         </h2>  
     
  

@@ -8,6 +8,10 @@ $db = new Database();
 $subParent_id =  $_GET['parent_id'];
 //dd($subParent_id);
 
+$subParent_Cat =$db->query("SELECT * FROM categories WHERE category_id = :category_id",[
+  'category_id' => $subParent_id
+]) -> fetch() ;
+
 $sub_SubCategory = $db->query("SELECT * FROM categories WHERE parent_id = :parent_id", [
   'parent_id' => $subParent_id
 ]) -> fetchAll();
