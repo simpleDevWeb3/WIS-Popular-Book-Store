@@ -10,8 +10,23 @@
  ">
    Stationary
   </h2>  
-
   <hr>
+  <section class="category">
+       
+  <?php foreach($all_sub_category as $category): ?>
+        <a href="/category?parent_id=<?=$category['category_id']?>">
+            <div> 
+                <div class="circle">
+                <img src="Img/Category/images.jpg">
+                </div>
+                <h3><?=$category['category_name']?></h3>
+            </div>
+        </a>
+    <?php endforeach ?>
+  </section>
+ 
+  <hr>
+
   
   <section class="product-grid">
       <?php foreach($products as $product): ?>            

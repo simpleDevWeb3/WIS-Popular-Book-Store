@@ -37,7 +37,8 @@ $routes =[
           '/books' => 'controller/books.php',
           '/stationary'=>'controller/stationary.php',
           '/product' => 'controller/product.php',
-          '/search' => 'controller/search.php'
+          '/search' => 'controller/search.php',
+          '/category' => 'controller/category.php',
 ];
 
 

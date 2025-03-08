@@ -15,6 +15,7 @@ $products = $db ->query("SELECT p.*
                         LEFT JOIN categories c3 ON c2.parent_id = c3.category_id
                         WHERE c1.parent_id ='BOOK-MAIN-001' OR c2.parent_id = 'BOOK-MAIN-001' OR c3.parent_id ='BOOK-MAIN-001';")->fetchAll();
 
+$all_sub_category = getAllSubCategory($db,'BOOK-MAIN-001');
 
 require 'view/books.view.php'
 ?>

@@ -39,34 +39,6 @@ if (!$product) {
 
 
 
-function getParentCategory($db, $category_id) {
-  // Get parent_id of the given category_id
-  $category = $db->query("SELECT parent_id FROM categories WHERE category_id = :category_id", [
-      'category_id' => $category_id
-  ])->fetch();
-
-  // If no parent_id (NULL), this is the top category, return it
-  if (!$category || !$category['parent_id']) {
-      return $category_id; // This is the main category
-  }
-
-  // Recursively find the top-level parent category
-  return getParentCategory($db, $category['parent_id']);
-}
-
-function getSubCategory($db, $category_id){
-   $category = $db->query("SELECT parent_id FROM categories WHERE category_id = :category_id", [
-      'category_id' => $category_id
-  ])->fetch();
-
-  // If no parent_id (Main-category)return it
-  if ($category['parent_id'] === 'STAT-MAIN-002'||$category['parent_id'] === 'BOOK-MAIN-001') {
-      return $category_id; // This is the main category
-  }
-
-  // Recursively find the top-level parent category
-  return getSubCategory($db, $category['parent_id']);
-}
 
 $sub_SubCategory =  $product_details['category_id'];
 $sub_category = getSubCategory($db, $product_details['category_id']);
