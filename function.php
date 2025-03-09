@@ -87,7 +87,7 @@
     }
 
 
-    //get All Product
+    //get All subCategory
     function getAllSubCategory($db,$parent_id){                                 
           $categories = $db->query("SELECT * FROM categories WHERE parent_id = :parent_id",[
             'parent_id'=>$parent_id  //BOOK-MANGA-002
@@ -101,6 +101,44 @@
 
 
     }
+
+
+
+
+    
+// Function to search products by keyword and category
+  function searchProducts($db, $keyword, $max_price) {
+    $searchTerm = "%$keyword%";
+    $query = "SELECT p.*
+              FROM products p
+              JOIN categories c ON p.category_id = c.category_id
+              LEFT JOIN categories c_parent ON c.parent_id = c_parent.category_id
+              LEFT JOIN categories c_grandparent ON c_parent.parent_id = c_grandparent.category_id
+              WHERE (p.name LIKE ?
+              OR c.category_name LIKE ?
+              OR c_parent.category_name LIKE ?
+              OR c_grandparent.category_name LIKE ?)
+              AND price <= ?";
+    return $db->query($query, [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price])->fetchAll();
+  }
+
+
+  function getAllProductsByCategory($db, $cat_id) {
+    // Use prepared statements to prevent SQL injection
+    $query = "SELECT p.*
+              FROM products p
+              JOIN categories c1 ON p.category_id = c1.category_id
+              LEFT JOIN categories c2 ON c1.parent_id = c2.category_id
+              LEFT JOIN categories c3 ON c2.parent_id = c3.category_id
+              WHERE c1.category_id = :cat_id
+              OR c1.parent_id = :cat_id
+              OR c2.parent_id = :cat_id
+              OR c3.parent_id = :cat_id";
+  
+    // Execute the query with the provided category ID
+    return $db->query($query, ['cat_id' => $cat_id])->fetchAll();
+  }
+  
 
 
 

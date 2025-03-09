@@ -23,33 +23,10 @@
               <button class="apply-button" id="apply">
                 Apply
                 </button>
-            </div>
-            
-        
-          
+            </div>                  
         
           </div>
-
-            <br>
-                <h3>Books</h3>
-                <div class="book-filter">
-                  <?php foreach($Book_sub_category as $category) :?>
-                    <input type="checkbox" id="filter-<?=$category['category_name'] ?>" class="filter">
-                    <label for="filter-<?=$category['category_name'] ?>"><?=$category['category_name']?></label>
-                      <br>
-                  <?php endforeach ?>
-                </div>
-           
-            <br>
-                    
-               <h3>Stationary</h3>
-                <div class="stationary-filter">
-                  <?php foreach($Stats_sub_category as $category) :?>
-                    <input type="checkbox" id="filter-<?=$category['category_name']  ?>" class="filter" >
-                    <label for="filter-<?=$category['category_name'] ?>"><?=$category['category_name']?></label>
-                      <br>
-                  <?php endforeach ?>
-                </div>
+         
            <br>
   
           <div class="rating-filter">
