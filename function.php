@@ -76,9 +76,11 @@ function getSubCategory($db, $category_id){
   return getSubCategory($db, $category['parent_id']);
 }
 
-function getAllSubCategory($db,$parent_id){
+
+//get All Product
+function getAllSubCategory($db,$parent_id){                                 
       $categories = $db->query("SELECT * FROM categories WHERE parent_id = :parent_id",[
-        'parent_id'=>$parent_id
+        'parent_id'=>$parent_id  //BOOK-MANGA-002
       ])->fetchAll();
 
        forEach($categories as $category_id){

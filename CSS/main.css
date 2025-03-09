@@ -8,21 +8,23 @@
  
 }
 .search-page{
+ margin-left:300px;
  display: grid;
- grid-template-columns: 300px 1fr;
+ grid-template-columns:  1fr;
  
 }
 
 .search-page-grid{
  display: grid;
  gap: 10px;
+
 }
 
 .product-details-row{
 
   margin-left: 60px;
   display: flex;
-  justify-content:start;
+  justify-content:center;
   height: 200px;
   cursor: pointer;
   border: solid 1px rgb(212, 210, 206);
