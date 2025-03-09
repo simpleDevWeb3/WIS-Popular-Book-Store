@@ -16,9 +16,9 @@
           
             <div class="price-filter">
               <label>Price</label> 
-              <span>RM1 - RM<span id="price">50</span></span>
+              <span>RM1 - RM<span id="price"><?=$max_price??50?></span></span>
               <br>
-              <input type="range" id="price-range" min="0" max="100" step="5" value="50">
+              <input type="range" id="price-range" min="0" max="100" step="5" value="<?=$max_price??50?>">
               <br>
               <button class="apply-button" id="apply">
                 Apply
