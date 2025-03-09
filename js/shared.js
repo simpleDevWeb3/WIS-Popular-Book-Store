@@ -6,15 +6,26 @@ $(document).ready(function () {
 
   $("#search").click(function (e) {
     e.preventDefault();
-    window.location.href = "/search?keyword=" + $("#search-bar").val();
+    performSearch();
   });
 
   $("#search-bar").on("keypress", function (e) {
     if (e.key === "Enter") {
       e.preventDefault();
-      window.location.href = "/search?keyword=" + $(this).val();
+      performSearch();
     }
   });
+
+
+
+  /////function for search/////
+  function performSearch() {
+    let keyword = $("#search-bar").val();
+
+    if (keyword !== "") {
+      window.location.href = `/search?keyword=${encodeURIComponent(keyword)}`;
+    }
+  }
 
  
 });

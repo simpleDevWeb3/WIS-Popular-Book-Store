@@ -6,7 +6,7 @@
 
 
 
-  <main style="max-width: 1800px; min-height:1000px"> 
+  <main style="max-width: 1800px;"> 
     <section class="search-page">
 
         <aside>
