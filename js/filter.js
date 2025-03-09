@@ -1,7 +1,8 @@
 $(document).ready(function() {
+///////////////Price Filter////////////////////////////////////////////
   $("#price-range").on("input", function() {
       let price = $(this).val();
-      console.log("Dragging price range: " + price); // 🔍 Check if this updates
+      console.log("Dragging price range: " + price); // Check if this updates
       $("#price").text(price);
   });
 
@@ -9,7 +10,7 @@ $(document).ready(function() {
       let selectedPrice = $("#price-range").val();
 
       // Debugging: Log the price before sending
-      console.log("📤 Sending Price: " + selectedPrice);
+      console.log("Sending Price: " + selectedPrice);
 
       $.ajax({
           url: "function.php",
@@ -25,4 +26,8 @@ $(document).ready(function() {
           }
       });
   });
+  //////////////////////////////////////////////////////////////////////////
+
+
+
 });

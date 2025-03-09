@@ -17,6 +17,7 @@ $subParent_Cat =$db->query("SELECT * FROM categories WHERE category_id = :catego
 
 
 
+
 //level 3 category
 $sub_SubCategory = $db->query("SELECT * FROM categories WHERE parent_id = :parent_id", [
   'parent_id' => $subParent_id

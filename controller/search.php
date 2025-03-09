@@ -22,6 +22,11 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 } 
  
 
+$Stats_sub_category = getAllSubCategory($db,'STAT-MAIN-002');
+
+$Book_sub_category = getAllSubCategory($db,'BOOK-MAIN-001');
+
+
 $max_price = isset($_SESSION['filtered_price']) ? $_SESSION['filtered_price'] : null;
 
 if ($max_price !== null) {
