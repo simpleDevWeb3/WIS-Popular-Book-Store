@@ -6,7 +6,7 @@
       </div>
 
       <div class="popular-center-head">
-          <input id="search-bar" class="search-bar" type="text" placeholder="Search Popular"> 
+          <input id="search-bar" class="search-bar" type="text" placeholder="Search Popular" > 
           <span id="search"><img class="search-icon"  width="20px" height="20px" src="Img/Icon/search-icon.png"></span>
       </div>
 
