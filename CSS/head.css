@@ -355,7 +355,7 @@ hr{
   border-width: 2px;
   padding: 10px;
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: border 0.15s;
   align-items: center;
 
 }
@@ -373,7 +373,9 @@ hr{
 
 }
 .product-details:hover{
-  background-color: rgb(237, 235, 235);
+ 
+ border: solid 2px red;
+
 }
 .rating{
   display: flex;

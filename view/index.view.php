@@ -5,12 +5,19 @@
 
  
   <main>
-  <h2 style=
-        "text-align: center;">
-        All
-        </h2>  
+
+  <div style="
+  text-align: center;
+   padding:50px 50px 50px 50px;
+   background-color:lightcoral;
+   ">
+     
+       <h1>Welcome To the Popular Book Store</h1>
+       <br>
+       <h3>Malaysian's Favourite Book and Stationary Store!</h3>
+    </div>  
       
-        <hr>
+        <br>
    <section class="product-grid">
           <?php foreach($products as $product ):?>            
             <div class="product-details">

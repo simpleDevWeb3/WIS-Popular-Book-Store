@@ -18,7 +18,7 @@
                     <label>Price</label>   
                     <span>RM1 - RM<span id="price"><?=$max_price??100?></span></span>
                     <br>
-                    <input type="range" id="price-range" style="scroll-behavior: smooth;" min="0" max="100" step="5" value="<?=$max_price ?? 50?>">
+                    <input type="range" id="price-range" style="scroll-behavior:smooth; " min="1" max="100" step="1" value="<?=$max_price ?? 50?>">
                     <br>
                     <button class="apply-button" id="apply">
                       Apply

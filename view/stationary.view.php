@@ -5,30 +5,32 @@
 
 
 <main>
-  <h2 style=
-  "text-align: center;
- ">
-   Stationary
-  </h2>  
-  <hr>
-  <section class="category">
+<div style="
+  text-align: center;
+   background-color:lightgoldenrodyellow;
+   padding:50px 50px 0px 50px">
+       <h1> Get Ready to Learn: Back to School Essentials! </h1>
+       <br>
+       <h3>You might need</h3>
 
-  <?php foreach($all_sub_category as $category): ?>
-        
-        <a href="/category?parent_id=<?=$category['category_id']?>">
-            <div> 
-                <div class="circle">
-                <img src="<?=$category['category_picture']?>">
+       <section class="category">
+        <?php foreach($all_sub_category as $category): ?> 
+            <a href="/category?parent_id=<?=$category['category_id']?>">
+                <div> 
+                    <div class="circle">
+                    <img src="<?=$category['category_picture']?>">
+                    </div>
+                    <h3><?=$category['category_name']?></h3>
                 </div>
-                <h3><?=$category['category_name']?></h3>
-            </div>
-        </a>
-    <?php endforeach ?>
-  </section>
- 
-  <hr>
+            </a>
+        <?php endforeach ?>
+        </section>
+    </div>  
 
-  
+   
+ 
+
+  <div></div>
   <section class="product-grid">
       <?php foreach($products as $product): ?>            
           <div class="product-details">

@@ -7,29 +7,34 @@
   
 
   <main>
-        <h2 style=
-        "text-align: center;">
-        Books
-        </h2>  
-      
-   
-        <hr>
-        
-        <section class="category">       
-          <?php foreach($all_sub_category as $category): ?>
-                <a href="/category?parent_id=<?=$category['category_id']?>">
-                    <div> 
-                        <div class="circle">
-                        <img src="<?=$category['category_picture']?>">
+        <div style="
+        text-align: center;
+        padding:50px 50px 0px 50px;
+        background-color:aliceblue
+        ">
+            <h1> Find Your Favourite Book Only In Popular Book Store!</h1>
+            <br>
+            <h3>You May Like</h3>
+            <br>
+
+          <section class="category">       
+            <?php foreach($all_sub_category as $category): ?>
+                    <a href="/category?parent_id=<?=$category['category_id']?>">
+                        <div> 
+                            <div class="circle">
+                            <img src="<?=$category['category_picture']?>">
+                            </div>
+                            <h3><?=$category['category_name']?></h3>
                         </div>
-                        <h3><?=$category['category_name']?></h3>
-                    </div>
-                </a>
-            <?php endforeach ?>
-        </section>
+                    </a>
+                <?php endforeach ?>
+            </section>
+       
+         </div>  
+
+        
+      
  
-        <hr>
-  
       
         <section class="product-grid">
           <?php foreach($products as $product): ?>            
