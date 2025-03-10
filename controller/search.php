@@ -14,6 +14,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
 // Get subcategories
 $Stats_sub_category = getAllSubCategory($db, 'STAT-MAIN-002');
+
 $Book_sub_category = getAllSubCategory($db, 'BOOK-MAIN-001');
 
 // Load the view

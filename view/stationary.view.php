@@ -12,8 +12,9 @@
   </h2>  
   <hr>
   <section class="category">
-       
+
   <?php foreach($all_sub_category as $category): ?>
+        
         <a href="/category?parent_id=<?=$category['category_id']?>">
             <div> 
                 <div class="circle">
