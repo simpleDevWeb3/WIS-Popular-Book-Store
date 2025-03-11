@@ -8,13 +8,14 @@
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  
 
 }
 .product-detail-view{
-
+ 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 10px;
+  column-gap: 0px;
   align-items: start;
   width: 100%;
   text-align: start;
@@ -22,9 +23,11 @@
 
 }
 
-
+.product-thumbnail{
+  width: 500px;
+}
 .product-thumbnail-container{
- border: solid 1px rgb(226, 226, 226);
+
  padding-top: 10px;
  padding-bottom: 10px;
  max-width: 500px;
@@ -51,8 +54,8 @@
 
 .product-detail{
 
-  padding-top:40px;
-  padding-left: 40px;
+  padding-top:30px;
+  padding-left: 10px;
   padding-right: 40px;
   padding-bottom: 40px;
   border-style: solid;
@@ -164,47 +167,28 @@ div> .increase{
 
 .add-to-cart-button{
   margin-right: 20px;
- padding:10px 30px;
-
- font-size: 18px;
- border: solid 2px;
- border-radius: 5px;
- color:rgb(220, 8, 8);
- background-color: rgba(247, 49, 31, 0.316);
- cursor: pointer;
- transition: background-color 0.15s, color 0.15s ;
-}
-
-.add-to-cart-button:hover{
-  
-  background-color: rgb(255, 255, 255);
-}
-
-.add-to-cart-button:active{
-
-  background-color: rgba(247, 49, 31, 0.316);
-}
-.order-now-button{
-
-  padding:12px 30px;
+  padding:12px;
   font-size: 18px;
   border: none;
   border-radius: 5px;
   color: rgb(255, 255, 255);
-  border: solid 1px orange;
-  background-color: rgb(240, 84, 0);
+  border: solid 1px rgb(27, 27, 27);
+  background-color: rgb(34, 33, 33);
   cursor: pointer;
-  transition: opacity 0.15s,background-color 0.15s;
+
   font-weight: 600;
+  transition: background-color 0.15s, color 0.15s ;
 }
 
-.order-now-button:hover{
-  background-color: rgb(238, 105, 33);
+.add-to-cart-button:hover{
+  background-color: rgb(47, 47, 47);
+
+ 
 }
 
-.order-now-button:active{
-  opacity: 1;
-  background-color: rgb(224, 79, 1);
+.add-to-cart-button:active{
+
+  background-color: rgb(0, 0, 0);
 }
 
 
@@ -224,7 +208,7 @@ div> .increase{
   margin-top: 80px;
   margin-bottom: 60px;
   padding: 10px 20px ;
-  border: solid 2px rgb(205, 42, 42);
+  border: solid 2px rgb(194, 194, 194);
   border-top-width: 13px;
  border-radius: 5px;
 

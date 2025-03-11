@@ -8,11 +8,11 @@
 <div style="
   text-align: center;
    background-color:lightgoldenrodyellow;
-   padding:50px 50px 0px 50px">
-       <h1> Get Ready to Learn: Back to School Essentials! </h1>
+   padding:30px 50px 0px 50px">
+       <h1> Get Ready to Learn Back to School Essentials! </h1>
        <br>
        <h3>You might need</h3>
-
+       <br>
        <section class="category">
         <?php foreach($all_sub_category as $category): ?> 
             <a href="/category?parent_id=<?=$category['category_id']?>">
@@ -34,7 +34,7 @@
   <section class="product-grid">
       <?php foreach($products as $product): ?>            
           <div class="product-details">
-              <a href="/product?product_id=<?=$product['product_id']?>">
+            <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                   <!-- Ensure correct image path -->
                   <img src="<?=$product['image']?>">
 

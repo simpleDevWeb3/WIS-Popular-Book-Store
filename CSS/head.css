@@ -350,9 +350,7 @@ hr{
   flex-direction: column;
   gap: 10px;
   margin-bottom: 30px;
-  border: solid rgb(222, 221, 221);
-  border-radius: 6px;
-  border-width: 2px;
+
   padding: 10px;
   cursor: pointer;
   transition: border 0.15s;
@@ -372,11 +370,7 @@ hr{
   opacity:1;
 
 }
-.product-details:hover{
- 
- border: solid 2px red;
 
-}
 .rating{
   display: flex;
    align-items: center;
@@ -410,9 +404,9 @@ main{
 }
 #info{
   position:fixed;
-  color: red;
+  color: rgb(255, 255, 255);
   z-index: 100;
-  background-color: rgba(225, 22, 22, 0.21);
+  background-color: rgb(0, 0, 0);
   border-radius: 4px;
   padding:10px;
   translate: -50% 0;

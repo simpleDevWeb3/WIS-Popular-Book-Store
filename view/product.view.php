@@ -35,8 +35,8 @@
                   $ratingImg = $product['rating'] * 10;  
               ?>
               <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
-              <span class="total-solded">100 Solded </span>
-              <span class="item-stats">Available</span>
+             <!-- <span class="total-solded">100 Solded </span>
+              <span class="item-stats">Available</span>!-->
             </div>
       
             <hr>
@@ -61,16 +61,15 @@
           
            
             <br>
+            <div style="display: flex; flex-direction:column">
            
-            <button id="add-to-cart-btn" class="add-to-cart-button " data-product-id="<?=$product_details['product_id']?>">
-              Add To Cart
-            </button>
-
-            
-      
-            <button class="order-now-button">
-             Order Now
-            </button>
+              <button id="add-to-cart-btn" class="add-to-cart-button " data-product-id="<?=$product_details['product_id']?>">
+                Add To Cart
+              </button>
+               
+         
+            </div>
+           
           </div>
       
         </section>
@@ -78,12 +77,11 @@
        
       </div>
     
-      <br>
       <section class="product-desc">
       <h1>Product Detail</h1>
         <?php if($parent_category === 'BOOK-MAIN-001'): ?>
             
-            <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
+            <hr style="border: solid 1px;  border-color: rgb(172, 172, 172);">
             <table>
               <tr>
                 <td><strong>Name</strong></td>
@@ -127,7 +125,7 @@
 
         <?php if($parent_category === 'STAT-MAIN-002'): ?>
           
-          <hr style="border-style: dotted;  border-color: rgb(242, 8, 8);">
+          <hr style="border: solid 1px;  border-color: rgb(172, 172, 172);">
           <table>
             <tr>
               <td><strong>Name</strong></td>
@@ -167,5 +165,29 @@
     </div>
 
 
+    <br>
+    <?php if($related_product):?>
+      <h1> You might also love</h1>
+      <section class="product-grid">
+            <?php foreach($related_product as $product ):?>            
+              <div class="product-details">
+              <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
+                  <img src="<?=$product['image']?>">
+                  <a class="title"><?=$product['name']?></a>
+                  <div class="rating">
+                    <span><?= number_format($product['rating'], 1) ?></span>
+
+                    <?php
+                        // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
+                        $ratingImg = $product['rating'] * 10;  
+                    ?>
+                    <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
+                  </div>
+                  <div class="price">RM<?=$product['price']?></div> 
+                </a>
+              </div>
+            <?php endforeach;?>
+      </section> 
+    <?php endif; ?>
   </main>
 <?php require 'partials/footer.php' ?>

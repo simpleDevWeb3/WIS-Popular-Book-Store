@@ -172,3 +172,20 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
   width: 130px;
 }
+
+
+#sortOptions {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #9f9a9a; /* Red border */
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+
+
+

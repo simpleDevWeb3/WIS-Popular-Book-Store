@@ -104,7 +104,7 @@
 
     
 // Function to search products by keyword and category
-  function searchProducts($db, $keyword, $max_price) {
+  function searchProducts($db, $keyword, $max_price,$orderBy = "name ASC") {
     $searchTerm = "%$keyword%";
     $query = "SELECT p.*
               FROM products p
@@ -115,7 +115,8 @@
               OR c.category_name LIKE ?
               OR c_parent.category_name LIKE ?
               OR c_grandparent.category_name LIKE ?)
-              AND price <= ?";
+              AND price <= ? ORDER BY $orderBy";
+              
     return $db->query($query, [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price])->fetchAll();
   }
 
@@ -123,8 +124,8 @@
   function getAllProductsByCategory($db, $cat_id) {
     // Use prepared statements to prevent SQL injection
     $query = "SELECT p.*
-              FROM products p
-              JOIN categories c1 ON p.category_id = c1.category_id
+              FROM products p 
+              JOIN categories c1 ON p.category_id = c1.category_id   
               LEFT JOIN categories c2 ON c1.parent_id = c2.category_id
               LEFT JOIN categories c3 ON c2.parent_id = c3.category_id
               WHERE c1.category_id = :cat_id
@@ -138,6 +139,18 @@
   
 
 
+
+  function getSortOptions() {
+    if (isset($_GET['sort'])) {
+        switch ($_GET['sort']) {
+            case 'name_desc': return "name DESC"; // Sort by name descending
+            case 'name_asc': return "name ASC"; // Sort by name ascending
+            case 'price_asc': return "price ASC"; // Sort by lowest price
+            case 'price_desc': return "price DESC"; // Sort by highest price
+        }
+    }
+    return "name ASC"; // Default sorting if no option is selected
+}
 
 
 

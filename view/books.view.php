@@ -9,7 +9,7 @@
   <main>
         <div style="
         text-align: center;
-        padding:50px 50px 0px 50px;
+        padding:30px 50px 0px 50px;
         background-color:aliceblue
         ">
             <h1> Find Your Favourite Book Only In Popular Book Store!</h1>
@@ -39,7 +39,7 @@
         <section class="product-grid">
           <?php foreach($products as $product): ?>            
               <div class="product-details">
-                  <a href="/product?product_id=<?=$product['product_id']?>">
+                  <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                       <!-- Ensure correct image path -->
                       <img src="<?=$product['image']?>">
 

@@ -9,7 +9,7 @@ $db = new Database();
 
 
 // Check if 'id' is set in the URL eg./product?id=null or /product?id=1
-if (!isset($_GET['product_id']) || !is_string($_GET['product_id'])) {
+if (!isset($_GET['product_id']) || !is_string($_GET['product_id']) || !isset($_GET['category_id']) || !is_string($_GET['category_id'])) {
   die("
     <main>
        <br>
@@ -19,12 +19,15 @@ if (!isset($_GET['product_id']) || !is_string($_GET['product_id'])) {
 }
 
 // fetch product data
+$category_id = $_GET['category_id'];
 $product_id =  $_GET['product_id']; // Convert to integer
 $product = $db->query("SELECT * FROM products WHERE product_id = :product_id", ['product_id' => $product_id])->fetch();//GET THE PRODUCT DATA
 $product_details = $db->query("SELECT * FROM product_details WHERE product_id = :product_id", ['product_id' => $product_id])->fetch(); //GET THE PRODUCT DETAILS
 
 $currentStock = $product_details['stock'];
 
+$related_product = $db->query("SELECT * FROM products WHERE category_id = :category_id AND product_id != :product_id",
+['category_id' => $category_id, 'product_id' => $product_id])->fetchAll() ;// fetch product that in same sub_Subcategory 
 
 
 if (!$product) {

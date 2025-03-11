@@ -3,10 +3,11 @@
 
 
   $db = new Database();
+  $orderBy =  getSortOptions();
 
   //Fetch only fetch single record
   //Fetch all it select whole table
-  $products = $db ->query("SELECT * FROM products")->fetchAll();
+  $products = $db ->query("SELECT * FROM products ORDER BY $orderBy")->fetchAll();
 
 
 
@@ -17,3 +18,5 @@
 
 
 ?>
+
+<script src="/js/sort.js"></script>

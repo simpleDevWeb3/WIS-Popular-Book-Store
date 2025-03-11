@@ -34,7 +34,7 @@
         <section class="product-grid">
             <?php foreach($products as $product): ?>        
                 <div class="product-details">
-                    <a href="/product?product_id=<?=($product['product_id']) ?>">
+                   <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                         <!-- Ensure correct image path -->
                         <img src="<?=$product['image']?>">
 

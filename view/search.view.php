@@ -24,30 +24,41 @@
                       Apply
                       </button>
                   </div>                  
-              
+                   
                 </div>
               
                 <br>
-        
+
+                                                                    <h3>Sort By</h3>
+                                                                     <br>
+                <select id="sortOptions">
+                            <option value="name_asc"> A-Z</option>
+                            <option value="name_desc"> Z-A</option>
+                            <option value="price_asc">Price Low to High</option>
+                            <option value="price_desc">Price High to Low</option>
+                  </select>
+        <!---
                 <div class="rating-filter">
                   <h4>Ratings</h4>
-                  <?php for ( $i =5 ; $i>0 ; $i--){ ?>
+                  <//?php for ( $i =5 ; $i>0 ; $i--){ ?>
                       <div class="filter-rating-grid">
                         <div> 
                           <img src="Img/Ratings/rating-<?=$i?>0.png">
                         </div>           
                       </div>
                     </div>
-                <?php } ?>
+                <//?php } ?>
+             !--->
+                
             </aside>
 
             <div class="search-page-grid">
                 <h1 style="margin-left: 30px; margin-top: 20px;">Search Result(<?=count($products)?>) "<?=$searchResult?>"</h1>
-                      
+    
                     <section class="product-grid" style="grid-template-columns: 1fr 1fr 1fr; ">
                       <?php foreach($products as $product): ?>            
                         <div class="product-details">
-                          <a href="/product?product_id=<?=$product['product_id']?>">
+                          <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                               <!-- Ensure correct image path -->
                               <img src="<?=$product['image']?>">
                               <a class="title"><?=$product['name']?></a>

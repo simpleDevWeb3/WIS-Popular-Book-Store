@@ -16,12 +16,23 @@
        <br>
        <h3>Malaysian's Favourite Book and Stationary Store!</h3>
     </div>  
+
+    <br>
+
+        
+        
+    <select id="sortOptions">
+        <option value="name_asc">Sort A-Z</option>
+        <option value="name_desc">Sort Z-A</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+   </select>
       
         <br>
    <section class="product-grid">
           <?php foreach($products as $product ):?>            
             <div class="product-details">
-              <a href="/product?product_id=<?=$product['product_id']?>">
+             <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                 <img src="<?=$product['image']?>">
                 <a class="title"><?=$product['name']?></a>
                 <div class="rating">
