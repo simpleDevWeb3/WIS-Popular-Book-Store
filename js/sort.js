@@ -3,7 +3,7 @@ $(document).ready(function () {
   let selectedValue = urlParams.get('sort');
 
   if (selectedValue) {
-      $('#sortOptions').val(selectedValue); //selected sorting  change in selection
+      $('#sortOptions').val(selectedValue); // Set dropdown to current sort
   }
 
   $('#sortOptions').change(function () {
@@ -12,4 +12,3 @@ $(document).ready(function () {
       window.location.search = urlParams.toString(); // Reloads the page 
   });
 });
-

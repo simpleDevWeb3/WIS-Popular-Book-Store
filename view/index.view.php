@@ -50,7 +50,22 @@
             </div>
           <?php endforeach;?>
     </section> 
-    <?php $p-> html($orderBy, $attr = '')?> 
+    <?php 
+    $sortKey = $_GET['sort'] ?? 'name_asc'; // Get sorting option from URL
+
+    // Remove any existing "page" parameter to avoid duplication
+    $queryParams = $_GET;
+    unset($queryParams['page']); 
+
+    // Rebuild the query string with correct "sort" and current "page"
+    $queryString = http_build_query(array_merge($queryParams, ['sort' => $sortKey]));
+
+    // Generate pagination with cleaned query string
+    $p->html($queryString, '');
+    ?>
+
+
+ 
 
   </main>
 

@@ -104,8 +104,13 @@
 
     
 // Function to search products by keyword and category
-  function searchProducts($db, $keyword, $max_price,$orderBy = "name ASC") {
+  function searchProducts($db, $keyword, $max_price,$orderBy = "name ASC",$page) {
+    // get page url 
+  
+    
+
     $searchTerm = "%$keyword%";
+ 
     $query = "SELECT p.*
               FROM products p
               JOIN categories c ON p.category_id = c.category_id
@@ -116,8 +121,27 @@
               OR c_parent.category_name LIKE ?
               OR c_grandparent.category_name LIKE ?)
               AND price <= ? ORDER BY $orderBy";
-              
-    return $db->query($query, [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price])->fetchAll();
+
+    $p = new Paging($db,$query,[$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price], 10, $page);
+
+    return $p;
+   
+   // return $db->query($query, [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price])->fetchAll();
+    
+
+        /*
+    // Get current page from query string, default to 1
+    $page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
+
+    $query = "SELECT * FROM products ORDER BY $orderBy";
+    // Initialize Pagination (Assuming Paging accepts query, params, limit, page)
+
+    $p = new Paging($db,$query, [], 10, $page, $db);
+
+    // Get paginated results from Paging class
+    $products = $p->result;
+
+    */
   }
 
 

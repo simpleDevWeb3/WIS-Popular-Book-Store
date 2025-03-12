@@ -7,32 +7,38 @@ class Paging{
   public $page_count; // Total page count
   public $result;     // Result set (array of records)
   public $count;      // Item count on the current page
+  public $offset;
   private $db;
 
     public function __construct(Database $db, $query,$params,$limit,$page)
     {
     //construct databse
       $this->db =$db;
-
+   
       // ctype_digit($limit) -> ensure valid integer 
-      $this->limit = ctype_digit($limit) ? max ($limit,1) : 12;//If $limit is invalid, the default value 10 is used.
-      $this->page = ctype_digit($page) ? max($page,1) : 1;
+      $this->limit = is_numeric($limit) ? (int)$limit : 10; // Ensure limit stays as an integer
+      //If $limit is invalid, the default value 10 is used.
+     
+      $this->page = is_numeric($page) ? max((int)$page, 1) : 1;
+
+   
 
 
       //Set[item count]
-      $q = preg_replace('/SELECT.+FROM/','SELECT COUNT(*) FROM', $query,1);//Modify SQL Query to Count Total Items
+      $q = preg_replace('/SELECT\s+.+?\s+FROM\s+/i', 'SELECT COUNT(*) FROM ', $query,1);//Modify SQL Query to Count Total Items
       $stmt = $this->db->query($q,$params);
-      $this->item_count = $stmt->fetchColumn();
-
+      $this->item_count = (int)$stmt->fetchColumn();
+   
       //Set[page count]
       //53 product / number item perpage 10 = 5.3  -> sum to 6 page
       $this->page_count = ceil($this->item_count/$this->limit);
-
+      
       //Calculate offset: Define where to start fetch record
-      $offset = ($this->page-1)*$this->limit;
-
+      $this->offset = ($this->page-1)*$this->limit;
+   
+      
       //Set [result]
-      $stm = $db->query($query . " LIMIT $offset,$this->limit " , $params); // it will change original query adding  . " LIMIT $offset,$this->limit"
+      $stm = $db->query($query . " LIMIT $this->offset,$this->limit " , $params); // it will change original query adding  . " LIMIT $offset,$this->limit"
                                                                          // eg.SELECT * FROM products WHERE category_id = ? LIMIT 10, 10;
 
       
@@ -40,7 +46,9 @@ class Paging{
 
       $this->count = count($this->result);
 
-
+    
+      
+     
   }
 
   public function html($href = '', $attr = ''){

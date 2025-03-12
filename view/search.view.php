@@ -43,7 +43,7 @@
                   <//?php for ( $i =5 ; $i>0 ; $i--){ ?>
                       <div class="filter-rating-grid">
                         <div> 
-                          <img src="Img/Ratings/rating-<?=$i?>0.png">
+                          <img src="Img/Ratings/rating-<//?=$i?>0.png">
                         </div>           
                       </div>
                     </div>
@@ -53,8 +53,9 @@
             </aside>
 
             <div class="search-page-grid">
-                <h1 style="margin-left: 30px; margin-top: 20px;">Search Result(<?=count($products)?>) "<?=$searchResult?>"</h1>
-    
+                <h1 style="margin-left: 30px; margin-top: 20px;">Search Result(<?=$p->item_count?>) "<?=$searchResult?>"</h1>
+                <span style="margin-left: 30px;"><?= $p->count ?> of <?= $p->item_count ?> product(s) | Page <?= $p->page ?> of <?= $p->page_count ?></span>
+
                     <section class="product-grid" style="grid-template-columns: 1fr 1fr 1fr; ">
                       <?php foreach($products as $product): ?>            
                         <div class="product-details">
@@ -79,6 +80,22 @@
             </div>
 
       </section>
+
+      <?php 
+       $keyword = $_GET['keyword']?? '';
+      $sortKey = $_GET['sort'] ?? 'name_asc'; // Get sorting option from URL
+     
+      // Remove any existing "page" parameter to avoid duplication
+      $queryParams = $_GET;
+      unset($queryParams['page']); 
+
+
+      // Rebuild the query string with correct "sort" and current "page"
+      $queryString = http_build_query(array_merge($queryParams, ['sort' => $sortKey, 'keyword'=>$keyword]));
+
+      // Generate pagination with cleaned query string
+      $p->html($queryString, '');
+    ?>
   </main>
 
   <br><br>
