@@ -7,14 +7,14 @@ class Database{
   //constructor 
   public function __construct(){
      //$dsn = arrange connection to mysql 
-    
+   //default config  
    $dsn = "mysql:host=localhost;port=3306;dbname=mypopulardb;charset=utf8mb4;";
    $username = "root";
    $password = ""; 
           
      
 
-   
+     // construct 
      $this->conn = new PDO($dsn,$username,$password,[
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
      ]);

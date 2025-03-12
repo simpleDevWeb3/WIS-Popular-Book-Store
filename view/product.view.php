@@ -110,12 +110,12 @@
             
               <tr>
                 <td><strong>Category</strong></td>
-                <td><?=implode(", ", json_decode($product_details['genre'], true)) ?></td>
+                <td><?=$product_details['genre'] ?></td>
               </tr>
             
               <tr>
                 <td><strong>Genre</strong></td>
-                <td><?=implode(", ", json_decode($product_details['keywords'], true)) ?></td>
+                <td><?=$product_details['keywords']?></td>
               </tr>
             </table>
             
@@ -152,7 +152,7 @@
            
             <tr>
               <td><strong>Category</strong></td>
-              <td><?=implode(", ", json_decode($product_details['keywords'], true)) ?></td>
+              <td><?=$product_details['keywords']?></td>
             </tr>
           </table>
           

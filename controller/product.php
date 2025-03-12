@@ -20,7 +20,7 @@ if (!isset($_GET['product_id']) || !is_string($_GET['product_id']) || !isset($_G
 
 // fetch product data
 $category_id = $_GET['category_id'];
-$product_id =  $_GET['product_id']; // Convert to integer
+$product_id =  $_GET['product_id']; 
 $product = $db->query("SELECT * FROM products WHERE product_id = :product_id", ['product_id' => $product_id])->fetch();//GET THE PRODUCT DATA
 $product_details = $db->query("SELECT * FROM product_details WHERE product_id = :product_id", ['product_id' => $product_id])->fetch(); //GET THE PRODUCT DETAILS
 
