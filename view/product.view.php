@@ -189,5 +189,12 @@
             <?php endforeach;?>
       </section> 
     <?php endif; ?>
+
+
+     <h1>Comment</h1>
+     <br>
+    <section class="comment-section" style="border: solid 2px; height:200px; display:flex;">
+   
+    </section>
   </main>
 <?php require 'partials/footer.php' ?>

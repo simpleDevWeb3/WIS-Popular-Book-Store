@@ -31,7 +31,7 @@
 
                                                                     <h3>Sort By</h3>
                                                                      <br>
-                <select id="sortOptions">
+                <select id="sortOptions" style="float: left;">
                             <option value="name_asc"> A-Z</option>
                             <option value="name_desc"> Z-A</option>
                             <option value="price_asc">Price Low to High</option>

@@ -140,17 +140,20 @@
 
 
 
-  function getSortOptions() {
-    if (isset($_GET['sort'])) {
-        switch ($_GET['sort']) {
-            case 'name_desc': return "name DESC"; // Sort by name descending
-            case 'name_asc': return "name ASC"; // Sort by name ascending
-            case 'price_asc': return "price ASC"; // Sort by lowest price
-            case 'price_desc': return "price DESC"; // Sort by highest price
-        }
-    }
-    return "name ASC"; // Default sorting if no option is selected
+function getSortOptions() {
+    $sortOptions = [
+        'name_asc' => 'name ASC',
+        'name_desc' => 'name DESC',
+        'price_asc' => 'price ASC',
+        'price_desc' => 'price DESC'
+    ];
+
+    return isset($_GET['sort']) && isset($sortOptions[$_GET['sort']]) 
+        ? $sortOptions[$_GET['sort']] 
+        : 'name ASC';
 }
+
+
 
 
 

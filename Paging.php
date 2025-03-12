@@ -15,7 +15,7 @@ class Paging{
       $this->db =$db;
 
       // ctype_digit($limit) -> ensure valid integer 
-      $this->limit = ctype_digit($limit) ? max ($limit,1) : 10;//If $limit is invalid, the default value 10 is used.
+      $this->limit = ctype_digit($limit) ? max ($limit,1) : 12;//If $limit is invalid, the default value 10 is used.
       $this->page = ctype_digit($page) ? max($page,1) : 1;
 
 
@@ -32,7 +32,7 @@ class Paging{
       $offset = ($this->page-1)*$this->limit;
 
       //Set [result]
-      $stm = $db->query($query . "LIMIT $offset,$this->limit " , $params); // it will change original query adding  . " LIMIT $offset,$this->limit"
+      $stm = $db->query($query . " LIMIT $offset,$this->limit " , $params); // it will change original query adding  . " LIMIT $offset,$this->limit"
                                                                          // eg.SELECT * FROM products WHERE category_id = ? LIMIT 10, 10;
 
       
@@ -50,19 +50,20 @@ class Paging{
     $prev = max($this->page - 1,1);
     $next  = min($this->page + 1, $this->page_count);
 
-    echo "<nav class='pager' $attr>";
+    echo "<div class='pager' $attr>";
     echo "<a href='?page=1&$href'>First</a>";
     echo "<a href='?page=$prev&$href'>Previous</a>";
-
+    
     // prev [1][2][3][4] next
-    for($p = 1; $p <= $this->page_count; $p++){
-      $c = $p == $this->page ?  'active' : '';
-      echo "<a href ='?page=$p&$href' class='$c'>$p</a>";
+    for ($p = 1; $p <= $this->page_count; $p++) {
+        $c = $p == $this->page ? 'active' : '';
+        echo "<a href='?page=$p&$href' class='$c'>$p</a>";
     }
-
+    
     echo "<a href='?page=$next&$href'>Next</a>";
     echo "<a href='?page=$this->page_count&$href'>Last</a>";
-    echo"</nav>";
+    echo "</div>";
+    
   }
 }
 ?>

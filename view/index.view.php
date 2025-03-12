@@ -15,12 +15,13 @@
        <h1>Welcome To the Popular Book Store</h1>
        <br>
        <h3>Malaysian's Favourite Book and Stationary Store!</h3>
-    </div>  
-
-    <br>
-
-        
-        
+    </div> 
+ 
+   <br>
+   <span>
+    <?= $p->count ?> of <?= $p->item_count ?> product(s) |
+   Page <?= $p->page ?> of <?= $p->page_count ?></span>
+ 
     <select id="sortOptions">
         <option value="name_asc">Sort A-Z</option>
         <option value="name_desc">Sort Z-A</option>
@@ -49,6 +50,8 @@
             </div>
           <?php endforeach;?>
     </section> 
+    <?php $p-> html($orderBy, $attr = '')?> 
+
   </main>
 
   

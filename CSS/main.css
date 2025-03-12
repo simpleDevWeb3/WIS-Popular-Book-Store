@@ -176,6 +176,7 @@ input[type="checkbox"]:checked::after {
 
 #sortOptions {
   padding: 8px 12px;
+  margin-bottom: 20px;
   font-size: 16px;
   border: 2px solid #9f9a9a; /* Red border */
   border-radius: 5px;
@@ -184,6 +185,41 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease;
+  float: right;
+}
+
+
+
+.pager {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.pager a {
+  padding: 10px 20px;
+  color: #000000;
+
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 5px;
+  margin: 0 5px;
+  opacity: 1;
+}
+
+.pager a:hover {
+  opacity: 	0.7;
+}
+
+.pager a.active {
+  background: #353535 !important;
+  color: #fff !important;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.pager a.active:hover {
+  background: #7b7b7b !important;
 }
 
 
