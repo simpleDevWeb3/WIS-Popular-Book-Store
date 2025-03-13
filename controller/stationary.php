@@ -13,8 +13,7 @@ $products = $p->result;
 
 $all_sub_category = getAllSubCategory($db,'STAT-MAIN-002');
 
-//TODO 
-// add paging 
+
 
 
 require 'view/stationary.view.php';

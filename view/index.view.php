@@ -6,22 +6,22 @@
  
   <main>
 
-  <div style="
-  text-align: center;
-   padding:50px 50px 50px 50px;
-   background-color:lightcoral;
-   ">
-     
-       <h1>Welcome To the Popular Book Store</h1>
-       <br>
-       <h3>Malaysian's Favourite Book and Stationary Store!</h3>
-    </div> 
+ 
+
+      <div class="banner">
+            <img src="/Img/Category/Popular.jpg"" style="width: 100%; height: 100%; object-fit: cover;">
+            <h1 class="banner-title">
+              Popular Book Store
+            </h1>  
+      </div>
+      
+    
  
    <br>
-   <span>
-    <?= $p->count ?> of <?= $p->item_count ?> product(s) |
-   Page <?= $p->page ?> of <?= $p->page_count ?></span>
+
  
+   <div style="margin-left:80px ;"><?=$p->item_count?> products</div>
+    
     <select id="sortOptions">
         <option value="name_asc">Sort A-Z</option>
         <option value="name_desc">Sort Z-A</option>

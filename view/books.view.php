@@ -7,17 +7,15 @@
   
 
   <main>
-        <div style="
-        text-align: center;
-        padding:30px 50px 0px 50px;
-        background-color:aliceblue
-        ">
-            <h1> Find Your Favourite Book Only In Popular Book Store!</h1>
-            <br>
-            <h3>You May Like</h3>
-            <br>
-
-          <section class="category">       
+  <div class="banner">
+            <img src="/Img/Category/book_banner.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <h1 class="banner-title">
+            Book
+            </h1>  
+      </div>
+      
+  
+     <section class="category">       
             <?php foreach($all_sub_category as $category): ?>
                     <a href="/category?parent_id=<?=$category['category_id']?>">
                         <div> 
@@ -30,10 +28,11 @@
                 <?php endforeach ?>
             </section>
        
-         </div>  
+          
+       
 
         
-      
+    <div style="margin-left:80px ;"><?=$p->item_count?> products</div>
     <select id="sortOptions">
         <option value="name_asc">Sort A-Z</option>
         <option value="name_desc">Sort Z-A</option>

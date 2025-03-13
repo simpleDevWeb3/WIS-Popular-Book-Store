@@ -20,7 +20,6 @@ $subParent_Cat =$db->query("SELECT * FROM categories WHERE category_id = :catego
 
 
 
-
 //level 3 category
 $sub_SubCategory = $db->query("SELECT * FROM categories WHERE parent_id = :parent_id", [
   'parent_id' => $subParent_id
@@ -28,6 +27,8 @@ $sub_SubCategory = $db->query("SELECT * FROM categories WHERE parent_id = :paren
 
 
 $categoryIds = array_column($sub_SubCategory, 'category_id');
+
+
                                                            //implode(',', array_fill(0, count($categoryIds) -> shein_1 , shojo_1 , shounen_1 
 $query = "SELECT * FROM products WHERE category_id IN (" . implode(',', array_fill(0, count($categoryIds), '?')) . ") ORDER BY " . $orderBy;
 $p = new Paging($db, $query, $categoryIds, 10, $page);

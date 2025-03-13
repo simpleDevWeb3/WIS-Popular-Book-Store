@@ -5,14 +5,12 @@
 
 
 <main>
-<div style="
-  text-align: center;
-   background-color:lightgoldenrodyellow;
-   padding:30px 50px 0px 50px">
-       <h1> Get Ready to Learn Back to School Essentials! </h1>
-       <br>
-       <h3>You might need</h3>
-       <br>
+<div class="banner">
+         <img src="/Img/Category/Stationary_banner.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <h1 class="banner-title">
+           Stationary
+            </h1>  
+    </div>
        <section class="category">
         <?php foreach($all_sub_category as $category): ?> 
             <a href="/category?parent_id=<?=$category['category_id']?>">
@@ -25,11 +23,11 @@
             </a>
         <?php endforeach ?>
         </section>
-    </div>  
+  
 
    
  
-
+   <div style="margin-left:80px ;"><?=$p->item_count?> products</div>
 
     
   <select id="sortOptions">

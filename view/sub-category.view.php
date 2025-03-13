@@ -4,17 +4,20 @@
 <?php require 'partials/navbar.php';?>
 
 <main>
-<h2 style= "text-align: center;">
-     <?=$sub_SubCat['category_name']?>
-</h2>  
-       
+<div class="banner">
+      <img src="<?=$sub_SubCat['category_picture']?>" style="width: 100%; height: 100%; object-fit: cover;">
+            <h1 class="banner-title">
+                  <?=$sub_SubCat['category_name']?>
+            </h1>  
+      </div>
+ 
 <select id="sortOptions">
                 <option value="name_asc">Sort A-Z</option>
                 <option value="name_desc">Sort Z-A</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
 </select>
-
+<div style="margin-left:80px ;"><?=$p->item_count?> products</div>
 <section class="product-grid">
             <?php foreach($products as $product): ?>        
                 <div class="product-details">
