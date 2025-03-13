@@ -18,10 +18,10 @@ class Paging{
       // ctype_digit($limit) -> ensure valid integer 
       $this->limit = is_numeric($limit) ? (int)$limit : 10; // Ensure limit stays as an integer
       //If $limit is invalid, the default value 10 is used.
-     
+  
       $this->page = is_numeric($page) ? max((int)$page, 1) : 1;
 
-   
+    
 
 
       //Set[item count]

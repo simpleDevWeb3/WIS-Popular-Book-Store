@@ -1,6 +1,6 @@
 <?php
 $db = new Database();
-
+$page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
 //Fetch only fetch single record
 //Fetch all it select whole table
 
@@ -27,37 +27,16 @@ $sub_SubCategory = $db->query("SELECT * FROM categories WHERE parent_id = :paren
 ]) -> fetchAll();
 
 
+$categoryIds = array_column($sub_SubCategory, 'category_id');
+                                                           //implode(',', array_fill(0, count($categoryIds) -> shein_1 , shojo_1 , shounen_1 
+$query = "SELECT * FROM products WHERE category_id IN (" . implode(',', array_fill(0, count($categoryIds), '?')) . ") ORDER BY " . $orderBy;
+$p = new Paging($db, $query, $categoryIds, 10, $page);
+
+$products = $p->result;
 
 
-$products = [];
 
-
-
-foreach($sub_SubCategory as $categoryIds){
-  $product = $db->query("SELECT * FROM products WHERE category_id = :category_id ORDER BY " . $orderBy,[
-    'category_id' =>$categoryIds['category_id']
-  ]) -> fetchAll();
-
- 
-
-  if (!empty($product)) {
-    $products = array_merge($products, $product);
-  }
-// array_merge  cause sorting lose so need to rearange
-
-//take $a <=> $b #comparision   use-> orderBy
-  usort($products, function ($a, $b) use ($orderBy) {
-    //strpost  check  sorting option  exist price 
-    if (strpos($orderBy, 'price') !== false) {
-
-        return (strpos($orderBy, 'ASC') !== false) ? $a['price'] <=> $b['price'] : $b['price'] <=> $a['price'];
-    }
-        //strpost  check  sorting option  exist -> (A-Z / Z-A)
-    return (strpos($orderBy, 'ASC') !== false) ? $a['name'] <=> $b['name'] : $b['name'] <=> $a['name'];//(A → Z) (Z -> A)
-});
-
-}
-
+//}
 
 
 require	'view/category.view.php';
