@@ -122,7 +122,7 @@
               OR c_grandparent.category_name LIKE ?)
               AND price <= ? ORDER BY $orderBy";
 
-    $p = new Paging($db,$query,[$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price], 10, $page);
+    $p = new Paging($db,$query,[$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price], 9, $page);
 
     return $p;
    
@@ -145,7 +145,7 @@
   }
 
 
-  function getAllProductsByCategory($db, $cat_id) {
+  function getAllProductsByCategory($db, $cat_id,$page,$orderBy) {
     // Use prepared statements to prevent SQL injection
     $query = "SELECT p.*
               FROM products p 
@@ -155,10 +155,32 @@
               WHERE c1.category_id = :cat_id
               OR c1.parent_id = :cat_id
               OR c2.parent_id = :cat_id
-              OR c3.parent_id = :cat_id";
-  
+              OR c3.parent_id = :cat_id  ORDER BY $orderBy";
+
+
+   $p = new Paging($db,$query,  ['cat_id' => $cat_id], 10, $page, $db);
+
     // Execute the query with the provided category ID
-    return $db->query($query, ['cat_id' => $cat_id])->fetchAll();
+    return $p;
+
+
+     
+   // return $db->query($query, [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price])->fetchAll();
+    
+
+        /*
+    // Get current page from query string, default to 1
+    $page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
+
+    $query = "SELECT * FROM products ORDER BY $orderBy";
+    // Initialize Pagination (Assuming Paging accepts query, params, limit, page)
+
+    $p = new Paging($db,$query, [], 10, $page, $db);
+
+    // Get paginated results from Paging class
+    $products = $p->result;
+
+    */
   }
   
 

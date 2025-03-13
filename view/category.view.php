@@ -28,7 +28,14 @@
         </section>
  
         <hr>
- 
+                
+        <select id="sortOptions">
+                <option value="name_asc">Sort A-Z</option>
+                <option value="name_desc">Sort Z-A</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+        </select>
+
      
    
         <section class="product-grid">

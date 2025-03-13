@@ -34,6 +34,12 @@
 
         
       
+    <select id="sortOptions">
+        <option value="name_asc">Sort A-Z</option>
+        <option value="name_desc">Sort Z-A</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+   </select>
  
       
         <section class="product-grid">
@@ -60,8 +66,23 @@
                   </a>
               </div>
           <?php endforeach; ?>
-</section>        
-        
+</section>   
+
+
+<?php 
+    $sortKey = $_GET['sort'] ?? 'name_asc'; // Get sorting option from URL
+
+    // Remove any existing "page" parameter to avoid duplication
+    $queryParams = $_GET;
+    unset($queryParams['page']); 
+
+    // Rebuild the query string with correct "sort" and current "page"
+    $queryString = http_build_query(array_merge($queryParams, ['sort' => $sortKey]));
+
+    // Generate pagination with cleaned query string
+    $p->html($queryString, '');
+ ?>
+   
   </main>
 
  <?php  require 'partials/footer.php';?>
