@@ -167,7 +167,7 @@
 
     <br>
     <?php if($related_product):?>
-      <h1> You might also love</h1>
+      <h1 style="margin-left: 40px;"> You might also love</h1>
       <section class="product-grid">
             <?php foreach($related_product as $product ):?>            
               <div class="product-details">

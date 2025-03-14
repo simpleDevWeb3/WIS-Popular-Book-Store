@@ -190,9 +190,9 @@ input[type="checkbox"]:checked::after {
 }
 
 select {
-  padding-right: 30px; /* Adjusts space for the arrow */
-  appearance: none; /* Removes default styles */
-  background: url('/Img/Icon/down-arrow.png') no-repeat right 10px center; /* Custom arrow */
+  padding-right: 30px; 
+  appearance: none;
+  background: url('/Img/Icon/down-arrow.png') no-repeat right 10px center; 
   background-size: 12px;
 }
 

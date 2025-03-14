@@ -19,8 +19,8 @@
  
    <br>
 
- 
-   <div style="margin-left:80px ;"><?=$p->item_count?> products</div>
+ <div style="display: flex; justify-content:space-between ; align-items:center;">
+ <label style="margin-left:80px ;"><?=$p->item_count?> products</label>
     
     <select id="sortOptions">
         <option value="name_asc">Sort A-Z</option>
@@ -28,6 +28,8 @@
         <option value="price_asc">Price: Low to High</option>
         <option value="price_desc">Price: High to Low</option>
    </select>
+ </div>
+ 
       
         <br>
    <section class="product-grid">

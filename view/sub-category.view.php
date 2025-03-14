@@ -11,13 +11,16 @@
             </h1>  
       </div>
  
-<select id="sortOptions">
+<div style="display: flex; justify-content:space-between ; align-items:center;">
+        <label style="margin-left:80px ;"><?=$p->item_count?> products</label>
+            
+            <select id="sortOptions">
                 <option value="name_asc">Sort A-Z</option>
                 <option value="name_desc">Sort Z-A</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
-</select>
-<div style="margin-left:80px ;"><?=$p->item_count?> products</div>
+        </select>
+ </div>
 <section class="product-grid">
             <?php foreach($products as $product): ?>        
                 <div class="product-details">

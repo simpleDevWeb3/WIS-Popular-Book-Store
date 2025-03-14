@@ -54,7 +54,8 @@
 
             <div class="search-page-grid">
                 <h1 style="margin-left: 30px; margin-top: 20px;">Search Result(<?=$p->item_count?>) "<?=$searchResult?>"</h1>
-                <span style="margin-left: 30px;"><?= $p->count ?> of <?= $p->item_count ?> product(s) | Page <?= $p->page ?> of <?= $p->page_count ?></span>
+                <span style="margin-left: 30px;"><?= $p->count ?> of <?= $p->item_count ?> products <span style="margin-left:650px">Page <?= $p->page ?> of <?= $p->page_count ?></span></span>
+                
 
                     <section class="product-grid" style="grid-template-columns: 1fr 1fr 1fr; ">
                       <?php foreach($products as $product): ?>            
