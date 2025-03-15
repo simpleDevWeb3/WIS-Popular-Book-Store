@@ -26,6 +26,6 @@
     
         
         </span>  
-        <span class="user-profile"><img height="60px" width="60px" src="https://avatar.iran.liara.run/public" /></span>  
+        <span class="user-profile"><img height="60px" width="60px" src="<?=$_SESSION['profile_image'] ?? "img/user/default.jpg"?>" /></span>  
       </div>
 </header>

@@ -1,5 +1,5 @@
 <?php
-   session_start();
+
    processCartRequest();
    post_Price_range();
 
