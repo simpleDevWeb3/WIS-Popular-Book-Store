@@ -80,5 +80,5 @@ const product_details = <?php echo json_encode($product_details ); ?>;
 
 
 </script>
-
+<script src="/js/comment.js" ></script>
 <script src="/js/cart.js" ></script>

@@ -1,5 +1,5 @@
 <?php
- session_start();
+
 //front door
 require 'function.php';//base where session start
 require 'Database.php';
