@@ -18,6 +18,9 @@ if (!isset($_GET['product_id']) || !is_string($_GET['product_id']) || !isset($_G
     ");
 }
 
+
+
+
 // fetch product data
 $category_id = $_GET['category_id'];
 $product_id =  $_GET['product_id']; 
@@ -46,6 +49,13 @@ if (!$product) {
 $sub_SubCategory =  $product_details['category_id'];
 $sub_category = getSubCategory($db, $product_details['category_id']);
 $parent_category = getParentCategory($db, $product_details['category_id']);
+
+//Join user table with comment
+$comment_query = "SELECT c.*, u.username, u.profile_image
+                  FROM comments c 
+                  JOIN users u ON c.user_id = u.user_id 
+                  WHERE c.product_id = :product_id";
+$comments = $db->query($comment_query, ['product_id' => $product_id])->fetchAll();
 
 
 

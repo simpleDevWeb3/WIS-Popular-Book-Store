@@ -220,3 +220,61 @@ div> .increase{
   padding-bottom: 20px;
   padding-right: 20px;
 }
+.comment-section{
+  margin-left:20px;
+  border:solid 1px gray; 
+  border-radius: 60px;;
+  display:block; 
+  width: 100%;
+   font-size: 25px; 
+   
+   padding-left:20px; 
+   padding-right:10px;  
+   resize: none; 
+   overflow-y: hidden;
+   align-content: center;
+}
+.comment-button{
+  height:50px;
+   padding:5px 40px 5px 40px; 
+   font-size:16px; 
+   margin-left:10px;
+   border:none; 
+   background-color:rgb(60, 60, 60) ; 
+   color:white; 
+   border-radius:8px;
+   cursor: pointer;
+  font-weight: 700;
+  transition: opacity 0.15s;
+}
+.comment-cancel-button{
+  font-weight: 700;
+  height:50px;
+  padding:5px 40px 5px 40px; 
+  font-size:20px; 
+  font-size:16px; 
+  border:none; 
+  background-color:rgb(228, 10, 10) ; 
+  color:white; 
+  border-radius:8px;
+  margin-left: 880px;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.comment{
+  display: flex; 
+  flex-direction:column ; 
+  justify-content: center; 
+  align-items:center;
+}
+
+.comment-button:hover,
+.comment-cancel-button:hover{
+  opacity: 0.9; 
+}
+
+
+.comment-button:active,
+.comment-cancel-button:active{
+  opacity: 1; 
+}

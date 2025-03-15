@@ -199,7 +199,10 @@ function getSortOptions() {
         : 'name ASC';
 }
 
-
+function formatDate($format,$date){
+  $date = date($format, strtotime($date));
+  return $date;
+}
 
 
 

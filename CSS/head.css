@@ -67,6 +67,7 @@ svg{
 }
 
 .user-profile img{
+  border-radius: 50%;
   cursor: pointer;
   transition: border 0.15s;
 }

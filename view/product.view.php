@@ -193,8 +193,38 @@
 
      <h1>Comment</h1>
      <br>
-    <section class="comment-section" style="border: solid 2px; height:200px; display:flex;">
-   
-    </section>
+
+     <div style="display:flex; align-items:center;">
+      <span class="user-profile">
+            <img height="80px" width="80px" src="https://avatar.iran.liara.run/public" />
+          </span>
+        
+        <textarea class="comment-section" placeholder="Write a comment..." ></textarea>
+    
+     </div>
+     <button class="comment-cancel-button">Cancel</button>
+     
+     <button class="comment-button">Comment</button>
+     <br>
+     <br>
+     <?php if($comments):?>
+      <?php foreach ($comments as $comment) :?>
+      <div style="display: flex; margin-bottom:30px;">
+        <div class="comment">
+          <span class="user-profile" style="padding-bottom: 40px;">
+            <img height="60px" width="60px" src="<?=$comment["profile_image"]??"img/user/default.jpg" ?>" />
+          </span>   
+        </div>
+         <div>
+            
+              <div style="display: flex; gap:10px;"><div style="margin-left: 20px; font-weight:700; font-size:21px;"><?=$comment["username"]?></div> <label>  <?= formatDate("d/m/Y",$comment["created_at"]) ?></label></div>
+                <div style="margin-top:10px; margin-left:20px; display: flex; border:solid 1px; padding:20px; font-size:25px;"> 
+                    <?=$comment["comment"]?>
+                </div>
+              </div>
+              
+      </div>
+      <?php endforeach;?>  
+   <?php endif;?>
   </main>
 <?php require 'partials/footer.php' ?>
