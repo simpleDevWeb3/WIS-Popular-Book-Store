@@ -227,7 +227,7 @@ div> .increase{
   display:block; 
   width: 100%;
    font-size: 25px; 
-   
+   position: relative;
    padding-left:20px; 
    padding-right:10px;  
    resize: none; 
@@ -236,13 +236,13 @@ div> .increase{
 }
 .comment-button{
   height:50px;
-   padding:5px 40px 5px 40px; 
+   padding:5px 30px 5px 30px; 
    font-size:16px; 
    margin-left:10px;
    border:none; 
    background-color:rgb(60, 60, 60) ; 
    color:white; 
-   border-radius:8px;
+   border-radius:50px;
    cursor: pointer;
   font-weight: 700;
   transition: opacity 0.15s;
@@ -254,12 +254,20 @@ div> .increase{
   font-size:20px; 
   font-size:16px; 
   border:none; 
-  background-color:rgb(228, 10, 10) ; 
+  background-color:rgb(255, 255, 255) ; 
   color:white; 
-  border-radius:8px;
+  border-radius:50px;
   margin-left: 880px;
-  transition: opacity 0.15s;
+  transition: background-color 0.15s;
   cursor: pointer;
+  color: black;
+  
+}
+#comment-list{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+ 
 }
 .comment{
   display: flex; 
@@ -268,9 +276,11 @@ div> .increase{
   align-items:center;
 }
 
-.comment-button:hover,
-.comment-cancel-button:hover{
+.comment-button:hover{
   opacity: 0.9; 
+}
+.comment-cancel-button:hover{
+  background-color: rgb(245, 245, 245);
 }
 
 
@@ -278,3 +288,87 @@ div> .increase{
 .comment-cancel-button:active{
   opacity: 1; 
 }
+
+.hidden{
+  display:none;
+  opacity: 1;
+}
+.comment-user{
+  margin-left: 30px; 
+  font-weight:700; 
+  font-size:19px; 
+  color:rgb(37, 37, 37);
+}
+.comment-box {
+ 
+  margin-left: 20px;
+  border-radius: 50px;
+  width: 100%;  
+  max-width:1000px; /* Ensure it doesn't overflow parent */
+  
+  padding: 10px 0px 0px 20px;
+  font-size: 18px;
+  
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+  white-space: normal; 
+}
+.ri-thumb-up-line {
+  font-size: 20px;
+  color: rgb(0, 0, 0); /* Default color */
+  transition: color 0.1s ;
+}
+
+.ri-thumb-up-line.active {
+  color: rgb(0, 123, 255); /* Change to blue when liked */
+}
+
+.ri-thumb-down-line {
+  font-size: 20px;
+  color: rgb(0, 0, 0); /* Default color */
+  transition: color 0.1s ;
+}
+
+.ri-thumb-down-line.active {
+  color: rgb(0, 123, 255); /* Change to blue when liked */
+}
+
+
+
+.dislike-container,
+.like-container,
+.reply-btn,
+.replies-pull{
+   cursor:pointer;
+   padding: 10px;
+   border-radius:25px ;
+   transition: background-color 0.15s;
+}
+
+.like-container:hover{
+  background-color: #eeeeee;
+ 
+}
+
+.dislike-container:hover{
+  background-color: #eeeeee;
+}
+
+
+
+.reply-btn:hover{
+  background-color: #eeeeee;
+}
+
+.replies-pull:hover{
+  background-color: #eeeeee;
+
+}
+
+.error{
+  display: none;
+ color: rgb(185, 21, 21);
+  position:absolute;
+  right:100px;
+}
+

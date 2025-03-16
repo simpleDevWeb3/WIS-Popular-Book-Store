@@ -8,15 +8,6 @@ $db = new Database();
 
 
 
-// Check if 'id' is set in the URL eg./product?id=null or /product?id=1
-if (!isset($_GET['product_id']) || !is_string($_GET['product_id']) || !isset($_GET['category_id']) || !is_string($_GET['category_id'])) {
-  die("
-    <main>
-       <br>
-       <h1>Invalid product ID. </h1>
-    </main>
-    ");
-}
 
 
 

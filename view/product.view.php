@@ -191,9 +191,30 @@
     <?php endif; ?>
 
 
-     <h1>Comment</h1>
-     <br>
+     
       <?php require 'controller/comment.php' ?>
+    
+  <?php 
+    $product_id = $_GET['product_id'] ?? '';
+    $category_id = $_GET['category_id'] ?? ''; 
+
+    // Initialize $queryParams with existing GET parameters
+    $queryParams = $_GET;  
+
+    // Remove any existing "page" parameter to avoid duplication
+    unset($queryParams['page']);  
+
+    // Explicitly ensure product_id and category_id stay in the URL
+    $queryParams['product_id'] = $product_id;
+    $queryParams['category_id'] = $category_id;
+
+    // Build query string
+    $queryString = http_build_query($queryParams);
+
+    // Generate pagination with cleaned query string
+    $p->html($queryString, '');
+?>
+
     
   </main>
 <?php require 'partials/footer.php' ?>

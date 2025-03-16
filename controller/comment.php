@@ -1,11 +1,9 @@
 <?php 
 
 
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
 
 $db = new Database();
+$page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
 
 if($_SERVER["REQUEST_METHOD"]==="POST" && isset($_POST["comment"],$_POST["product_id"])){
   $comment = trim($_POST["comment"]);
@@ -31,7 +29,12 @@ $comment_query = "SELECT c.*, u.username, u.profile_image
                   FROM comments c 
                   JOIN users u ON c.user_id = u.user_id 
                   WHERE c.product_id = :product_id";
-$comments = $db->query($comment_query, ['product_id' => $product_id])->fetchAll();
+
+
+
+$p = new Paging($db,$comment_query, ['product_id' => $product_id], 10, $page, $db);
+
+$comments = $p->result;
 
 
 require "view/comment.view.php"

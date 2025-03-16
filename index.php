@@ -5,7 +5,7 @@ require 'function.php';//base where session start
 require 'Database.php';
 
 $db = new Database();
-$_SESSION['user_id'] = "user_12346";
+$_SESSION['user_id'] = "user_12345";
 if (!isset($_SESSION['user_id'])) {
   echo "User not logged in.";
   die();
