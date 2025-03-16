@@ -50,12 +50,7 @@ $sub_SubCategory =  $product_details['category_id'];
 $sub_category = getSubCategory($db, $product_details['category_id']);
 $parent_category = getParentCategory($db, $product_details['category_id']);
 
-//Join user table with comment
-$comment_query = "SELECT c.*, u.username, u.profile_image
-                  FROM comments c 
-                  JOIN users u ON c.user_id = u.user_id 
-                  WHERE c.product_id = :product_id";
-$comments = $db->query($comment_query, ['product_id' => $product_id])->fetchAll();
+
 
 
 
@@ -74,7 +69,7 @@ require 'view/product.view.php';
 
 const product_details = <?php echo json_encode($product_details ); ?>;
 
- let stock = product_details.stock; 
+ let stock = product_details.stock; //product_details['stock'] but in js
  let product_id = product_details.product_id;
  console.log(stock);
 

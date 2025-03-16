@@ -1,8 +1,11 @@
 <?php
+  
+
   session_start();
+
    processCartRequest();
    post_Price_range();
-
+   postComment();
 
    // code to ensure when page refresh cart quantity will not become 0
    function processCartRequest(){
@@ -26,7 +29,20 @@
 
 
    }
-  
+
+
+   function postComment() {
+    if (isset($_POST['comment'])) {
+        $comment = trim($_POST['comment']); // remove unecessary space;
+        return $comment; 
+
+    }
+
+    return null;
+}
+
+
+
    function post_Price_range() {
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["price"])) {
         $price = intval($_POST["price"]); 
