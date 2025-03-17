@@ -5,14 +5,20 @@ $(document).ready(function () {
   $("#comment-text").click(function(){
     $("#comment-buttons").removeClass("hidden");
     $("#error-text").hide();
-   
+   $("#comment-text").addClass("comment-section-active");
+  });
+
+
+  $("#comment-text").on("input", function () {
+    this.style.height = "auto"; // Reset height
+    this.style.height = this.scrollHeight + "px"; // Adjust height based on content
   });
 
 
   $("#comment").click(function () {
       let commentText = $("#comment-text").val().trim(); // Get comment text
      
-   
+      $("#comment-text").removeClass("comment-section-active");
       $("#comment-buttons").addClass("hidden");
       $("#error-text").addClass("hidden");
       if (commentText === "") {
@@ -42,18 +48,27 @@ $(document).ready(function () {
   $("#cancel-comment").click(function () {
       $("#comment-text").val(""); // Clear comment box correctly
       $("#comment-buttons").addClass("hidden");
+      $("#comment-text").removeClass("comment-section-active");
   });
 
 
  
-    $(".ri-thumb-up-line").click(function () {
-        $(this).toggleClass("active"); // Toggle like
-        $(".ri-thumb-down-line").removeClass("active"); // Remove dislike if like is clicked
-    });
+  $(".ri-thumb-up-line").click(function () {
+    let commentId = $(this).attr("data-id"); // Get comment ID
+    let likeIcon = $(this);
+    let dislikeIcon = likeIcon.closest(".like-container").siblings(".dislike-container").find(".ri-thumb-down-line");
 
-    $(".ri-thumb-down-line").click(function () {
-        $(this).toggleClass("active"); // Toggle dislike
-        $(".ri-thumb-up-line").removeClass("active"); // Remove like if dislike is clicked
-    });
+    likeIcon.toggleClass("active"); // Toggle like
+    dislikeIcon.removeClass("active"); // Remove dislike if like is clicked
+});
+
+$(".ri-thumb-down-line").click(function () {
+    let commentId = $(this).attr("data-id"); // Get comment ID
+    let dislikeIcon = $(this);
+    let likeIcon = dislikeIcon.closest(".dislike-container").siblings(".like-container").find(".ri-thumb-up-line");
+
+    dislikeIcon.toggleClass("active"); // Toggle dislike
+    likeIcon.removeClass("active"); // Remove like if dislike is clicked
+});
 
 });

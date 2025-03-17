@@ -14,21 +14,21 @@ class Paging{
     {
     //construct databse
       $this->db =$db;
-   
+         
       // ctype_digit($limit) -> ensure valid integer 
       $this->limit = is_numeric($limit) ? (int)$limit : 10; // Ensure limit stays as an integer
       //If $limit is invalid, the default value 10 is used.
   
       $this->page = is_numeric($page) ? max((int)$page, 1) : 1;
 
-    
+  
 
 
       //Set[item count]
       $q = preg_replace('/SELECT\s+.+?\s+FROM\s+/i', 'SELECT COUNT(*) FROM ', $query,1);//Modify SQL Query to Count Total Items
       $stmt = $this->db->query($q,$params);
       $this->item_count = (int)$stmt->fetchColumn();
-   
+    
       //Set[page count]
       //53 product / number item perpage 10 = 5.3  -> sum to 6 page
       $this->page_count = ceil($this->item_count/$this->limit);

@@ -1,8 +1,8 @@
 <footer>
     <!--first colmn--->
     <div>
-      <h2> Connect With Us</h2>
-      
+      <h3> Connect With Us</h3>
+      <br>
       <div class="footer-social-links">
         <a href="https://www.instagram.com/">
           <i class="ri-instagram-line"></i>
@@ -22,10 +22,13 @@
       </div>
     </div>
 
+    
+    
+
     <!--Second colmn-->
     <div>
-      <h2> Customer Service</h2>
-      
+      <h3> Customer Service</h3>
+      <br>
       <div class="footer-social-links">
         <a href="https://example.com/">
           How to Buy
@@ -47,8 +50,8 @@
   <div>
     <!---First row-->
     <div>
-      <h2> Payment</h2>
-    
+      <h3> Payment</h3>
+      <br>
       <div class="footer-payment-links">
         <a href="https://www.instagram.com/">
         <img src="Img/Footer/Visa&mastercard.svg" >
@@ -68,7 +71,8 @@
     <br>
     <!---Second row-->
     <div>
-      <h2> Logistic</h2>
+      <h3> Logistic</h3>
+      <br>
       <div class="footer-payment-links">
         <a href="https://www.instagram.com/">
         <img src="Img/Footer/Singapore Post.svg" >
@@ -87,7 +91,12 @@
     </div>
   
   </div>
-  </footer>
+  <br>
+
+
+ 
   
+  </footer>
+  <p class="copyright" >&copy; 2025 Popular Bookstore. All Rights Reserved.</p>
 </body>
 </html>

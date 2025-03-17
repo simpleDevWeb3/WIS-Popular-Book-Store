@@ -204,14 +204,14 @@
     // Remove any existing "page" parameter to avoid duplication
     unset($queryParams['page']);  
 
-    // Explicitly ensure product_id and category_id stay in the URL
+    // ensure product_id and category_id stay in the URL
     $queryParams['product_id'] = $product_id;
     $queryParams['category_id'] = $category_id;
 
     // Build query string
     $queryString = http_build_query($queryParams);
 
-    // Generate pagination with cleaned query string
+    // Generate pagination with query string
     $p->html($queryString, '');
 ?>
 

@@ -134,22 +134,7 @@
 
     return $p;
    
-   // return $db->query($query, [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price])->fetchAll();
-    
-
-        /*
-    // Get current page from query string, default to 1
-    $page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
-
-    $query = "SELECT * FROM products ORDER BY $orderBy";
-    // Initialize Pagination (Assuming Paging accepts query, params, limit, page)
-
-    $p = new Paging($db,$query, [], 10, $page, $db);
-
-    // Get paginated results from Paging class
-    $products = $p->result;
-
-    */
+   
   }
 
 

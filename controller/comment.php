@@ -25,10 +25,11 @@ if($_SERVER["REQUEST_METHOD"]==="POST" && isset($_POST["comment"],$_POST["produc
 } 
 
 //Join user table with comment
-$comment_query = "SELECT c.*, u.username, u.profile_image
+$comment_query = "SELECT c.comment_id, c.*, u.username, u.profile_image
                   FROM comments c 
                   JOIN users u ON c.user_id = u.user_id 
                   WHERE c.product_id = :product_id";
+
 
 
 
@@ -41,3 +42,16 @@ require "view/comment.view.php"
 
 
 ?>
+
+<script>
+
+const comments = <?php echo json_encode($comments); ?>;
+let comments_id = []
+console.log(comments);
+comments.forEach(comment => {
+  comments_id.push(comment.comment_id); 
+
+});
+
+
+</script>
