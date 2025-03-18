@@ -32,15 +32,24 @@
  
       
         <br>
+        
+
+
    <section class="product-grid">
-          <?php foreach($products as $product ):?>            
+          <?php foreach($products as $product ):?>   
+           
             <div class="product-details">
              <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                 <img src="<?=$product['image']?>">
                 <a class="title"><?=$product['name']?></a>
                 <div class="rating">
                   <span><?= number_format($product['rating'], 1) ?></span>
-
+                  <span class="tags">
+                    <?php 
+                    
+                        echo $product["stock"] > 0 ? "For Sale" : "Out of Stock";  
+                    ?>
+                  </span>
                   <?php
                        // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
                       $ratingImg = $product['rating'] * 10;  

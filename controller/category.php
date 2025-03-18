@@ -29,8 +29,13 @@ $sub_SubCategory = $db->query("SELECT * FROM categories WHERE parent_id = :paren
 $categoryIds = array_column($sub_SubCategory, 'category_id');
 
 
-                                                           //implode(',', array_fill(0, count($categoryIds) -> shein_1 , shojo_1 , shounen_1 
-$query = "SELECT * FROM products WHERE category_id IN (" . implode(',', array_fill(0, count($categoryIds), '?')) . ") ORDER BY " . $orderBy;
+ //implode(',', array_fill(0, count($categoryIds) -> shein_1 , shojo_1 , shounen_1 
+$query = "SELECT p.*, pd.stock 
+          FROM products p
+          LEFT JOIN product_details pd ON p.product_id = pd.product_id  -- Merge with product_details
+          WHERE p.category_id IN (" . implode(',', array_fill(0, count($categoryIds), '?')) . ") 
+          ORDER BY " . $orderBy;
+
 $p = new Paging($db, $query, $categoryIds, 10, $page);
 
 $products = $p->result;

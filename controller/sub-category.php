@@ -7,7 +7,12 @@ $sub_SubParent_id =  $_GET['parent_id'];
 
 // Get sorting option
 $orderBy = getSortOptions();
-$query = "SELECT * FROM products WHERE category_id = :category_id ORDER BY " . $orderBy;
+$query = "SELECT p.*, pd.stock 
+          FROM products p
+          LEFT JOIN product_details pd ON p.product_id = pd.product_id  -- Merge product_details
+          WHERE p.category_id = :category_id 
+          ORDER BY " . $orderBy;
+
 $p = new Paging($db,$query,['category_id' => $sub_SubParent_id], 13, $page, $db);
 
 $products = $p->result;

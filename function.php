@@ -140,15 +140,18 @@
 
   function getAllProductsByCategory($db, $cat_id,$page,$orderBy) {
     // Use prepared statements to prevent SQL injection
-    $query = "SELECT p.*
-              FROM products p 
+    $query = "SELECT p.*, pd.stock
+              FROM products p
               JOIN categories c1 ON p.category_id = c1.category_id   
               LEFT JOIN categories c2 ON c1.parent_id = c2.category_id
               LEFT JOIN categories c3 ON c2.parent_id = c3.category_id
+              LEFT JOIN product_details pd ON p.product_id = pd.product_id  -- Join product_details
               WHERE c1.category_id = :cat_id
               OR c1.parent_id = :cat_id
               OR c2.parent_id = :cat_id
-              OR c3.parent_id = :cat_id  ORDER BY $orderBy";
+              OR c3.parent_id = :cat_id  
+              ORDER BY $orderBy";
+
 
 
    $p = new Paging($db,$query,  ['cat_id' => $cat_id], 10, $page, $db);
