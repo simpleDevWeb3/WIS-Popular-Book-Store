@@ -259,11 +259,10 @@ nav >a.active{
 .category .circle{
  height: 280px;
  width: 280px;
- 
  background-color: rgb(221, 221, 221);
  cursor: pointer;
  transition: border 0.15s;
-
+ overflow: hidden; 
 }
 
 
@@ -272,8 +271,13 @@ nav >a.active{
   height: 100%;
 
   object-fit: cover;
- 
+  transition: transform 0.3s ease-in-out;
 }
+
+.circle img:hover {
+  transform: scale(1.1); /* Zoom in by 10% */
+}
+
 .category >div{
   display: flex;
   flex-direction: column;
@@ -369,9 +373,24 @@ hr{
 
 }
 
-.tags{
+.sale-tags{
   background-color: rgb(219, 29, 29);
   color: rgb(255, 255, 255);
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  top:0px;
+  font-size: 15px;
+  left: 50px;
+  font-weight: 400;
+  position: absolute;
+}
+
+.out-of-tags{
+  background-color: rgb(255, 255, 255);
+  color: rgb(195, 20, 20);
+  border: solid 1px red;
   padding-left: 10px;
   padding-top: 5px;
   padding-bottom: 5px;

@@ -69,7 +69,14 @@
                                   <?php
                                       // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
                                       $ratingImg = $product['rating'] * 10;  
-                                  ?>                              
+                                  ?>    
+                                    <?php  
+                                      if ($product["stock"] > 0) {
+                                          echo '<span class="sale-tags">For Sale</span>';
+                                      } else {
+                                        echo '<span class="out-of-tags">Out of Stock</span>';
+                                      }
+                                    ?>                       
                                   <img src="Img/Ratings/rating-<?=$ratingImg?>.png">
                               </div>
                               

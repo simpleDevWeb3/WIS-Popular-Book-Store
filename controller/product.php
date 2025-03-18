@@ -15,12 +15,22 @@ $db = new Database();
 // fetch product data
 $category_id = $_GET['category_id'];
 $product_id =  $_GET['product_id']; 
-$product = $db->query("SELECT * FROM products WHERE product_id = :product_id", ['product_id' => $product_id])->fetch();//GET THE PRODUCT DATA
+$query_product = "SELECT p.*, pd.stock 
+                 FROM products p
+                 LEFT JOIN product_details pd ON p.product_id = pd.product_id
+                 WHERE p.product_id = :product_id";
+
+$product = $db->query($query_product, ['product_id' => $product_id])->fetch();//GET THE PRODUCT DATA
 $product_details = $db->query("SELECT * FROM product_details WHERE product_id = :product_id", ['product_id' => $product_id])->fetch(); //GET THE PRODUCT DETAILS
 
 $currentStock = $product_details['stock'];
+$query = "SELECT p.*, pd.stock 
+          FROM products p
+          LEFT JOIN product_details pd ON p.product_id = pd.product_id
+          WHERE p.category_id = :category_id 
+          AND p.product_id != :product_id";
 
-$related_product = $db->query("SELECT * FROM products WHERE category_id = :category_id AND product_id != :product_id",
+$related_product = $db->query($query,
 ['category_id' => $category_id, 'product_id' => $product_id])->fetchAll() ;// fetch product that in same sub_Subcategory 
 
 

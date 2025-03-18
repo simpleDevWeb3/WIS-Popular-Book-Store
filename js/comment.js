@@ -53,22 +53,6 @@ $(document).ready(function () {
 
 
  
-  $(".ri-thumb-up-line").click(function () {
-    let commentId = $(this).attr("data-id"); // Get comment ID
-    let likeIcon = $(this);
-    let dislikeIcon = likeIcon.closest(".like-container").siblings(".dislike-container").find(".ri-thumb-down-line");
-
-    likeIcon.toggleClass("active"); // Toggle like
-    dislikeIcon.removeClass("active"); // Remove dislike if like is clicked
-});
-
-$(".ri-thumb-down-line").click(function () {
-    let commentId = $(this).attr("data-id"); // Get comment ID
-    let dislikeIcon = $(this);
-    let likeIcon = dislikeIcon.closest(".dislike-container").siblings(".like-container").find(".ri-thumb-up-line");
-
-    dislikeIcon.toggleClass("active"); // Toggle dislike
-    likeIcon.removeClass("active"); // Remove like if dislike is clicked
-});
+ 
 
 });

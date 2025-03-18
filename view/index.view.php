@@ -44,11 +44,16 @@
                 <a class="title"><?=$product['name']?></a>
                 <div class="rating">
                   <span><?= number_format($product['rating'], 1) ?></span>
-                  <span class="tags">
-                    <?php 
-                    
-                        echo $product["stock"] > 0 ? "For Sale" : "Out of Stock";  
-                    ?>
+                 
+                   
+
+                <?php  
+                  if ($product["stock"] > 0) {
+                      echo '<span class="sale-tags">For Sale</span>';
+                  } else {
+                    echo '<span class="out-of-tags">Out of Stock</span>';
+                  }
+                ?>
                   </span>
                   <?php
                        // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)

@@ -63,9 +63,15 @@
             <br>
             <div style="display: flex; flex-direction:column">
            
-              <button id="add-to-cart-btn" class="add-to-cart-button " data-product-id="<?=$product_details['product_id']?>">
-                Add To Cart
-              </button>
+                          
+             <?php  
+                if ($product["stock"] > 0) {
+                    echo '<button id="add-to-cart-btn" class="add-to-cart-button" data-product-id="'.$product['product_id'].'">Add To Cart</button>';
+                } else {
+                    echo '<span class="add-to-cart-button-no-stock" >Out of Stock</span>';
+                }
+              ?>
+
                
          
             </div>
@@ -181,6 +187,13 @@
                         // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
                         $ratingImg = $product['rating'] * 10;  
                     ?>
+                   <?php  
+                      if ($product["stock"] > 0) {
+                          echo '<span class="sale-tags">For Sale</span>';
+                      } else {
+                        echo '<span class="out-of-tags">Out of Stock</span>';
+                      }
+                   ?>
                     <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
                   </div>
                   <div class="price">RM<?=$product['price']?></div> 

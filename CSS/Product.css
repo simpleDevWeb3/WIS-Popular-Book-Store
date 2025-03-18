@@ -157,11 +157,19 @@ div> .increase{
 }
 
 .increase:hover{
-  opacity: 0.8;;
+  opacity: 0.95;
 }
 
 .decrease:hover{
-  opacity: 0.8;;
+  opacity: 0.95;
+}
+
+.increase:active{
+  opacity: 1;
+}
+
+.decrease:active{
+  opacity: 1;
 }
 
 
@@ -176,6 +184,21 @@ div> .increase{
   background-color: rgb(34, 33, 33);
   cursor: pointer;
 
+  font-weight: 600;
+  transition: background-color 0.15s, color 0.15s ;
+}
+
+.add-to-cart-button-no-stock{
+  margin-right: 20px;
+  padding:12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(29, 29, 29);
+  border: solid 1px rgb(27, 27, 27);
+  background-color: rgb(255, 255, 255);
+  
+  text-align: center;
   font-weight: 600;
   transition: background-color 0.15s, color 0.15s ;
 }
@@ -382,5 +405,9 @@ div> .increase{
  color: rgb(185, 21, 21);
   position:absolute;
   right:100px;
+}
+
+.reply-active{
+  
 }
 

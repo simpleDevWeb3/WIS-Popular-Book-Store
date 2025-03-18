@@ -118,17 +118,19 @@
     
 
     $searchTerm = "%$keyword%";
- 
-    $query = "SELECT p.*
+    $query = "SELECT p.*, pd.stock
               FROM products p
               JOIN categories c ON p.category_id = c.category_id
               LEFT JOIN categories c_parent ON c.parent_id = c_parent.category_id
               LEFT JOIN categories c_grandparent ON c_parent.parent_id = c_grandparent.category_id
+              LEFT JOIN product_details pd ON p.product_id = pd.product_id
               WHERE (p.name LIKE ?
               OR c.category_name LIKE ?
               OR c_parent.category_name LIKE ?
               OR c_grandparent.category_name LIKE ?)
-              AND price <= ? ORDER BY $orderBy";
+              AND p.price <= ? 
+              ORDER BY $orderBy";
+
 
     $p = new Paging($db,$query,[$searchTerm, $searchTerm, $searchTerm, $searchTerm, $max_price], 9, $page);
 

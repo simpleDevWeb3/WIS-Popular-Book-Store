@@ -28,7 +28,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST" && isset($_POST["comment"],$_POST["produc
 $comment_query = "SELECT c.comment_id, c.*, u.username, u.profile_image
                   FROM comments c 
                   JOIN users u ON c.user_id = u.user_id 
-                  WHERE c.product_id = :product_id";
+                  WHERE c.product_id = :product_id
+                  ORDER BY c.created_at DESC";
 
 
 
