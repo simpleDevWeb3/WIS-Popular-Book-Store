@@ -38,7 +38,6 @@ $p = new Paging($db,$comment_query, ['product_id' => $product_id], 10, $page, $d
 
 $comments = $p->result;
 
-
 require "view/comment.view.php"
 
 

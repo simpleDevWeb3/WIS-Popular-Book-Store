@@ -28,7 +28,10 @@
             </div>
               <div>
                  <div style="display: flex; gap:10px; align-items:center;">
-                    <label class="comment-user">@<?=$comment["username"]?> </label> <label style="opacity: 0.8; font-size:15px;">  <?= formatDate("d/m/Y",$comment["created_at"]) ?></label></div>
+                    <label class="comment-user">@<?=$comment["username"]?> </label> <label style="opacity: 0.8; font-size:15px;">  <?= formatDate("d/m/Y",$comment["created_at"]) ?></label>
+                    <!--<span id="more" data-product-id="<//?=$comment['user_id']?>"><i class="ri-more-2-line"></i> </span>-->
+                  </div>
+                    
                       <div class="comment-box"> 
                         <p><?= htmlspecialchars($comment["comment"]) ?></p> 
                       </div>

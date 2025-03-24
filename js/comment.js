@@ -51,7 +51,9 @@ $(document).ready(function () {
       $("#comment-text").removeClass("comment-section-active");
   });
 
-
+$("#more").click(function(){
+ console.log("More");
+});
  
  
 

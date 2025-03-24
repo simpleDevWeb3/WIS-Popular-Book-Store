@@ -1,0 +1,325 @@
+
+
+
+
+.order-history .back-btn {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.order-history .search-bar {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.order-history .search-bar input {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order-history .filter-btn {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Modal backdrop */
+.order-history .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* Show modal when targeted */
+.order-history .modal:target {
+    display: flex;
+    }
+  
+    /* Modal content styling */
+.order-history .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+  
+    /* Close button */
+.order-history .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+}
+  
+/* Filter form styles */
+.order-history .filter-options label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+  
+.order-history .filter-options input[type="checkbox"] {
+    margin-right: 10px;
+}
+  
+.order-history .modal-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.order-history .modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.order-history .order {
+    background: white;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-history .order-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.order-history .status {
+    font-weight: bold;
+}
+
+.order-history .completed {
+    color: blue;
+}
+
+.order-history .cancelled {
+    color: red;
+}
+
+.order-history .order-details {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.order-history .order-details img {
+    width: 85px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.order-history .info {
+    flex-grow: 1;
+}
+
+.order-history .order-again {
+    background: lightblue;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1250px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+/*check out page*/
+
+.checkout header {
+    display: flex;
+    background: white;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.checkout .back-btn {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+}
+
+
+.checkout main {
+    display: run-in;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.checkout .cart {
+    background: white;
+    margin: 20px;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout .summary, .totalItem {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout .totalItem {
+    background: white;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout .cart-item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+.checkout .cart-item img {
+    display: inline-grid;
+    width: 80px;
+    height: 110px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.checkout .item-details {
+    flex-grow: 1;
+}
+
+
+.checkout .place-order {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.checkout .order-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+.checkout .hidden {
+    display: none;
+}
+
+/*cart*/
+
+.cart .cart-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.cart header {
+   
+}
+
+.cart h2 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.cart .delete-btn {
+    background: none;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+    float: right;
+}
+
+
+.cart .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.cart .cart-table th, .cart-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.cart .cart-table th {
+    text-align: left;
+}
+.cart .quantity-selector {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.cart .quantity-selector button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    background: none;
+    cursor: pointer;
+}
+.cart .quantity-selector input {
+    width: 40px;
+    text-align: center;
+    border: none;
+}
+.cart .checkout-summary {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.cart .checkout-summary p {
+    margin: 5px 0;
+}
+
+.cart .checkout-btn {
+    background: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    text-decoration: none;
+}

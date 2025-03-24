@@ -12,20 +12,20 @@
 
       <div class="popular-right-head">
         <span class="order-text">Order & Return</span>
-        <span class="cart">
-          <div class="cart-container">  
-            <?php
-            
-              $cartCount = $_SESSION['cart_count']??0;
-            ?>
-            <div id="cart-count" class="cart-quantity"><?=$cartCount;?></div>
-            <img src="Img/Icon/Icon.svg">
-            </svg>
-    
-        </div>
-    
+        <a href="/cart" style="opacity: 1;">
+          <span class="cart">
+              <div class="cart-container">  
+                <?php
+                
+                  $cartCount = $_SESSION['cart_count']??0;
+                ?>
+                <div id="cart-count" class="cart-quantity"><?=$cartCount;?></div>
+                <img src="Img/Icon/Icon.svg">
+                </svg>
         
-        </span>  
+            </div>   
+          </span>
+        </a>
         <span class="user-profile"><img height="60px" width="60px" src="<?=$_SESSION['profile_image'] ?? "img/user/default.jpg"?>" /></span>  
       </div>
 </header>

@@ -34,6 +34,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 // map fo website
 $routes =[
           '/' => 'controller/index.php',
+          '/cart' => 'controller/cart.php',
           '/books' => 'controller/books.php',
           '/stationary'=>'controller/stationary.php',
           '/product' => 'controller/product.php',

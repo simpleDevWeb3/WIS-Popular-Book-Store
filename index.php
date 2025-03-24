@@ -1,8 +1,9 @@
 <?php
 
 //front door
-require 'function.php';//base where session start
+
 require 'Database.php';
+require 'function.php';//base where session start
 
 $db = new Database();
 $_SESSION['user_id'] = "3d4f93c4-025f-11f0-9";
