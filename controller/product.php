@@ -6,7 +6,9 @@
 
 $db = new Database();
 
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  addToCart($db); // ✅ Run only when an AJAX request is made
+}
 
 
 

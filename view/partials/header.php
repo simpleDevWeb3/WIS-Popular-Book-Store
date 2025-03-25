@@ -16,8 +16,18 @@
           <span class="cart">
               <div class="cart-container">  
                 <?php
-                
-                  $cartCount = $_SESSION['cart_count']??0;
+              
+                  $db = new Database();
+                  $user_id = $_SESSION['user_id'];
+          
+                  $cQuantity = $db->query("
+                  SELECT SUM(cd.quantity) AS total_items 
+                  FROM cartdetails cd
+                  JOIN cart c ON cd.cart_id = c.cart_id
+                  WHERE c.user_id = ?", 
+                  [$user_id])->fetch();
+
+                  $cartCount =  $cQuantity['total_items']??0;
                 ?>
                 <div id="cart-count" class="cart-quantity"><?=$cartCount;?></div>
                 <img src="Img/Icon/Icon.svg">

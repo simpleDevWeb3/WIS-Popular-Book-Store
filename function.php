@@ -19,7 +19,7 @@
       if(isset($_POST['add_quantity'])){
         $quantity = intval($_POST['add_quantity']);
         $_SESSION['cart_count']+= $quantity;
-
+       
         return $_SESSION['cart_count'];
       
 
@@ -29,6 +29,67 @@
 
 
    }
+
+   function addToCart($db) {
+  
+
+    // Check if request is POST and required fields exist
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['add_quantity']) || !isset($_POST['product_id'])) {
+        echo json_encode(["status" => "error", "message" => "Invalid request"]);
+        exit;
+    }
+
+    // Get quantity and product ID from AJAX request
+    $quantity = intval($_POST['add_quantity']);
+    $product_id = $_POST['product_id'];
+
+    // Check if user is logged in
+    if (!isset($_SESSION['user_id'])) {
+        echo json_encode(["status" => "error", "message" => "User not logged in"]);
+        exit;
+    }
+
+    $user_id = $_SESSION['user_id'];
+
+    // Get cart ID for the logged-in user
+    $cart = $db->query("SELECT cart_id FROM cart WHERE user_id = :user_id", ['user_id' => $user_id])->fetch();
+
+    if (!$cart) {
+        echo json_encode(["status" => "error", "message" => "Cart not found"]);
+        exit;
+    }
+
+    $cart_id = $cart['cart_id'];
+
+    // Check if product already exists in cart
+    $existing = $db->query("SELECT quantity FROM cartDetails WHERE cart_id = :cart_id AND product_id = :product_id", [
+        'cart_id' => $cart_id,
+        'product_id' => $product_id
+    ])->fetch();
+
+    if ($existing) {
+        // Update quantity if product already exists
+        $new_quantity = $existing['quantity'] + $quantity;
+        $db->query("UPDATE cartDetails SET quantity = :quantity WHERE cart_id = :cart_id AND product_id = :product_id", [
+            'quantity' => $new_quantity,
+            'cart_id' => $cart_id,
+            'product_id' => $product_id
+        ]);
+    } else {
+        // Insert new product into cart
+        $db->query("INSERT INTO cartDetails (cart_id, product_id, quantity) VALUES (:cart_id, :product_id, :quantity)", [
+            'quantity' => $quantity,
+            'cart_id' => $cart_id,
+            'product_id' => $product_id
+        ]);
+    }
+
+    // Return success response for AJAX
+    echo json_encode(["status" => "success", "message" => "Added to cart", "cart_count" => $_SESSION['cart_count']]);
+    exit;
+}
+  
+
 
 
 

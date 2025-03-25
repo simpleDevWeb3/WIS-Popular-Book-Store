@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
 
@@ -65,9 +66,21 @@ $(document).ready(function () {
 
     // Send quantity update to backend
     $.ajax({
-      url: "function.php",
+      url: "/cart", // Calls the PHP function
       type: "POST",
-      data: { add_quantity: quantity, product_id: productId }
+      data: { add_quantity: quantity, product_id: productId },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+         
+          console.log("Cart updated:", response);
+        } else {
+          alert(response.message);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("AJAX Error:", status, error);
+      },
     });
   });
 
