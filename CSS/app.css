@@ -1,6 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+body, input, button, textarea, select {
+    font: 16px 'Roboto', sans-serif;
+}
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
 
-
+.order-history header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #ccc;
+}
 
 .order-history .back-btn {
     font-size: 20px;
@@ -160,10 +176,13 @@ footer {
 /*check out page*/
 
 .checkout header {
-    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
     background: white;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+    z-index: 1000;
 }
 
 .checkout .back-btn {
@@ -176,24 +195,38 @@ footer {
 
 
 .checkout main {
-    display: run-in;
-    justify-content: space-around;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
     padding: 20px;
+    margin-top: 70px;
 }
 
 .checkout .cart {
     background: white;
-    margin: 20px;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 40px;
     border-radius: 5px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-.checkout .summary, .totalItem {
+.checkout .totalItem {
     background: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout .summary {
+    flex: 1; 
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 20px; 
 }
 
 .checkout .totalItem {
@@ -206,7 +239,8 @@ footer {
 .checkout .cart-item {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 
@@ -256,8 +290,16 @@ footer {
     margin: auto;
 }
 
-.cart header {
-   
+.cart .header {
+    background: rgb(255, 255, 255);
+    
+    border-style: outset;
+    width: 900px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps h2 centered and button on the right */
+    padding: 0 20px;
 }
 
 .cart h2 {
@@ -314,7 +356,7 @@ footer {
 }
 
 .cart .checkout-btn {
-    background: black;
+    background: red;
     color: white;
     padding: 10px;
     text-align: center;

@@ -54,7 +54,13 @@ $sub_category = getSubCategory($db, $product_details['category_id']);
 $parent_category = getParentCategory($db, $product_details['category_id']);
 
 
+$user_id = $_SESSION['user_id'];
 
+$cart_product = $db->query("SELECT c.user_id, cd.price, cd.quantity, p.stock 
+FROM `cart` c
+JOIN `cartDetails` cd ON c.cart_id = cd.cart_id
+JOIN `product_details` p ON cd.product_id = p.product_id
+WHERE c.user_id = :user_id AND cd.product_id = :product_id",[  'user_id' => $user_id, 'product_id' => $product_id])->fetch();
 
 
 require 'view/product.view.php';
@@ -71,11 +77,13 @@ require 'view/product.view.php';
 // const product_details = {"stock":10,"product_id":5};
 
 const product_details = <?php echo json_encode($product_details ); ?>;
+const product_cart = <?php echo json_encode($cart_product);?>
 
  let stock = product_details.stock; //product_details['stock'] but in js
+ let cart_product = product_cart.quantity;
  let product_id = product_details.product_id;
  console.log(stock);
-
+console.log(cart_product);
 
 </script>
 <script src="/js/comment.js" ></script>

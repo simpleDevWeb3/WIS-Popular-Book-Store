@@ -81,15 +81,15 @@
       <br>
       <div class="footer-payment-links">
         <a href="https://www.instagram.com/">
-        <img src="Img/Footer/Visa&mastercard.svg" >
+        <img src="/Img/Footer/Visa&mastercard.svg" >
         </a>
     
         <a href="https://www.facebook.com/">
-          <img src="Img/Footer/SamsungPay.svg" >
+          <img src="/Img/Footer/SamsungPay.svg" >
         </a>
     
       <a href="https://x.com/?lang=en" >
-        <img src="Img/Footer/ShopPay.svg" >
+        <img src="/Img/Footer/ShopPay.svg" >
       </a>
     
       </div>
@@ -102,16 +102,16 @@
       <br>
       <div class="footer-payment-links">
         <a href="https://www.instagram.com/">
-        <img src="Img/Footer/Singapore Post.svg" >
+        <img src="/Img/Footer/Singapore Post.svg" >
         </a>
     
         <a href="https://www.facebook.com/">
-          <img src="Img/Footer/Group 469316.svg" >
+          <img src="/Img/Footer/Group 469316.svg" >
         </a>
 
     
       <a href="https://x.com/?lang=en" >
-        <img src="Img/Footer/TNT Express.svg" >
+        <img src="/Img/Footer/TNT Express.svg" >
       </a>
     
       </div>

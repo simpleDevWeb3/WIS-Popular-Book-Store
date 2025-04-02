@@ -26,15 +26,16 @@ $(document).ready(function () {
 
   $("#add-to-cart-btn").click(function () {
     let quantity = parseInt($("#quantity").val()); // Get user-selected quantity
+    
+    
 
-    let storedStock = parseInt(localStorage.getItem(`stock_${productId}`));
-
-    console.log("Stored Stock: " + storedStock);
+    console.log("quantity_in cart: " + cart_product);
     console.log("User Wants to Buy: " + quantity);
+    console.log("Stock: " + stock);
 
     // Prevent user from buying more than allowed
-    if (quantity > storedStock || quantity <= 0 ) {
-      alert("User have been exceeds buying limits (Stock: " + storedStock + " User want to Buy: " + quantity + ")" );
+    if (cart_product + quantity> stock ) {
+      alert("User have been exceeds buying limits (Stock: " + cart_product+ " User want to Buy: " + quantity + ")" );
       $("#quantity").val(1);
       return; // Stop further execution
     }
@@ -46,8 +47,8 @@ $(document).ready(function () {
     }
 
     // Decrease buy limit
-    storedStock -= quantity;
-    localStorage.setItem(`stock_${productId}`, storedStock); // Update localStorage
+    
+   
 
     cartCount += quantity;
     $("#cart-count").text(cartCount); // Update cart UI
@@ -72,8 +73,20 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-         
-          console.log("Cart updated:", response);
+                location.reload();
+                console.log("Cart updated:", response);
+                $.ajax({
+                  url: "/product", // Backend route to get updated quantity
+                  type: "GET",
+                  data: { product_id: productId },
+                  dataType: "json",
+                  success: function (cartData) {
+                      cart_product = cartData.quantity; // ✅ Update cart_product dynamically
+                      console.log("Updated quantity in cart:", cart_product);
+                    
+                    
+                  }
+              });
         } else {
           alert(response.message);
         }

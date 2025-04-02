@@ -31,19 +31,26 @@
    }
 
    function addToCart($db) {
-  
-
-    // Check if request is POST and required fields exist
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['add_quantity']) || !isset($_POST['product_id'])) {
         echo json_encode(["status" => "error", "message" => "Invalid request"]);
         exit;
     }
 
-    // Get quantity and product ID from AJAX request
     $quantity = intval($_POST['add_quantity']);
     $product_id = $_POST['product_id'];
 
-    // Check if user is logged in
+   
+    $product = $db->query("SELECT price FROM products WHERE product_id = :product_id", [
+        'product_id' => $product_id
+    ])->fetch(PDO::FETCH_ASSOC);
+
+    if (!$product) {
+        echo json_encode(["status" => "error", "message" => "Product not found"]);
+        exit;
+    }
+
+    $price = $product['price'];
+
     if (!isset($_SESSION['user_id'])) {
         echo json_encode(["status" => "error", "message" => "User not logged in"]);
         exit;
@@ -51,7 +58,7 @@
 
     $user_id = $_SESSION['user_id'];
 
-    // Get cart ID for the logged-in user
+   
     $cart = $db->query("SELECT cart_id FROM cart WHERE user_id = :user_id", ['user_id' => $user_id])->fetch();
 
     if (!$cart) {
@@ -61,33 +68,34 @@
 
     $cart_id = $cart['cart_id'];
 
-    // Check if product already exists in cart
     $existing = $db->query("SELECT quantity FROM cartDetails WHERE cart_id = :cart_id AND product_id = :product_id", [
         'cart_id' => $cart_id,
         'product_id' => $product_id
     ])->fetch();
 
     if ($existing) {
-        // Update quantity if product already exists
+   
         $new_quantity = $existing['quantity'] + $quantity;
-        $db->query("UPDATE cartDetails SET quantity = :quantity WHERE cart_id = :cart_id AND product_id = :product_id", [
+        $db->query("UPDATE cartDetails SET quantity = :quantity, price = :price WHERE cart_id = :cart_id AND product_id = :product_id", [
             'quantity' => $new_quantity,
+            'price' => $price, // 
             'cart_id' => $cart_id,
             'product_id' => $product_id
         ]);
     } else {
-        // Insert new product into cart
-        $db->query("INSERT INTO cartDetails (cart_id, product_id, quantity) VALUES (:cart_id, :product_id, :quantity)", [
-            'quantity' => $quantity,
+      
+        $db->query("INSERT INTO cartDetails (cart_id, product_id, quantity, price) VALUES (:cart_id, :product_id, :quantity, :price)", [
             'cart_id' => $cart_id,
-            'product_id' => $product_id
+            'product_id' => $product_id,
+            'quantity' => $quantity,
+            'price' => $price 
         ]);
     }
 
-    // Return success response for AJAX
-    echo json_encode(["status" => "success", "message" => "Added to cart", "cart_count" => $_SESSION['cart_count']]);
+    echo json_encode(["status" => "success", "message" => "Added to cart"]);
     exit;
 }
+
   
 
 
@@ -264,6 +272,26 @@ function formatDate($format,$date){
 }
 
 
+function is_get() {
+  return $_SERVER['REQUEST_METHOD'] == 'GET';
+}
+
+// Is POST request?
+function is_post() {
+  return $_SERVER['REQUEST_METHOD'] == 'POST';
+}
+
+// Obtain GET parameter
+function get($key, $value = null) {
+  $value = $_GET[$key] ?? $value;
+  return is_array($value) ? array_map('trim', $value) : trim($value);
+}
+
+// Obtain POST parameter
+function post($key, $value = null) {
+  $value = $_POST[$key] ?? $value;
+  return is_array($value) ? array_map('trim', $value) : trim($value);
+}
 
 
 

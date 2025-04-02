@@ -1,5 +1,6 @@
-
 <?php 
+require_once __DIR__ . '/../../function.php';
+require_once __DIR__ .'/../../Database.php';
 
 $db = new Database();
 $carts = [];
@@ -25,10 +26,11 @@ if ($_SESSION['user_id']) {
 
 
 $stm = $db->query("
-    SELECT c.user_id, cd.price, cd.quantity, p.name, p.image
+    SELECT c.cart_id, c.user_id, cd.price, cd.quantity, p.product_id, p.name, p.image, pd.stock
     FROM `cart` c
     JOIN `cartDetails` cd ON c.cart_id = cd.cart_id
     JOIN `products` p ON cd.product_id = p.product_id
+    JOIN `product_details` pd ON p.product_id = pd.product_id
     WHERE c.user_id = :user_id
 ", ['user_id' => $user_id])->fetchAll();
 
@@ -50,6 +52,7 @@ foreach ($carts as $c) {
 $tax = 0;
 $grand_total = $subtotal + $tax;
 
+
 $_title = 'Cart';
-require 'view/cart.view.php';
+require __DIR__ . '/../../view/cart.view.php';
 ?>
