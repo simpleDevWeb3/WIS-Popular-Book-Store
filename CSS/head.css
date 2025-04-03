@@ -363,13 +363,12 @@ hr{
   flex-direction: column;
   gap: 10px;
   margin-bottom: 30px;
-
   padding: 10px;
   cursor: pointer;
   transition: border 0.15s;
   align-items: center;
   position: relative;
-  
+
 
 }
 
@@ -382,7 +381,7 @@ hr{
   padding-right: 10px;
   top:0px;
   font-size: 15px;
-  left: 50px;
+  left: 40px;
   font-weight: 400;
   position: absolute;
 }
@@ -397,21 +396,27 @@ hr{
   padding-right: 10px;
   top:0px;
   font-size: 15px;
-  left: 50px;
+  left: 40px;
   font-weight: 400;
   position: absolute;
 }
 .product-details a> img{
-  width: 241px;
-  height: 241px;
+
+  width: 250px;
+  height:250px;
   object-fit: cover; 
   
  
 }
-
+.product-details .title{
+  text-align: center;
+  width:250px;
+}
 .product-details a{
-  opacity:1;
 
+  opacity: 1;
+
+  
 }
 
 .rating{
@@ -435,7 +440,7 @@ main{
   flex: 1;
   position: relative;
   background-color: white;
-  padding: 60px 40px 140px 40px; 
+  padding: 60px 40px 230px 40px; 
   margin-left: auto;
   margin-right: auto;
   justify-content: center;

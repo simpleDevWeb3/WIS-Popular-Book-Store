@@ -4,7 +4,6 @@
 <?php require 'partials/navbar.php';?>
 
 
-  
 
   <main>
   <div class="banner">
@@ -47,20 +46,41 @@
       
         <section class="product-grid">
           <?php foreach($products as $product): ?>            
-              <div class="product-details">
+              <div class="product-details" >
                   <a href="/product?product_id=<?=$product['product_id']?>&category_id=<?=$product['category_id']?>">
                       <!-- Ensure correct image path -->
                       <img src="<?=$product['image']?>">
 
                       <a class="title"><?=$product['name']?></a>
-
+                      <div class="price">RM<?=$product['price']?></div> 
                       <div class="rating">
-                          <span><?= number_format($product['rating'], 1) ?></span>
-                          
-                          <?php
-                              // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
-                              $ratingImg = $product['rating'] * 10;  
-                          ?>
+                      <div>
+                        
+                        <?php foreach($subSubCategories  as $subSubcategory): ?>    
+                                <?php if($product['category_id'] ==  $subSubcategory['category_id']): ?>
+                                    <?php foreach($all_sub_category as $subCategory): ?>
+                                        <?php if($subSubcategory['parent_id'] == $subCategory['category_id']): ?>
+                                            <label style="background-color: black; color: white; padding:6px 10px; text-align:center;margin-right:5px; border-radius:3px;  display: inline-block;" ><?=$subCategory['category_name']?> </label>
+                                             <?php break;?>
+                                        <?php endif?>
+                                    <?php endforeach?>   
+                                    <?php break;?>
+                              <?php endif ?>
+                        <?php endforeach ?>
+                     
+                   
+                     
+                
+                       
+
+                        <?php foreach($subSubCategories  as $category): ?>    
+                                <?php if($product['category_id'] == $category['category_id']): ?>
+                                    <label style="background-color: white; color:black; border:solid 1px; text-align:center; padding:5px 10px; border-radius:3px;"><?=$category['category_name']?>  </label>
+                                    <?php break;?>
+                              <?php endif ?>
+                        <?php endforeach ?>
+                     
+                    </div>
                             <?php  
                                 if ($product["stock"] > 0) {
                                     echo '<span class="sale-tags">For Sale</span>';
@@ -68,10 +88,11 @@
                                 echo '<span class="out-of-tags">Out of Stock</span>';
                                 }
                            ?>
-                          <img src="Img/Ratings/rating-<?=$ratingImg?>.png">
+                    
                       </div>
                       
-                      <div class="price">RM<?=$product['price']?></div> 
+                      
+                    
                   </a>
               </div>
           <?php endforeach; ?>

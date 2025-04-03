@@ -7,7 +7,7 @@
 $db = new Database();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  addToCart($db); // ✅ Run only when an AJAX request is made
+  addToCart($db); // Run only when an AJAX request is made
 }
 
 
@@ -49,8 +49,8 @@ if (!$product) {
 
 
 
-$sub_SubCategory =  $product_details['category_id'];
-$sub_category = getSubCategory($db, $product_details['category_id']);
+//$sub_SubCategory =  $product_details['category_id'];
+//$sub_category = getSubCategory($db, $product_details['category_id']);
 $parent_category = getParentCategory($db, $product_details['category_id']);
 
 

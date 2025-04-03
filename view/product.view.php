@@ -197,6 +197,7 @@
                     <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
                   </div>
                   <div class="price">RM<?=$product['price']?></div> 
+               
                 </a>
               </div>
             <?php endforeach;?>

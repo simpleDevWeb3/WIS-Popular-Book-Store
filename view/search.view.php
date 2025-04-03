@@ -6,7 +6,7 @@
 
 
 
-  <main style="max-width: 1300px; min-height:1500px;"> 
+  <main style="max-width: 1300px;"> 
         <section class="search-page">
             <aside>
                 <div class=search-filter>
