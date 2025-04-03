@@ -26,15 +26,14 @@
         <section class="product-detail">
           <!--header-->
           <div>
+            <label style="color: red; "><?=$subSubCategory['category_name'];?></label>
+            <label style="color: red;"><?=$subCategory['category_name'];?></label>
+            <br>
             <h1 class="product-name"><?=$product['name']?></h1>
             <div class="status">
-              <span class="rate"><?= number_format($product['rating'], 1)?></span>
-
-              <?php
-                    // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
-                  $ratingImg = $product['rating'] * 10;  
-              ?>
-              <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
+ 
+            
+      
              <!-- <span class="total-solded">100 Solded </span>
               <span class="item-stats">Available</span>!-->
             </div>
@@ -181,12 +180,8 @@
                   <img src="<?=$product['image']?>">
                   <a class="title"><?=$product['name']?></a>
                   <div class="rating">
-                    <span><?= number_format($product['rating'], 1) ?></span>
-
-                    <?php
-                        // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
-                        $ratingImg = $product['rating'] * 10;  
-                    ?>
+                    <label style="color:gray; margin-right:5px; "><?=$subSubCategory['category_name'];?></label>
+                    <label style="color:gray;"><?=$subCategory['category_name'];?></label>
                    <?php  
                       if ($product["stock"] > 0) {
                           echo '<span class="sale-tags">For Sale</span>';
@@ -194,7 +189,7 @@
                         echo '<span class="out-of-tags">Out of Stock</span>';
                       }
                    ?>
-                    <img src="/Img/Ratings/rating-<?=$ratingImg?>.png">
+                    
                   </div>
                   <div class="price">RM<?=$product['price']?></div> 
                

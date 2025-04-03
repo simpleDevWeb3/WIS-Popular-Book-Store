@@ -44,5 +44,4 @@
             }, 2000);
         });
     </script>
-
 <?php require 'partials/footer.php';?>

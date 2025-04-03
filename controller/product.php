@@ -49,9 +49,16 @@ if (!$product) {
 
 
 
-//$sub_SubCategory =  $product_details['category_id'];
-//$sub_category = getSubCategory($db, $product_details['category_id']);
+$sub_SubCategoryId =  $product_details['category_id'];
+
+$sub_categoryId = getSubCategory($db, $product_details['category_id']);
+
+$subCategory = $db->query("SELECT category_name FROM categories WHERE category_id = :category_id",['category_id' => $sub_categoryId])->fetch(); 
+
+$subSubCategory = $db->query("SELECT category_name FROM categories WHERE category_id = :category_id",['category_id' => $sub_SubCategoryId])->fetch(); 
+
 $parent_category = getParentCategory($db, $product_details['category_id']);
+
 
 
 $user_id = $_SESSION['user_id'];

@@ -53,21 +53,10 @@ $(document).ready(function () {
     cartCount += quantity;
     $("#cart-count").text(cartCount); // Update cart UI
 
-    $("#info")
-      .html("The item has been added to cart!")
-      .show()
-      .addClass("pop");
-
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-    timeout = setTimeout(() => {
-      $("#info").removeClass("pop").hide();
-    }, 1400);
-
+  
     // Send quantity update to backend
     $.ajax({
-      url: "/cart", // Calls the PHP function
+      url: "/cart", 
       type: "POST",
       data: { add_quantity: quantity, product_id: productId },
       dataType: "json",
@@ -76,12 +65,12 @@ $(document).ready(function () {
                 location.reload();
                 console.log("Cart updated:", response);
                 $.ajax({
-                  url: "/product", // Backend route to get updated quantity
+                  url: "/product", 
                   type: "GET",
                   data: { product_id: productId },
                   dataType: "json",
                   success: function (cartData) {
-                      cart_product = cartData.quantity; // ✅ Update cart_product dynamically
+                      cart_product = cartData.quantity; 
                       console.log("Updated quantity in cart:", cart_product);
                     
                     
