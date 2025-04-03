@@ -21,6 +21,9 @@ $sub_SubCat = $db->query("SELECT * FROM categories WHERE category_id = :category
   'category_id' => $sub_SubParent_id
 ])->fetch(); 
 
+$subCat_id = $sub_SubCat['parent_id'];
+$subCat_name = $db->query("SELECT category_name FROM categories WHERE category_id = :category_id",['category_id'=>$subCat_id])->fetch();
+
 
 
 require 'view/sub-category.view.php'

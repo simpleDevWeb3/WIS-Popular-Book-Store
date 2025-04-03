@@ -54,12 +54,17 @@
                         <a class="title"><?=$product['name']?></a>
 
                         <div class="rating">
-                            <span><?= number_format($product['rating'], 1) ?></span>
                             
-                            <?php
-                                // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
-                                $ratingImg = $product['rating'] * 10;  
-                            ?>
+                            <div>
+                                <?php foreach($sub_SubCategory as $category): ?>    
+                                        <?php if($product['category_id'] == $category['category_id']): ?>
+                                            <label style="color:gray;" ><?=$category['category_name']?>  </label>
+                                        <?php break;?>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                                <label  style="color:gray;"> <?=$subParent_Cat['category_name']?></label>
+                            </div>
+                            
                              <?php  
                                 if ($product["stock"] > 0) {
                                     echo '<span class="sale-tags">For Sale</span>';
@@ -67,7 +72,7 @@
                                 echo '<span class="out-of-tags">Out of Stock</span>';
                                 }
                             ?>
-                            <img src="Img/Ratings/rating-<?=$ratingImg?>.png">
+                        
                         </div>
                         
                         <div class="price">RM<?=$product['price']?></div> 

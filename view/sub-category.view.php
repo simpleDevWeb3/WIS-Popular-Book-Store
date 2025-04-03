@@ -31,12 +31,10 @@
                         <a class="title"><?=$product['name']?></a>
 
                         <div class="rating">
-                            <span><?= number_format($product['rating'], 1) ?></span>
-                            
-                            <?php
-                                // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
-                                $ratingImg = $product['rating'] * 10;  
-                            ?>
+                           <div>     
+                            <label  style="color:gray;"> <?=$sub_SubCat['category_name']?></label>
+                            <label  style="color:gray;"><?=$subCat_name['category_name']?></label>
+                          </div>
                            <?php  
                                 if ($product["stock"] > 0) {
                                     echo '<span class="sale-tags">For Sale</span>';
@@ -44,7 +42,7 @@
                                 echo '<span class="out-of-tags">Out of Stock</span>';
                                 }
                             ?>
-                            <img src="Img/Ratings/rating-<?=$ratingImg?>.png">
+                        
                         </div>
                         
                         <div class="price">RM<?=$product['price']?></div> 

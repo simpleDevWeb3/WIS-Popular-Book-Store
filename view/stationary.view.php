@@ -50,12 +50,33 @@
                   <a class="title"><?=$product['name']?></a>
 
                   <div class="rating">
-                      <span><?= number_format($product['rating'], 1) ?></span>
-                      
-                      <?php
-                          // Convert rating (e.g., 4.5) to rating image (e.g., rating-45.png)
-                          $ratingImg = $product['rating'] * 10;  
-                      ?>
+                  <div>
+                        
+                        <?php foreach($subSubCategories  as $subSubcategory): ?>    
+                                <?php if($product['category_id'] ==  $subSubcategory['category_id']): ?>
+                                    <?php foreach($all_sub_category as $subCategory): ?>
+                                        <?php if($subSubcategory['parent_id'] == $subCategory['category_id']): ?>
+                                            <label style="color:gray;" ><?=$subCategory['category_name']?> </label>
+                                             <?php break;?>
+                                        <?php endif?>
+                                    <?php endforeach?>   
+                                    <?php break;?>
+                              <?php endif ?>
+                        <?php endforeach ?>
+                     
+                   
+                     
+                
+              
+                         
+                        <?php foreach($subSubCategories  as $category): ?>    
+                                <?php if($product['category_id'] == $category['category_id']): ?>
+                                    <label style="color:gray;" ><?=$category['category_name']?>  </label>
+                                    <?php break;?>
+                              <?php endif ?>
+                        <?php endforeach ?>
+                     
+                    </div>
                         <?php  
                             if ($product["stock"] > 0) {
                                 echo '<span class="sale-tags">For Sale</span>';
@@ -63,7 +84,7 @@
                             echo '<span class="out-of-tags">Out of Stock</span>';
                             }
                         ?>
-                      <img src="Img/Ratings/rating-<?=$ratingImg?>.png">
+                     
                   </div>
                   
                   <div class="price">RM<?=$product['price']?></div> 

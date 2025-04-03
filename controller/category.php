@@ -41,6 +41,9 @@ $p = new Paging($db, $query, $categoryIds, 10, $page);
 $products = $p->result;
 
 
+//dd($sub_SubCategory);
+
+
 
 //}
 

@@ -25,6 +25,37 @@ $p = new Paging($db,$query, [], 12, $page, $db);
 
 // Get paginated results from Paging class
 $products = $p->result;
+// Fetch category IDs where parent_id IS NULL
+$categories_ids_raw = $db->query("SELECT category_id FROM categories WHERE parent_id IS NULL")->fetchAll();
+
+// Extract only the category_id values as a flat array
+$categories_ids = array_column($categories_ids_raw, 'category_id');
+
+
+//dd($categories_ids);
+
+// Create a comma-separated list of placeholders based on the number of IDs
+$placeholders = implode(',', array_fill(0, count($categories_ids), '?'));
+
+// Prepare the query with the IN clause
+$query = "SELECT * FROM categories WHERE parent_id IN ($placeholders)";
+
+$stmt = $db->query($query,$categories_ids);
+
+$subCategories_raw = $stmt->fetchAll();
+
+$subCategories_ids = array_column($subCategories_raw, 'category_id');
+
+
+// Create a comma-separated list of placeholders based on the number of IDs
+$placeholders = implode(',', array_fill(0, count($subCategories_ids), '?'));
+
+// Prepare the query with the IN clause
+$query = "SELECT * FROM categories WHERE parent_id IN ($placeholders)";
+
+$stmt = $db->query($query,$subCategories_ids);
+
+$subSubCategories_raw = $stmt->fetchAll();
 
 
 // Load View

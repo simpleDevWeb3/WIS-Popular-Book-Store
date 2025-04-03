@@ -52,7 +52,6 @@
                       <img src="<?=$product['image']?>">
 
                       <a class="title"><?=$product['name']?></a>
-                      <div class="price">RM<?=$product['price']?></div> 
                       <div class="rating">
                       <div>
                         
@@ -60,7 +59,7 @@
                                 <?php if($product['category_id'] ==  $subSubcategory['category_id']): ?>
                                     <?php foreach($all_sub_category as $subCategory): ?>
                                         <?php if($subSubcategory['parent_id'] == $subCategory['category_id']): ?>
-                                            <label style="background-color: black; color: white; padding:6px 10px; text-align:center;margin-right:5px; border-radius:3px;  display: inline-block;" ><?=$subCategory['category_name']?> </label>
+                                            <label style="color:gray;" ><?=$subCategory['category_name']?> </label>
                                              <?php break;?>
                                         <?php endif?>
                                     <?php endforeach?>   
@@ -72,10 +71,10 @@
                      
                 
                        
-
+                         
                         <?php foreach($subSubCategories  as $category): ?>    
                                 <?php if($product['category_id'] == $category['category_id']): ?>
-                                    <label style="background-color: white; color:black; border:solid 1px; text-align:center; padding:5px 10px; border-radius:3px;"><?=$category['category_name']?>  </label>
+                                    <label style="color:gray;" ><?=$category['category_name']?>  </label>
                                     <?php break;?>
                               <?php endif ?>
                         <?php endforeach ?>
@@ -91,7 +90,8 @@
                     
                       </div>
                       
-                      
+                     
+                      <div class="price">RM<?=$product['price']?></div>  
                     
                   </a>
               </div>
