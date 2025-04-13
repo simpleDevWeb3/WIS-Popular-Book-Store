@@ -11,7 +11,7 @@
       </div>
 
       <div class="popular-right-head">
-        <span class="order-text">Order & Return</span>
+        <span class="order-text"><a href="/orderHistory">Order & Return</span>
         <a href="/cart" style="opacity: 1;">
           <span class="cart">
               <div class="cart-container">  
@@ -33,4 +33,6 @@
         </a>
         <span class="user-profile"><img height="60px" width="60px" src="/<?=$_SESSION['profile_image'] ?? "img/user/default.jpg"?>" /></span>  
       </div>
+
+      
 </header>

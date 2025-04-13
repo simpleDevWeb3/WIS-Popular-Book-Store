@@ -9,7 +9,7 @@
         
        <div class="banner">
             <img src="<?=$subParent_Cat['category_picture']?>" style="width: 100%; height: 100%; object-fit: cover;">
-            <h1 class="banner-title"">
+            <h1 class="banner-title">
                   <?=$subParent_Cat['category_name']?>
             </h1>  
       </div>

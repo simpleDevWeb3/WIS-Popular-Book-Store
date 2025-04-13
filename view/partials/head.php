@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="CSS/main.css">
   <link rel="stylesheet" href="CSS/product.css">
   <link rel="stylesheet" href="/CSS/app.css">
+  <link rel="stylesheet" href="/CSS/login.css">
   <!--Jquery--->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/shared.js" defer></script>

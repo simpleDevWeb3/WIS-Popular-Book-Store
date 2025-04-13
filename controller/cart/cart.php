@@ -8,7 +8,7 @@ $subtotal = 0;
 $user_id = $_SESSION['user_id'];
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_quantity'], $_POST['product_id'])) {
+if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
   addToCart($db);
   dd('success!');
 }
@@ -25,7 +25,7 @@ if ($_SESSION['user_id']) {
 
 
 
-$stm = $db->query("
+  $carts = $db->query("
     SELECT c.cart_id, c.user_id, cd.price, cd.quantity, p.product_id, p.name, p.image, pd.stock
     FROM `cart` c
     JOIN `cartDetails` cd ON c.cart_id = cd.cart_id
@@ -35,18 +35,11 @@ $stm = $db->query("
 ", ['user_id' => $user_id])->fetchAll();
 
 
-
-$carts = $stm;
-
-
-
-
+//count subtotal
 foreach ($carts as $c) {
   $subtotal += $c['price'] * $c['quantity'];
-  //count subtotal
- 
-
 }
+
 }
 
 $tax = 0;

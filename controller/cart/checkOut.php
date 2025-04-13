@@ -8,7 +8,7 @@ $subtotal = 0;
 $user_id = $_SESSION['user_id'];
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_quantity'], $_POST['product_id'])) {
+if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
     addToCart($db);
     dd('success!');
   }
