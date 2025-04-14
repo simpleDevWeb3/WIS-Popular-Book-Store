@@ -1,4 +1,9 @@
 <header>
+
+<?php
+                  
+   $_user = $_SESSION['user'] ?? null;
+  ?>
   <div class="popular-left-head">
       <a href="/">  
          <img class="popular-logo" src="/Img/Logo/Popular logo.png">
@@ -11,14 +16,13 @@
       </div>
 
       <div class="popular-right-head">
+      <?php if ($_user): ?>
         <span class="order-text"><a href="/orderHistory">Order & Return</span>
+      <?php endif; ?>
         <a href="/cart" style="opacity: 1;">
           <span class="cart">
               <div class="cart-container">  
-               <?php
-                  
-                    $_user = $_SESSION['user'] ?? null;
-                ?>
+             
                 <?php
               
                   $db = new Database();
@@ -39,15 +43,18 @@
                           <img src="/Img/Icon/Icon.svg">
                       <?php endif; ?>
                   <?php else: ?>
-                     
-                      <a id="cart-count" class="cart-quantity"><?= $cartCount; ?></a>
+                   
+                      <a id="cart-count" class="cart-quantity" style="margin-right:20px; font-size:20px; width:1500px; margin-right:100px;"< href="/login"><?= $cartCount;?></a>
+                    
                   <?php endif; ?>
 
 
             </div>   
           </span>
         </a>
-        <span class="user-profile"><img height="60px" width="60px" src="/<?=$_SESSION['profile_image'] ?? "img/user/default.jpg"?>" /></span>  
+        <?php if ($_user): ?>
+           <span class="user-profile"><img height="60px" width="60px" src="/<?=$_user['profile_image'] ?? "img/user/default.jpg"?>" /></span>  
+        <?php endif; ?>
       </div>
 
       

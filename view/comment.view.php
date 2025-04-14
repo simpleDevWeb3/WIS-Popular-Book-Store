@@ -2,7 +2,7 @@
 <br><br>
      <div style="display:flex; align-items:center;">
         <span class="user-profile">
-              <img height="80px" width="80px" src="<?=$_SESSION['profile_image']??"img/user/default.jpg"?>" />
+              <img height="80px" width="80px" src="<?=$_user['profile_image']??"img/user/default.jpg"?>" />
         </span>
           
           <textarea class="comment-section" id="comment-text"  placeholder="Write a comment..." ></textarea> 

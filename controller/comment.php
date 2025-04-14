@@ -1,7 +1,7 @@
 <?php 
 
 
-
+$_user = $_SESSION['user'] ?? null;
 $db = new Database();
 $page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
 
@@ -9,8 +9,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST" && isset($_POST["comment"],$_POST["produc
   $comment = trim($_POST["comment"]);
  
   $product_id = $_POST["product_id"];
-  $user_id = $_SESSION['user_id'];
-  $profile_image = $_SESSION['profile_image'] ?? "img/user/default.jpg";
+  $user_id = $_user['user_id'];
+  $profile_image = $_user['profile_image'] ?? "img/user/default.jpg";
 
   if(!$user_id){
     echo json_encode(["error" => "User not logged In"]);
