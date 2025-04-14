@@ -15,19 +15,35 @@
         <a href="/cart" style="opacity: 1;">
           <span class="cart">
               <div class="cart-container">  
+               <?php
+                  
+                    $_user = $_SESSION['user'] ?? null;
+                ?>
                 <?php
               
                   $db = new Database();
-                  $user_id = $_SESSION['user_id'];
-          
-                  $cQuantity = $db->query("SELECT SUM(cd.quantity) AS total_items FROM cartdetails cd JOIN cart c ON cd.cart_id = c.cart_id WHERE  c.user_id = ?",[$user_id])->fetch();
+                   $user_id = $_user['user_id'] ?? null;
+                  if($user_id){
+                    $cQuantity = $db->query("SELECT SUM(cd.quantity) AS total_items FROM cartdetails cd JOIN cart c ON cd.cart_id = c.cart_id WHERE  c.user_id = ?",[$user_id])->fetch();
 
-                  $cartCount =  $cQuantity['total_items']??0;
+                    $cartCount =  $cQuantity['total_items']??0;
+                  }else{
+                    $cartCount = 'Log In';
+                  }
+             
+                 
                 ?>
-                <div id="cart-count" class="cart-quantity"><?=$cartCount;?></div>
-                <img src="/Img/Icon/Icon.svg">
-                </svg>
-        
+                  <?php if ($_user): ?>
+                      <?php if ($_user['user_id']): ?>
+                          <div id="cart-count" class="cart-quantity"><?= $cartCount; ?></div>
+                          <img src="/Img/Icon/Icon.svg">
+                      <?php endif; ?>
+                  <?php else: ?>
+                     
+                      <a id="cart-count" class="cart-quantity"><?= $cartCount; ?></a>
+                  <?php endif; ?>
+
+
             </div>   
           </span>
         </a>

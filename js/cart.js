@@ -11,11 +11,7 @@ $(document).ready(function () {
   let stock = parseInt(product_details.stock); // Ensure stock is a number
   let productId = product_details.product_id; 
 
-  // Store initial stock in localStorage if not set
-  if (!localStorage.getItem(`stock_${productId}`)) {
-    localStorage.setItem(`stock_${productId}`, stock);
-  }
-
+ 
 
 
   let timeout;

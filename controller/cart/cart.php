@@ -5,7 +5,8 @@ require_once __DIR__ .'/../../Database.php';
 $db = new Database();
 $carts = [];
 $subtotal = 0;
-$user_id = $_SESSION['user_id'];
+$_user = $_SESSION['user'] ?? null;
+$user_id = $_user ['user_id'];
 
 
 if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
@@ -14,8 +15,8 @@ if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
 }
 
 
-if ($_SESSION['user_id']) {
-    $user_id = $_SESSION['user_id'];
+if ($user_id) {
+
     $cart_id = $db->query("SELECT cart_id FROM cart WHERE user_id = :user_id", [
       'user_id' => $user_id
   ])->fetch();
