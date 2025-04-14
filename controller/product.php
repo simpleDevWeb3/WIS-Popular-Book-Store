@@ -6,8 +6,8 @@
 
 $db = new Database();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  addToCart($db); // Run only when an AJAX request is made
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
+  addToCart($db);
 }
 
 
@@ -59,15 +59,20 @@ $subSubCategory = $db->query("SELECT category_name FROM categories WHERE categor
 
 $parent_category = getParentCategory($db, $product_details['category_id']);
 
+$_user = $_SESSION['user'] ?? null;
+
+$user_id = $_user['user_id'] ?? null; 
 
 
-$user_id = $_SESSION['user_id'];
+$cart_product;
+if($user_id != null){
 
 $cart_product = $db->query("SELECT c.user_id, cd.price, cd.quantity, p.stock 
 FROM `cart` c
 JOIN `cartDetails` cd ON c.cart_id = cd.cart_id
 JOIN `product_details` p ON cd.product_id = p.product_id
-WHERE c.user_id = :user_id AND cd.product_id = :product_id",[  'user_id' => $user_id, 'product_id' => $product_id])->fetch();
+WHERE c.user_id = :user_id AND cd.product_id = :product_id",['user_id' => $user_id, 'product_id' => $product_id])->fetch();
+}
 
 
 require 'view/product.view.php';
@@ -87,7 +92,7 @@ const product_details = <?php echo json_encode($product_details ); ?>;
 const product_cart = <?php echo json_encode($cart_product);?>
 
  let stock = product_details.stock; //product_details['stock'] but in js
- let cart_product = product_cart.quantity;
+ let cart_product = product_cart.quantity ?? 0;
  let product_id = product_details.product_id;
  console.log(stock);
 console.log(cart_product);

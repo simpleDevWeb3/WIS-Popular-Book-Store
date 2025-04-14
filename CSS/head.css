@@ -488,5 +488,62 @@ input:-webkit-autofill {
  
 }
 
+.dropdown{
+               
+  position: absolute; 
+  top: 100%; 
+  right: 0; 
+  background-color: white;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  z-index: 1000; 
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  border-radius: 6px;
+  padding-bottom: 10px;
+  
+}
 
+.hidden {
+  display: none;
+}
+
+.setting{
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 16px;
+ transition: background-color 0.15s;
+}
+.logout{
+  font-weight: bold;
+  color: gray;
+  background-color: white;
+  text-align: left;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: background-color 0.15s;
+  cursor: pointer;
+}
+
+.setting:hover{
+  background-color: rgb(223, 223, 223);
+
+}
+
+.logout:hover{
+  background-color: rgb(223, 223, 223);
+
+}
+
+#dropdown-js {
+  display: none;
+  /* Add other styles you already have, like position, box-shadow, etc. */
+}
+
+#dropdown-js.show {
+  display: flex; 
+  flex-direction: column;
+}
 

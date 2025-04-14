@@ -21,7 +21,7 @@ if ($user_id) {
       'user_id' => $user_id
   ])->fetch();
 
-
+ 
 
 
 
@@ -42,6 +42,7 @@ foreach ($carts as $c) {
 }
 
 }
+
 
 $tax = 0;
 $grand_total = $subtotal + $tax;

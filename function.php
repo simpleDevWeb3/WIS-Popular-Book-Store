@@ -31,7 +31,10 @@
    }
 
    function addToCart($db) {
+    $_user = $_SESSION['user'];
+    
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['add_quantity']) || !isset($_POST['product_id'])) {
+
         echo json_encode(["status" => "error", "message" => "Invalid request"]);
         exit;
     }
@@ -51,12 +54,12 @@
 
     $price = $product['price'];
 
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_user)) {
         echo json_encode(["status" => "error", "message" => "User not logged in"]);
         exit;
     }
 
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_user['user_id'];
 
    
     $cart = $db->query("SELECT cart_id FROM cart WHERE user_id = :user_id", ['user_id' => $user_id])->fetch();

@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/partials/head.php';?>
 <?php require __DIR__ .'/partials/header.php';?>
-
+<?php  $_user = $_SESSION['user']; ?>
 <main>
   <div class="cart"  style="margin-top: 30px;">
       <div class="cart-container">
@@ -10,7 +10,7 @@
         <div class="header">
             <h2>Your Cart (<?= count($carts) ?> item(s))
                 <form method="post" action="/controller/cart/delete_cart.php" style="display:inline;"  onsubmit="return confirmDelete();">
-                    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? '' ?>">
+                    <input type="hidden" name="user_id" value="<?= $_user['user_id'] ?? '' ?>">
                     <button type="submit" class="delete-btn" title="Delete all items">
                         <img src="/Img/Icon/garbageCan.jpg" alt="Delete All" width="40" height="40">
                     </button>

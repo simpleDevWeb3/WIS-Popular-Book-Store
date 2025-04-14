@@ -4,20 +4,8 @@
 $db = new Database();
 $_user = $_SESSION['user'] ?? null;
 
-// Global error array
-$_err = [];
 
 
-// Generate <span class='err'>
-function err($key) {
-    global $_err;
-    if ($_err[$key] ?? false) {
-        echo "<span class='err'>$_err[$key]</span>";
-    }
-    else {
-        echo '<span></span>';
-    }
-}
 
 
 function redirect($url = null) {

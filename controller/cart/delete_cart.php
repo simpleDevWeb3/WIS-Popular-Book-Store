@@ -4,7 +4,8 @@ require_once __DIR__ . '/../../Database.php';
 $db = new Database();
 
 if (is_post()) {
-    $user_id = $_SESSION['user_id'] ?? null;
+    $_user = $_SESSION['user'];
+    $user_id =  $_user['user_id'] ?? null;
 
     if (!$user_id) {
         die("Invalid user.");
