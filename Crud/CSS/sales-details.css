@@ -1,0 +1,48 @@
+.back-img {
+    height: 24px;
+    align-items: center;
+}
+
+.back {
+    margin: 10px 20px;
+    padding: 0;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.sales-detail-information-1 {
+    background-color: rgb(249, 231, 231);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 1);
+    margin-top: 10px;
+}
+
+.sales-table-left th, .sales-table-right th {
+    text-align: right;
+}
+
+.sales-detail-information-2 {
+    background-color: rgb(249, 231, 231);
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 1);
+    margin-top: 10px;
+
+}
+
+.detail-information-2 {
+    width: 100%;
+}
+
+.detail-information-2 td {
+    text-align: center;
+}
+
+.total, .detail-information-2 td:last-child {
+    text-align: right;
+    padding-right: 26px;
+}
+  
+.total {
+    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+}

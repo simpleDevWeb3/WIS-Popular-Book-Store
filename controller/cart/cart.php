@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../function.php';
 require_once __DIR__ .'/../../Database.php';
 
+
 $db = new Database();
 $carts = [];
 $subtotal = 0;

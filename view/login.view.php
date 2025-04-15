@@ -75,7 +75,9 @@
               <button class="register-btn" type="submit">Register</button>
               <button class="resert-btn"  >Reset</button>
           </section>
+
           <p style="margin-left: 10px; margin-bottom: 25px; font-size:17px;"> Have  an account?<a href="/login" style="text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"> Login</a></p>
+          
       </form>
     </div>
   

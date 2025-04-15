@@ -38,7 +38,7 @@ try {
     $status = 'completed'; 
 
     //transfer to order table
-    $db->query("INSERT INTO orders (order_id, user_id, total_price, status, order_date)
+    $db->query("INSERT INTO `order` (order_id, user_id, total_price, status, order_date)
                 VALUES (:order_id, :user_id, :total_price, :status, :order_date)", [
         'order_id'   => $order_id,
         'user_id'    => $user_id,

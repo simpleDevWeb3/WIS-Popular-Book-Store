@@ -1,0 +1,18 @@
+.input-date {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.minus-symbol {
+    align-items: center;
+}
+
+.from-date, .to-date {
+    height: 25px;
+    width: 150px;
+}
+
+
+/*-- -- -- -- -- -- -- -- table -- -- -- -- -- -- -- --*/
