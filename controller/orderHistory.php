@@ -5,7 +5,7 @@ require_once __DIR__ .'/../Database.php';
 $db = new Database();
 $orders = [];
 $_user = $_SESSION['user'];
-$user_id = $_user['user_id'];
+$user_id = $_user ['user_id'];
 
 if ($user_id) {
 

@@ -15,6 +15,7 @@
 
 </head>
 
+<!---filename: crud_navbar.php--->
 <body>
     <!-- Flash message -->
     <div id="info"><?= temp('info') ?></div>

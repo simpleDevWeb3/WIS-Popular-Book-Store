@@ -3,6 +3,7 @@ require '../_base.php';
 
 $_title = 'Member';
 include '../_head.php';
+
 ?>
 
 <div class="function-toolsbar">

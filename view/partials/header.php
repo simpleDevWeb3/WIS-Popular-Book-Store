@@ -75,7 +75,7 @@
             </div>
         
             </div>
-            <a class="setting" href="/setting">Profile Settigns</a>
+            <a class="setting" href="/profile">Profile Settigns</a>
   
              <button type="submit" name="logout" class="logout">Log out</button>
              
