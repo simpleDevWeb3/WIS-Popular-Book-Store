@@ -35,7 +35,9 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $routes =[
           '/' => 'controller/index.php',
           '/profile' =>'controller/profile.php',
-          '/register'=>'controller/register.php',
+          '/register-account'=>'controller/register.php',
+          '/register-address'=>'view/register.address.view.php',
+          '/register-general' =>'view/register.general.view.php',
           '/login'=> 'controller/login.php',
           '/orderHistory' => 'controller/orderHistory.php',
           '/cart' => 'controller/cart/cart.php',
@@ -46,7 +48,11 @@ $routes =[
           '/search' => 'controller/search.php',
           '/category' => 'controller/category.php',
           '/subcategory' => 'controller/sub-category.php',
-          '/comment'=> 'controller/comment.php'
+          '/comment'=> 'controller/comment.php',
+          '/address' => 'view/address.view.php',
+          '/password' => 'view/password.view.php',
+         
+
       
 ];
 

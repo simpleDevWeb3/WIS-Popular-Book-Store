@@ -71,7 +71,7 @@ svg{
   cursor: pointer;
   transition: border 0.15s;
 }
-.user-profile img:hover{
+.user-profile >img:hover{
   border:double red;
   border-radius: 50%;
   
@@ -435,6 +435,21 @@ hr{
   font-weight: 700;
   color: rgb(35, 35, 35);
 }
+.profile-main{
+  flex: 1;
+  position: relative;
+  background-color: white;
+  padding: 60px 40px 60px 40px; 
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  column-gap:35px;
+  max-width: 1300px;
+  min-width: 300px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: solid 1px whitesmoke;
+}
 
 main{
   flex: 1;
@@ -449,6 +464,7 @@ main{
   min-width: 300px;
   width: 100%;
   margin-bottom: 20px;
+  border: solid 1px whitesmoke;
 }
 #info{
   position:fixed;
@@ -539,7 +555,7 @@ input:-webkit-autofill {
 
 #dropdown-js {
   display: none;
-  /* Add other styles you already have, like position, box-shadow, etc. */
+ 
 }
 
 #dropdown-js.show {

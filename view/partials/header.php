@@ -3,6 +3,7 @@
 <?php
                   
    $_user = $_SESSION['user'] ?? null;
+
    if (!$_user){
     $margin = 320;
    }

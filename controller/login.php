@@ -24,7 +24,17 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
       // Check password
       if ($user['password'] === sha1($password)) {
            $user = $db->query('SELECT * FROM users WHERE email = ? AND password = SHA1(?)',[$email,$password])->fetch();
+
+             // Fetch address for this user
+             $address = $db->query('SELECT * FROM addresses WHERE user_id = ?', [$user['user_id']])->fetch();
+
+             // Merge user and address data
+             if ($address) {
+                 $user = array_merge($user, $address);
+             }
+           
           login($user); // your custom login function
+       
       } else {
         $_SESSION['error'] = 'Invalid email or password';
       }
