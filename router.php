@@ -51,6 +51,8 @@ $routes =[
           '/comment'=> 'controller/comment.php',
           '/address' => 'view/address.view.php',
           '/password' => 'view/password.view.php',
+          '/city' => 'controller/city.php',
+          '/postal'=> 'controller/postal.php'
          
 
       

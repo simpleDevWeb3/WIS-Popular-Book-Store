@@ -23,22 +23,22 @@
 
         <div style="display: flex; column-gap:10px;">
           <div>
-            <label for="first-name">First Name</label>
+            <label  for="first-name">First Name</label>
             <br>
-            <input style="width: 300px;" type="text" name="first-name" id="first-name" value="<?php echo htmlspecialchars($_POST['first-name'] ?? '') ?>"  required placeholder="Enter your username">
+            <input style="width: 300px;  margin-top:10px;" type="text" name="first-name" id="first-name" value="<?php echo htmlspecialchars($_POST['first-name'] ?? '') ?>"  required placeholder="Enter your username">
         </div>
 
         <div>
-            <label for="last-name">Last Name</label>
+            <label  for="last-name">Last Name</label>
             <br>
-            <input style="width: 300px;" type="text" name="last-name" id="last-name" value="<?php echo htmlspecialchars($_POST['last-name'] ?? '') ?>"  required placeholder="Enter your username">
+            <input style="width: 300px;  margin-top:10px;" type="text" name="last-name" id="last-name" value="<?php echo htmlspecialchars($_POST['last-name'] ?? '') ?>"  required placeholder="Enter your username">
         </div>
       
        
 
         </div>
        
-        <div id="name-error" style="position: absolute; bottom: 428px;">
+        <div id="name-error" style="position: absolute; bottom: 418px;">
           <?php if (!empty($error)): ?>
               <p style="color:red; font-weight:bold;"><?php echo $error; ?></p>
           <?php endif; ?>
@@ -57,7 +57,7 @@
         </div>
        
 
-        <div id="age-error" style="position: absolute; bottom: 228px;">
+        <div id="age-error" style="position: absolute; bottom: 208px;">
           <?php if (!empty($errAge)): ?>
               <p style="color:red; font-weight:bold;"><?php echo $errAge; ?></p>
           <?php endif; ?>
@@ -74,13 +74,13 @@
           <input type="tel" id="phone" name="phone" placeholder="e.g. 123-456-7890" required value="<?php echo htmlspecialchars($_POST['phone'] ?? '') ?>">
        </div>
 
-       <div id="phone-error" style="position: absolute; bottom: 100px; ">
+       <div id="phone-error" style="position: absolute; bottom: 80px; ">
           <?php if (!empty($errPhone)): ?>
               <p style="color:red; font-weight:bold;"><?php echo $errPhone; ?></p>
           <?php endif; ?>
         </div>
 
-        <section style="display: flex; flex-direction:column; margin-top: 30px; ">
+        <section style="display: flex; flex-direction:column; margin-top: 50px; ">
             <button style="margin-top: 0px; margin-bottom:35px;" class="register-btn" type="submit">Next Step</button>
            
         </section>

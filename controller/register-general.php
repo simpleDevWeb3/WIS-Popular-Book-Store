@@ -1,6 +1,7 @@
 <?php 
 
 
+
 $isValid = true;
 //Variable store email password
 function isValidName($name) {
@@ -68,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $db = new Database();
 $user = $db->query('SELECT * FROM user WHERE email = ? AND password = SHA1(?)',[$email,$password])->fetch();
 */       
-
 
 
 

@@ -18,6 +18,27 @@
     if (isset($_POST['logout'])) {
         logout($url = '/');
     }
+
+    $db = new Database();
+
+    $state = $db->query(
+        'SELECT name FROM States WHERE state_id = :state_id',
+        ['state_id' => $_user['state_id']]
+    )->fetch();
+
+
+    $city = $db->query(
+        'SELECT name FROM Cities WHERE city_id = :city_id',
+        ['city_id' => $_user['city_id']]
+    )->fetch();
+
+    $postal = $db->query(
+        'SELECT postal_code FROM Cities WHERE city_id = :city_id',
+        ['city_id' => $_user['city_id']]
+    )->fetch();
+    
+    
+   
   ?>
 <div style=" display:flex; justify-content: left; padding-left: 100px;">
 <?php require 'view/partials/sidebar.php' ?>
@@ -38,11 +59,11 @@
                     <div class="detail-row">
                         <label>
                             <strong>City</strong><br>
-                            <input style="width: 300px;" type="text" name="city" value="<?=htmlspecialchars($_user['city'])?>" required />
+                            <input style="width: 300px;" type="text" name="city" value="<?=$city['name']?>" required />
                         </label>
                         <label>
                             <strong>State / Province</strong><br>
-                            <input style="width: 300px;" type="text" name="state" value="<?=htmlspecialchars($_user['state'])?>" required />
+                            <input style="width: 300px;" type="text" name="state" value="<?=$state['name']?>" required />
                         </label>
                     </div>
 
@@ -51,7 +72,7 @@
                     <div class="detail-row">
                         <label>
                             <strong>Postal Code</strong><br>
-                            <input style="width: 300px;" type="text" name="postal_code" value="<?=htmlspecialchars($_user['postal_code'])?>" required />
+                            <input style="width: 300px;" type="text" name="postal_code" value="<?=$postal['postal_code']?>" required />
                         </label>
                     </div>
 

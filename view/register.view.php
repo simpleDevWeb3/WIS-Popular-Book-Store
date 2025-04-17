@@ -8,11 +8,13 @@
 
   
 <?php require 'partials/head.php';?>
+
 <?php require 'controller/register.php';?>
+
    <div style="display: flex; flex-direction:row;  margin-top:20px; justify-content:center;">
 
    <br>
-   <form style=" align-items: center;"  method="post" class="form-login" action="/register-address">
+   <form style=" align-items: center;"  method="post" class="form-login" >
 
       
    <?php require 'partials/tracking.php';?>
@@ -21,16 +23,43 @@
         <label for="new-username">Username</label>
         <input type="text" name="new-username" id="new-username" value="<?php echo htmlspecialchars($_POST['new-username'] ?? '') ?>"  required placeholder="Enter your username">
 
-        <label for="new-email">Email</label>
-        <input type="new-email" name="new-email" id="new-email" value="<?php echo htmlspecialchars($_POST['new-email'] ?? '') ?>" required placeholder="Enter your email">
+        <div id="username-dup" style="position: absolute; bottom: 428px; ">
+          <?php if (!empty($err_name)): ?>
+              <p style="color:red; font-weight:bold;"><?php echo $err_name; ?></p>
+          <?php endif; ?>
+        </div>
+        <br>
+
+        <label for="new-user-email">Email</label>
+        <input type="email" name="new-user-email" id="new-user-email" value="<?php echo htmlspecialchars($_POST['new-user-email'] ?? '') ?>" required placeholder="Enter your email">
+
+        <div id="email-dup" style="position: absolute; bottom: 308px; ">
+          <?php if (!empty($err_email)): ?>
+              <p style="color:red; font-weight:bold;"><?php echo $err_email; ?></p>
+          <?php endif; ?>
+        </div>
+            <br>
         
 
-        <label for="new-password">Create new Password</label>
-        <input  type="password" name="new-password" id="new-password" value="<?php echo htmlspecialchars($_POST['new-password'] ?? '') ?>"required placeholder="Enter your password">
+        <label for="new-user-password">Create new Password</label>
+        <input  type="password" name="new-user-password" id="new-user-password" value="<?php echo htmlspecialchars($_POST['new-user-password'] ?? '') ?>"required placeholder="Enter your password">
 
+        <div id="error-password" style="position: absolute; bottom: 190px; ">
+          <?php if (!empty($err_password)): ?>
+              <p style="color:red; font-weight:bold;"><?php echo $err_password; ?></p>
+          <?php endif; ?>
+        </div>
 
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" name="confirm-password" id="confirm-password" value="<?php echo htmlspecialchars($_POST['confirm-password'] ?? '') ?>"  required placeholder="Enter the password before">
+            <br>
+
+        <label for="confirm-user-password">Confirm Password</label>
+        <input type="password" name="confirm-user-password" id="confirm-user-password" value="<?php echo htmlspecialchars($_POST['confirm-user-password'] ?? '') ?>"  required placeholder="Enter the password before">
+
+        <div id="error-confirm-password" style="position: absolute; bottom: 70px; ">
+          <?php if (!empty($err_password_match)): ?>
+              <p style="color:red; font-weight:bold;"><?php echo $err_password_match; ?></p>
+          <?php endif; ?>
+        </div>
 
         <section style="display: flex; flex-direction:column; margin-top: 20px; ">
 
@@ -46,8 +75,32 @@
  </div>
 
  <script>
-  $('.back-btn').on('click', function(e) {
-     e.preventDefault();  
-    window.history.back();
+    $('.back-btn').on('click', function(e) {
+      e.preventDefault();  
+      window.history.back();
+    });
+
+ 
+  $('#new-username').click(() => {
+    $('#username-dup').html('');
+
   });
+
+  $('#new-user-email').click(() => {
+    $('#email-dup').html('');
+  });
+
+  $('#new-user-password').click(() => {
+    $('#error-password').html('');
+  });
+
+  $('#confirm-user-password').click(() => {
+    $('#error-confirm-password').html('');
+  });
+
+  $('#phone').click(() => {
+    $('#phone-error').html('');
+  });
+
+
 </script>
