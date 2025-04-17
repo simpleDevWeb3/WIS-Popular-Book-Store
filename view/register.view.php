@@ -8,14 +8,12 @@
 
   
 <?php require 'partials/head.php';?>
-
- 
+<?php require 'controller/register.php';?>
    <div style="display: flex; flex-direction:row;  margin-top:20px; justify-content:center;">
 
    <br>
    <form style=" align-items: center;"  method="post" class="form-login" action="/register-address">
 
-   
       
    <?php require 'partials/tracking.php';?>
 
@@ -35,13 +33,21 @@
         <input type="password" name="confirm-password" id="confirm-password" value="<?php echo htmlspecialchars($_POST['confirm-password'] ?? '') ?>"  required placeholder="Enter the password before">
 
         <section style="display: flex; flex-direction:column; margin-top: 20px; ">
+
             <button class="register-btn" type="submit">Next Step</button>
             <br>
-            <button style="margin-top: 0px; margin-bottom:35px;" class="resert-btn"  >Reset</button>
+            <button type="button" style="margin-top: 0px; margin-bottom:35px;" class="back-btn" >Back</button>
+
         </section>
       </div>
        <p style="margin-left: 10px;  font-size:17px;"> Have  an account?<a href="/login" style="text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"> Login</a></p>
        
    </form>
  </div>
-   
+
+ <script>
+  $('.back-btn').on('click', function(e) {
+     e.preventDefault();  
+    window.history.back();
+  });
+</script>
