@@ -3,6 +3,7 @@
 <?php require 'partials/header.php';?>
 
 <?php
+    (auth('Member')); 
     if (isset($_POST['reset-password'])) {
         header('Location: /password');
     }

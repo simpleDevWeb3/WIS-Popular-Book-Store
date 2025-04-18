@@ -43,7 +43,7 @@ if (is_post()) {
             'cart_id' => $cart_id,
             'product_id' => $product_id
         ]);
-        header("Location: cart.php");
+        header("Location: /cart");
         exit;
     }
 
@@ -73,7 +73,7 @@ if (is_post()) {
         'product_id' => $product_id
     ]);
     
-    header("Location: cart.php");
+    header("Location: /cart");
     exit;
 }
 ?>

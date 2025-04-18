@@ -29,7 +29,7 @@ if (is_post()) {
 
 
 
-    header("Location: cart.php");
+    header("Location: /cart");
     exit;
 }
 ?>

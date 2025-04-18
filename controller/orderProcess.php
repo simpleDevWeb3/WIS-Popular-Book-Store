@@ -68,7 +68,7 @@ try {
     $db->conn->commit();
 
     $_SESSION['order_success'] = true;
-    header("Location: /controller/cart/checkOut.php?success=1");
+    header("Location: /checkOut?success=1");
     exit;
 
 } catch (Exception $e) {

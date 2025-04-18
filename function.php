@@ -297,8 +297,27 @@ function post($key, $value = null) {
 }
 
 
+function mexicoWall($url) {
+  if(urlIs($url))
+  if (!isset($_SESSION['general'])) {
+    redirect('/register'); 
+    exit; 
+  }
+
+  if (!isset($_SESSION['general'], $_SESSION['new_user'])) {
+    redirect('/register'); 
+    exit; 
+  }
+
+  if (!isset($_SESSION['general'], $_SESSION['new_user'], $_SESSION['user_address'])) {
+    redirect('/register'); 
+    exit; 
+  }
 
 
+
+ 
+}
 
 
  ?>

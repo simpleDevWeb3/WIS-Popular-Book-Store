@@ -3,6 +3,9 @@
 <?php require 'partials/header.php';?>
 
 <?php
+
+    (auth('Member')); 
+    
     if (isset($_POST['reset-password'])) {
         header('Location: /password');
     }
@@ -18,6 +21,7 @@
     if (isset($_POST['logout'])) {
         logout($url = '/');
     }
+
   ?>
 <div style=" display:flex; justify-content: left;padding-left: 100px; ">
 

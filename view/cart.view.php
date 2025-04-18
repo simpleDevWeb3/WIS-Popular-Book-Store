@@ -122,7 +122,7 @@
               <p>Subtotal: RM <?= number_format($subtotal,2) ?></p>
               <p>Tax: RM <?= number_format($tax, 2) ?></p>
               <p>Grand Total: <strong>RM <?= number_format($grand_total, 2) ?></strong></p>
-              <a href="/controller/cart/checkOut.php" class="checkout-btn">Check out</a>
+              <a href="/checkOut" class="checkout-btn">Check out</a>
           </div>
       </div>
 </main>

@@ -32,7 +32,7 @@ function auth(...$roles) {
     return true; 
   } 
   else{
-    redirect('/login');
+    redirect('/');
   }
 }
 
