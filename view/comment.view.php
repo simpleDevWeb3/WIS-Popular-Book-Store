@@ -1,5 +1,9 @@
-<h1> <?=$p->item_count?> Comments</h1>
+
+<?php $product_id = $_GET['product_id'] ?? null; ?>
+
+<h1 style="margin-left: 10px;"> <?=$p->item_count?> Comments</h1>
 <br><br>
+<?php if($_user && isBuy($product_id,$order_details)):?>
      <div style="display:flex; align-items:center;">
         <span class="user-profile">
               <img height="80px" width="80px" src="<?=$_user['profile_image']??"img/user/default.jpg"?>" />
@@ -12,8 +16,8 @@
       <button class="comment-cancel-button" id="cancel-comment">Cancel</button>
       <button class="comment-button" id="comment" data-product-id="<?=$product_details['product_id']?>">Comment</button>
      </div>
-   
-  
+
+<?php endif?>
      <br>
      <br>
  
@@ -47,4 +51,3 @@
       </div> 
    <?php endif;?>
  <br><br>
-  

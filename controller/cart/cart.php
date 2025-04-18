@@ -7,7 +7,7 @@ $db = new Database();
 $carts = [];
 $subtotal = 0;
 $_user = $_SESSION['user'] ?? null;
-$user_id = $_user ['user_id'];
+
 
 
 if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
@@ -16,10 +16,10 @@ if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
 }
 
 
-if ($user_id) {
+if ($_user) {
 
     $cart_id = $db->query("SELECT cart_id FROM cart WHERE user_id = :user_id", [
-      'user_id' => $user_id
+      'user_id' => $_user ['user_id']
   ])->fetch();
 
  
@@ -34,7 +34,7 @@ if ($user_id) {
     JOIN `products` p ON cd.product_id = p.product_id
     JOIN `product_details` pd ON p.product_id = pd.product_id
     WHERE c.user_id = :user_id
-", ['user_id' => $user_id])->fetchAll();
+", ['user_id' =>  $_user ['user_id']])->fetchAll();
 
 
 //count subtotal

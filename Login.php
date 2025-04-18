@@ -25,21 +25,15 @@ function logout($url = '/'){
     unset($_SESSION['user']);
     redirect($url);
 }
-
-function auth(...$roles){
+function auth(...$roles) {
   global $_user;
-  if($_user){
-    if($roles){
-        if(in_array($_user->role,$roles)){
-            return; //login as user / admin
-        }
-    }
-    else{
-        return; //login as visitor
-    }
+
+  if (isset($_user['role']) && in_array($_user['role'], $roles)) {
+    return true; 
+  } 
+  else{
+    redirect('/login');
   }
-  
-  redirect('/login');
 }
 
 ?>

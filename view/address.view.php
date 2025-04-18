@@ -22,13 +22,13 @@
     $db = new Database();
 
     $state = $db->query(
-        'SELECT name FROM States WHERE state_id = :state_id',
+        'SELECT state_name FROM States WHERE state_id = :state_id',
         ['state_id' => $_user['state_id']]
     )->fetch();
 
 
     $city = $db->query(
-        'SELECT name FROM Cities WHERE city_id = :city_id',
+        'SELECT city_name FROM Cities WHERE city_id = :city_id',
         ['city_id' => $_user['city_id']]
     )->fetch();
 
@@ -59,11 +59,11 @@
                     <div class="detail-row">
                         <label>
                             <strong>City</strong><br>
-                            <input style="width: 300px;" type="text" name="city" value="<?=$city['name']?>" required />
+                            <input style="width: 300px;" type="text" name="city" value="<?=$city['city_name']?>" required />
                         </label>
                         <label>
                             <strong>State / Province</strong><br>
-                            <input style="width: 300px;" type="text" name="state" value="<?=$state['name']?>" required />
+                            <input style="width: 300px;" type="text" name="state" value="<?=$state['state_name']?>" required />
                         </label>
                     </div>
 

@@ -1,6 +1,8 @@
 <?php require __DIR__ . '/partials/head.php';?>
 <?php require __DIR__ .'/partials/header.php';?>
-<?php  $_user = $_SESSION['user']; ?>
+
+<?php (auth('Member'));?>
+
 <main>
   <div class="cart"  style="margin-top: 30px;">
       <div class="cart-container">

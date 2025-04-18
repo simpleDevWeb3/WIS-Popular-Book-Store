@@ -1,6 +1,6 @@
 <?php 
 
-
+$db = new Database();
 
 $isValid = true;
 //Variable store email password
@@ -19,6 +19,12 @@ function isValidName($name) {
   }
 
   return true;
+}
+
+function isDuplicatePhone($db, $phone){
+  $query = "SELECT * FROM users WHERE phone_number = :phone_number";
+  $stmt = $db->query($query, ['phone_number' => $phone]);
+  return $stmt->rowCount() > 0;
 }
 
 function isUnderAge($dob){
@@ -57,9 +63,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $errPhone = "invalid phone number must be e.g. 123-456-7890 format";
       $isValid = false;
    }
-
+   if(isDuplicatePhone($db, $phone)){
+    $errPhone = "Phone number already exist";
+    $isValid = false;
+   }
    if($isValid) {
-
+      $_SESSION['general'] = [
+        'firstName' => $firstName,
+        'lastName'  => $lastName,
+        'gender'    =>  $gender, // Using sha1 instead of password_hash
+        'dob'       =>  $dob,
+        'phone'     =>  $phone,
+    ];
     redirect("/register-account");
     
   }

@@ -48,10 +48,12 @@
         <label>Gender</label>
         <div style="display: flex; column-gap:10px;">
 
-        <input style="width: 50px;" type="radio" id="male" name="gender" value="Male" <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Male') ? 'checked' : ''; ?>>
+        <input style="width: 50px;" type="radio" id="male" name="gender" value="Male"
+           <?php echo (!isset($_POST['gender']) || $_POST['gender'] == 'Male') ? 'checked' : ''; ?>>
         <label for="male">Male</label><br>
 
-        <input style="width: 50px;" type="radio" id="female" name="gender" value="Female" <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Female') ? 'checked' : ''; ?>>
+        <input style="width: 50px;" type="radio" id="female" name="gender" value="Female"
+            <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Female') ? 'checked' : ''; ?>>
         <label for="female">Female</label><br>
 
         </div>

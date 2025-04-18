@@ -23,10 +23,11 @@
         <label for="new-username">Username</label>
         <input type="text" name="new-username" id="new-username" value="<?php echo htmlspecialchars($_POST['new-username'] ?? '') ?>"  required placeholder="Enter your username">
 
-        <div id="username-dup" style="position: absolute; bottom: 428px; ">
+        <div id="username-dup" style="position: absolute; bottom: 410px; width:400px; ">
           <?php if (!empty($err_name)): ?>
-              <p style="color:red; font-weight:bold;"><?php echo $err_name; ?></p>
+              <p  style="color:red; font-weight:bold;"><?php echo $err_name; ?></p>
           <?php endif; ?>
+
         </div>
         <br>
 
@@ -65,8 +66,7 @@
 
             <button class="register-btn" type="submit">Next Step</button>
             <br>
-            <button type="button" style="margin-top: 0px; margin-bottom:35px;" class="back-btn" >Back</button>
-
+    
         </section>
       </div>
        <p style="margin-left: 10px;  font-size:17px;"> Have  an account?<a href="/login" style="text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"> Login</a></p>
@@ -75,12 +75,7 @@
  </div>
 
  <script>
-    $('.back-btn').on('click', function(e) {
-      e.preventDefault();  
-      window.history.back();
-    });
-
- 
+   
   $('#new-username').click(() => {
     $('#username-dup').html('');
 

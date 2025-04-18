@@ -27,6 +27,15 @@ function isDuplicateName($db, $username){
   return $stmt->rowCount() > 0;
 }
 
+function isValidUserName($username){
+    if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
+    return false;
+      
+  }
+
+  return true;
+}
+
 function isMatchPassword($password, $confirm) {
   return $password === $confirm;
 }
@@ -43,6 +52,25 @@ function isValidPassword($password) {
 
   if (!preg_match('/[0-9]/', $password)) {
       return false;
+  }
+
+  return true;
+}
+
+function isValidEmail($email) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }
+
+    if (strlen($email) > 100) {
+        return false;
+    }
+
+    $parts = explode('@', $email);
+    if (strlen($parts[0]) > 64) {
+        return false; 
+
+   
   }
 
   return true;
@@ -67,14 +95,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $err_name = "Username already taken!";
     $isValid = false;
   }
+
+  if(!isValidUserName($newUserName)){
   
-  if(isDuplicateEmail($db,$newUserEmail,$newUserName))
+    $err_name ="Username must be 3–20 characters and contain only letters, numbers, or underscores.";
+
+    $isValid = false;
+  }
+  
+  if(isDuplicateEmail($db,$newUserEmail))
   {
     $err_email = "Email already exist!";
     $isValid = false;
 
     }
-
+ 
+  if(!isValidEmail($newUserEmail)){
+    $err_email = "Invalid Email Format!";
+    $isValid = false;
+  }
 
 //password
 
@@ -94,11 +133,17 @@ if(!isValidPassword($newUserPassword)){
 }
 
  
-  if($isValid){
-    //$complete = "Succesfully!";
 
+
+if ($isValid) {
+    $_SESSION['new_user'] = [
+        'username' => $newUserName,
+        'email' => $newUserEmail,
+        'password' => sha1($newUserPassword), // Using sha1 instead of password_hash
+    ];
     redirect("/register-address");
-  }
+}
+
   
 
 

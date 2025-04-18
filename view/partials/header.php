@@ -72,6 +72,7 @@
 
             <div>
               <span style="font-size: 18px;"><?=$_user['username']?></span>
+              <br>
               <span style="color:gray"><?=$_user['email']?></span>
             </div>
         
