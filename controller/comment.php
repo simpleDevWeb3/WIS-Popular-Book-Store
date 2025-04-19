@@ -1,7 +1,10 @@
 <?php 
 
 $_user = $_SESSION['user'] ?? null;
+
 $db = new Database();
+
+
 $page = isset($_GET['page']) && ctype_digit($_GET['page']) ? $_GET['page'] : 1;
 
 if($_SERVER["REQUEST_METHOD"]==="POST" && isset($_POST["comment"],$_POST["product_id"])){
@@ -23,17 +26,23 @@ if($_SERVER["REQUEST_METHOD"]==="POST" && isset($_POST["comment"],$_POST["produc
 
 } 
 
-if($_user){
+if ($_user) {
   $orders = $db->query(
     "SELECT * FROM `order` WHERE user_id = :user_id",
     ['user_id' => $_user['user_id']]
   )->fetchAll();
-  
+
   $orderIds = array_column($orders, 'order_id');
-  
-  $placeholders = implode(', ', array_fill(0, count($orderIds), '?'));
-  
-  $order_details = $db->query("SELECT * FROM orderdetails WHERE order_id IN ($placeholders)",$orderIds)->fetchAll();
+
+  if (!empty($orderIds)) {
+    $placeholders = implode(', ', array_fill(0, count($orderIds), '?'));
+    $order_details = $db->query(
+      "SELECT * FROM orderdetails WHERE order_id IN ($placeholders)",
+      $orderIds
+    )->fetchAll();
+  } else {
+    $order_details = []; // Or handle as needed
+  }
 }
 
 

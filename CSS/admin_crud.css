@@ -1,0 +1,453 @@
+
+
+/***********************************************************/
+/*                  Flash Message                          */
+/***********************************************************/
+#admin_crud_info {
+    position: fixed;
+    color: #fff;
+    background: #666;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px 20px;
+    left: 50%;
+    translate: -50% 0;
+    z-index: 999;
+    top: -100px;
+    opacity: 0;
+}
+
+#admin_crud_info:not(:empty) {
+    animation: fade 5s;
+}
+
+@keyframes fade {
+    0%  {   top: -100px; opacity: 0;  }
+    10% {   top:  100px; opacity: 1;  }
+    90% {   top:  100px; opacity: 1;  }
+    100%{   top: -100px; opacity: 0;  }
+}
+
+/***********************************************************/
+/*                    NAVIGATIONBAR button                 */
+/***********************************************************/
+.admin_crud_navigation_bar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+
+
+.admin_crud_navigation_bar_button {
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+    background-color: rgb(249, 229, 229);
+    transition: background-color 0.15ms;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    text-decoration: none;
+}
+
+.navigation_bar_button {
+    border: none;
+    background-color: rgb(249, 229, 229);
+}
+
+.navigation_bar_button:hover {
+    background-color: rgb(244, 197, 197);
+}
+
+.navigation_bar_button:active {
+    background-color: rgb(245, 183, 183);
+}
+
+.navigation_bar_button p {
+    margin: 0;
+    padding: 5px;
+}
+
+.navigation_bar_button_icon_image {
+    height: 20px;
+    padding: 5px;
+    margin: 0;
+}
+
+
+/***********************************************************/
+/*               Product detail page                       */
+/***********************************************************/
+.admin_crud_product_detail-information {
+    background-color: rgb(249, 231, 231);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+}
+
+.admin_crud_product_information {
+    display: grid;
+    padding: 40px;
+
+}
+
+.admin_crud_product_information > div{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    margin: 4px 0;
+    align-items: center;
+}
+
+.admin_crud_product_information_header {
+    display: grid;
+    grid-template-columns: 1fr 2px;
+    font-weight: bold;
+    background-color: rgb(255, 164, 164);
+    margin: 0 5px 0 0;
+    padding: 5px;
+}
+
+/***********************************************************/
+/*                  Detail button                        */
+/***********************************************************/
+.admin_crud_detail_button {
+    display: grid;
+    grid-template-columns: 120px 120px 120px;
+    justify-content: center;
+    padding: 15px 0;
+    background-color: rgb(249, 231, 231);
+}
+
+.admin_crud_detail_back_button, 
+.admin_crud_detail_edit_button, 
+.admin_crud_detail_delete_button {
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    border-radius: 20px;
+    border-width: 1px;
+    cursor: pointer;
+    transition: opacity 0.15ms;
+}
+
+.admin_crud_detail_delete_button {
+    background-color: red;
+    color: white;
+}
+
+.admin_crud_detail_back_button:hover, 
+.admin_crud_detail_edit_button:hover, 
+.admin_crud_detail_delete_button:hover {
+    background-color: rgb(245, 208, 208);
+}
+
+.admin_crud_detail_delete_button:hover,
+.admin_crud_detail_delete_button:active {
+    color: black;
+}
+
+.admin_crud_detail_back_button:active, 
+.admin_crud_detail_edit_button:active, 
+.admin_crud_detail_delete_button:active {
+    background-color: rgb(245, 176, 176);
+}
+
+/***********************************************************/
+/*                  image container                         */
+/***********************************************************/
+.admin_crud_product_img_container {
+    padding: 0 100px;
+    display: flex;
+    background-color: rgb(249, 231, 231);
+    justify-content: center;
+}
+
+.admin_crud_product_img_container > img {
+    display: block;
+    border: 1px solid #333;
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.admin_crud_product_img {
+    margin-top: 50px;
+}
+
+/***********************************************************/
+/*                  form container                         */
+/***********************************************************/
+.admin_crud_form_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/***********************************************************/
+/*                  book & stationary                     */
+/***********************************************************/
+.admin_crud_page_container > .book-stat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    background: rgb(255, 169, 169);
+    height: 35px;
+}
+
+.book-stat-book, .book-stat-stat {
+    text-decoration: none;
+    color: black;
+}
+
+.book-stat-book > div, .book-stat-stat > div {
+    box-shadow: 0 0 2px;
+    height: 100%;
+    vertical-align: bottom;
+}
+
+.book-stat + p {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: large;
+}
+
+/***********************************************************/
+/*                          TABLE                          */
+/***********************************************************/
+.admin_crud_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.admin_crud_table th, .admin_crud_table td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.admin_crud_table th {
+    background-color: rgb(244, 197, 197);
+}
+
+.admin_crud_table tr {
+    background-color: rgb(245, 236, 236);
+}
+
+.admin_crud_table tr:hover td {
+    background-color: rgb(249, 229, 229);
+    cursor: pointer;
+}
+
+/***********************************************************/
+/*                      FORM                             */
+/***********************************************************/
+.admin_crud_label > * {
+    vertical-align: text-top;
+}
+
+.admin_crud_form {
+    display: grid;
+    grid: auto / auto auto auto;
+    gap: 10px;
+    place-content: start;   
+    place-items: center start;  
+    padding: 0 40px 10px 40px;
+}
+
+.admin_crud_form > label:not(:has(*)) {   
+    place-self: stretch;    
+    background: #ff9595;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.admin_crud_form > section {
+    grid-column: 1 / -1;
+}
+
+.admin_crud_err {
+    color: red;
+}
+
+/***********************************************************/
+/*                      FORM BUTTON                        */
+/***********************************************************/
+.admin_crud_form_section  {
+    text-align: center;
+}
+
+
+.admin_crud_form_section > button {
+    margin: 5px 10px ;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.admin_crud_close_btn {
+    background: red;
+    color: white;
+}
+
+.admin_crud_submit_btn {
+    color: white;
+    background: green;
+}
+
+.admin_crud_reset_btn {
+    border: 1px solid black;        /*not working*/
+}
+
+/***********************************************************/
+/*                      INSERT/SEARCH                      */
+/***********************************************************/
+.admin_crud_function-toolsbar {
+    display: flex;
+}
+
+.admin_crud_data-manage-button {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 80px;
+    margin-left: 70px ;
+}
+
+.admin_crud_insert-btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+    background-color: rgb(249, 229, 229);
+    transition: background-color 0.15ms;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+  
+    text-decoration: none;
+    border: none;
+    background-color: rgb(249, 229, 229);
+    
+}
+
+.admin_crud_insert-btn:hover {
+    background-color: rgb(249, 229, 229);
+}
+
+.admin_crud_searching-and-filtering {
+    display: grid;
+    grid-template-columns: 300px;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-right: 70px;
+}
+
+
+.admin_crud_search-button {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.admin_crud_search-img {
+    width: 20px;
+    align-items: center;
+}
+
+.admin_crud_searching-and-filtering > form {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+}
+
+/***********************************************************/
+/*                   TABLE BUTTON                          */
+/***********************************************************/
+.admin_crud_table td:last-child > button   {
+    width: 80px;
+    padding: 2px 0;
+    margin: 0px 5px ;
+    border-radius: 3px;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+.admin_crud_delete-btn {
+    background: red;
+    color: white;
+}
+
+.admin_crud_update-btn {
+    color: white;
+    background: green;
+}
+
+.admin_crud_detail-btn {
+    border: 1px solid black;
+}  
+
+.admin_crud_table td:last-child {
+    text-align: center;
+}
+
+/***********************************************************/
+/*                  SORTING TABLE                          */
+/***********************************************************/
+.admin_crud_table th a {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+}
+
+.admin_crud_table th a.asc::after {
+    content: ' ▴';
+}
+
+.admin_crud_table th a.desc::after {
+    content: ' ▾';
+}
+
+/***********************************************************/
+/*                         PAGing                          */
+/***********************************************************/
+div.admin_crud_pager {
+    padding: 0;
+    
+    background: transparent;
+    justify-content: center;
+}
+
+div.admin_crud_pager a {
+    outline: 1px solid #333;
+    opacity: 1;
+}
+
+div.admin_crud_pager a.active {
+    background: #333;
+}
+
+.admin_crud_pager {
+    padding: 0 50px;
+    background: #999;
+    display: flex;
+}
+
+.admin_crud_pager a {
+    padding: 5px 10px;
+    color: #fff;
+    background: #666;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/*Class name change clashes*/
+.admin_crud_pager a:hover {
+    background: #333;
+}
+

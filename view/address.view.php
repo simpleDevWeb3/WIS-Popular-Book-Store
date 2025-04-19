@@ -3,7 +3,7 @@
 <?php require 'partials/header.php';?>
 
 <?php
-    (auth('Member')); 
+    (auth('Member','Admin')); 
     
     if (isset($_POST['reset-password'])) {
         header('Location: /password');
@@ -20,6 +20,7 @@
     if (isset($_POST['logout'])) {
         logout($url = '/');
     }
+
 
     $db = new Database();
 

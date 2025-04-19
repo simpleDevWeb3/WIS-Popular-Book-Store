@@ -21,7 +21,7 @@
 
      
       <div class="popular-right-head">
-      <?php if ($_user): ?>
+      <?php if ($_user && $_user['role'] == 'Member'): ?>
         <span class="order-text"><a href="/orderHistory">Order & Return</span>
       <?php endif; ?>
         <a href="/cart" style="opacity: 1;">
@@ -42,11 +42,15 @@
              
                  
                 ?>
-                  <?php if ($_user): ?>
+                  <?php if ($_user && $_user['role'] == 'Member'): ?>
                       <?php if ($_user['user_id']): ?>
                           <div id="cart-count" class="cart-quantity"><?= $cartCount; ?></div>
                           <img src="/Img/Icon/Icon.svg">
                       <?php endif; ?>
+                  <?php elseif($_user && $_user['role'] == 'Admin'): ?>
+                    <a id="cart-count" class="cart-quantity" style=" font-size:20px; left: -150px;"< href="/login">
+                        
+                      </a>
                   <?php else: ?>
                    
                       <a id="cart-count" class="cart-quantity" style=" font-size:20px; left: -150px;"< href="/login">
@@ -79,8 +83,11 @@
             </div>
             <a class="setting" href="/profile">Profile Settigns</a>
   
+            <?php if($_user['role']=='Admin'): ?>
+                <a class="setting" href="/product_list">Inventory</a>
+              <?php endif ?>
              <button type="submit" name="logout" class="logout">Log out</button>
-             
+          
            </form> 
 
            <script>

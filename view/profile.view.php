@@ -4,7 +4,7 @@
 
 <?php
 
-    (auth('Member')); 
+    (auth('Member','Admin')); 
     
     if (isset($_POST['reset-password'])) {
         header('Location: /password');

@@ -200,7 +200,6 @@
     <?php endif; ?>
 
 
-     
       <?php require 'controller/comment.php' ?>
     
   <?php 

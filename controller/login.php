@@ -32,8 +32,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
              if ($address) {
                  $user = array_merge($user, $address);
              }
-           
-          login($user); // your custom login function
+      
+            login($user); 
+      
+          
+  
        
       } else {
         $_SESSION['error'] = 'Invalid email or password';

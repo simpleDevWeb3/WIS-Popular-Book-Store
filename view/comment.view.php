@@ -1,5 +1,5 @@
 
-<?php $product_id = $_GET['product_id'] ?? null; ?>
+<?php $product_id = $_GET['product_id'] ?? null;  ?>
 
 <h1 style="margin-left: 10px;"> <?=$p->item_count?> Comments</h1>
 <br><br>

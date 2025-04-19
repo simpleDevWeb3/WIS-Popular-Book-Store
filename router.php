@@ -48,15 +48,26 @@ $routes =[
           '/search' => 'controller/search.php',
           '/category' => 'controller/category.php',
           '/subcategory' => 'controller/sub-category.php',
+          
           '/comment'=> 'controller/comment.php',
           '/address' => 'view/address.view.php',
           '/password' => 'view/password.view.php',
           '/city' => 'controller/city.php',
-          '/postal'=> 'controller/postal.php'
+          '/postal'=> 'controller/postal.php',
          
-
       
-];
+          '/product_list' => 'view/admin_crud_product.php',      
+          '/product_detail' => 'view/admin_crud_product-details.php',
+          '/member_list' => 'view/admin_crud_member.php',
+          '/update' => 'view/admin_crud_product-update.php',
+          '/insert' => 'view/admin_crud_insert.php',
+          '/sales_list' => 'view/admin_crud_sales.php',
+          '/sales_detail' => 'view/admin_crud_sales_detail.php',
+          '/memebr_list' => 'view/admin_crud_member.php',
+          '/delete' => 'controller/_delete.php'   
+        ];
+
+
 
 
 
