@@ -62,9 +62,6 @@ if (is_post()) {
     ]);
     $stock = $stockQuery->fetchColumn();
 
-    if ($final_quantity > $stock) {
-        die("Quantity exceeds available stock.");
-    }
 
     // update database
     $db->query("UPDATE cartDetails SET quantity = :quantity WHERE cart_id = :cart_id AND product_id = :product_id", [

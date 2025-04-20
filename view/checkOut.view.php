@@ -1,7 +1,8 @@
-<?php require __DIR__ . '/partials/head.php';?>
+<?php require 'partials/head.php';?>
+<?php require 'partials/header.php';?>
 
 <body class="checkout">
-<header class="checkout-header">
+<header class="checkout-h">
         <button class="back-btn" onclick="goBack()">&#x2190;</button>
         <h1>Check Out</h1>
     </header>
@@ -17,7 +18,7 @@
             <h2> Total Items: <?= count($carts) ?></h2>
         </div>
         <?php foreach ($carts as $c):  ?>
-        <section class="cart">
+        <section class="cart1">
             
             <div class="cart-item">
             <img src="/<?=$c['image']?>" alt="Book Cover">
@@ -33,10 +34,10 @@
     </main>
 
     <div class="summary">
-            <h2>Order Summary</h2>
-            <p>Subtotal: RM <?= number_format($subtotal,2) ?></p>
-            <p>Tax: RM <?= number_format($tax, 2) ?></p>
-            <h3>Total: <span class="total">RM <?= number_format($total, 2) ?></span></h3>
+            <h2>Order Summary<br></h2>
+            <p>Subtotal: RM <?= sprintf("%.2f", $subtotal) ?></p>
+            <p>Tax: RM <?= sprintf("%.2f", $tax) ?></p>
+            <h3>Total: <span class="total">RM <?= sprintf("%.2f", $total) ?></span></h3>
             <button class="place-order">Place Order</button>
     </div>
 
@@ -54,6 +55,7 @@
             <input type="hidden" name="payment_status" value="Completed">
             <input type="hidden" name="total_price" value="<?= $total ?>">
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+            <input type="hidden" name="payment_method" id="payment_method" value="">
         </form>
 
     
@@ -69,6 +71,8 @@
         button.addEventListener('click', function() {
             let method = this.dataset.method;
             alert("You have selected: " + method);
+
+            document.querySelector('#payment_method').value = method;
             
             // close modal
             document.querySelector('#paymentModal').classList.add('hidden');

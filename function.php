@@ -95,7 +95,7 @@
         ]);
     }
 
-    echo json_encode(["status" => "success", "message" => "Added to cart"]);
+
     exit;
 }
 
@@ -112,7 +112,7 @@
         $price = intval($_POST["price"]); 
         $_SESSION["filtered_price"] = $price; // Store in session
        
-        echo json_encode(["status" => "success", "price" => $price]); //  Send response
+      
         exit;
     }
 }

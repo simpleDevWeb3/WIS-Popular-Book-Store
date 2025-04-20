@@ -75,7 +75,7 @@ $_err = [];
 // Generate <span class='err'>
 function err($key) {
     global $_err;
-
+   
     if ($_err[$key] ?? false) {
         echo "<span class='err'>$_err[$key]</span>";
     }

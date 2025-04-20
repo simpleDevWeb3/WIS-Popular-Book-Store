@@ -23,7 +23,17 @@
 
   background-color: white;
 }
-.form-login  input,select{
+.form-login input{
+  font-size: 15px;
+  padding:15px 10px;
+  width: 390px;
+  border-radius: 10px;
+  border: none;
+  
+ 
+}
+
+.form-login  select{
   font-size: 15px;
   padding:15px 10px;
   width: 390px;

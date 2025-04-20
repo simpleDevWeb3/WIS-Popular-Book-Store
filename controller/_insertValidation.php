@@ -10,7 +10,7 @@ if (is_post()) {
         'genre'       => $genre         = req('genre'),
         'keywords'    => $keywords      = req('keywords'),
         'stock'       => $stock         = req('stock'),
-        'image'        => $f             = get_file('image'),
+        'image'        => $f            = get_file('image'),
     ];
     //temp_image('image', );
     //$image         = temp_image('image');

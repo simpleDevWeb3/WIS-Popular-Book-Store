@@ -51,6 +51,7 @@ $material_list = preapreDataList('material');
 
 //***************************************************************************update into DB
 if (is_post()) {
+
         // Output
         if (!$_err) {
 
@@ -92,9 +93,11 @@ if (is_post()) {
               
     
             }
-    
+             
             temp('info', 'Record updated');
-            redirect('product.php');
+            redirect('/product_list');
+        }else{
+            dd('failed');
         }    
 }                                    
 
@@ -114,7 +117,9 @@ include 'view/partials/header.php';
     <div class="admin_crud_page_container">
 
     <!-------------------------------------------------------------------------------------------------------------------form insert product-->
+
         <div class="admin_crud_form_container">
+            
             <div>
             
                 <?= book_stat_form($BS, $category_db,$product_detail, $image) ?>
@@ -164,6 +169,7 @@ include 'view/partials/header.php';
             </section>
 
             
-        </form><!--!!!!!dont delete this form tag!!!!!-->
+        <!--!!!!!dont delete this form tag!!!!!-->
     </div>
+    </form>
 </main>

@@ -1,8 +1,9 @@
 <?php
 auth('Admin');
 $_db = new Database();
-require '_form.php';
+
 require 'controller/_insertValidation.php';
+require '_form.php';
 
 $BS = req('BS') ?: 'BOOK';
 if ($BS == 'BOOK') {
@@ -47,7 +48,7 @@ if (is_post()) {
         if ($BS == 'BOOK' || $BS == null) {
             $stm = $_db->query('INSERT INTO product_details
                                 (product_id, category_id, author, publisher, publish_date, brand, material, stock, genre, keywords) 
-                                VALUES(?, ?, ?, ?, ?, null, null, ?, ?, ?),',[$product_id, $category_id, $author, $publisher, $publish_date, $stock, $genre, $keywords]);
+                                VALUES(?, ?, ?, ?, ?, null, null, ?, ?, ?)',[$product_id, $category_id, $author, $publisher, $publish_date, $stock, $genre, $keywords]);
      
 
         } else {
@@ -60,7 +61,7 @@ if (is_post()) {
         }
 
         temp('info', 'Record inserted');
-        redirect('product.php');
+        redirect('/product_list');
     }
 }
 
@@ -145,5 +146,6 @@ include 'view/partials/header.php';
         </form><!--!!!!!dont delete this form tag!!!!!-->
     </div>
 </main>
+
 
 <?php require 'view/partials/footer.php' ?>

@@ -55,12 +55,14 @@ $routes =[
           '/city' => 'controller/city.php',
           '/postal'=> 'controller/postal.php',
          
-      
+          
           '/product_list' => 'view/admin_crud_product.php',      
           '/product_detail' => 'view/admin_crud_product-details.php',
           '/member_list' => 'view/admin_crud_member.php',
           '/update' => 'view/admin_crud_product-update.php',
+          '/update_validate' => 'controller/_updateValidation.php',
           '/insert' => 'view/admin_crud_insert.php',
+          '/insert_validate'=> 'controller/_insertValidation.php',
           '/sales_list' => 'view/admin_crud_sales.php',
           '/sales_detail' => 'view/admin_crud_sales_detail.php',
           '/memebr_list' => 'view/admin_crud_member.php',

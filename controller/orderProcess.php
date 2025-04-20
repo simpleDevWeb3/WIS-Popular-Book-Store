@@ -7,6 +7,8 @@ require_once __DIR__ . '/../Database.php';
 $db = new Database();
 $_user = $_SESSION['user'];
 $user_id = $_user['user_id'];
+$payment_method = $_POST['payment_method'] ?? 'Unknown';
+
 
 try {
     $db->conn->beginTransaction();
@@ -32,19 +34,33 @@ try {
         $total_price += $item['price'] * $item['quantity'];
     }
 
+    foreach ($cartItems as $item) {
+        $db->query("
+            UPDATE product_details 
+            SET stock = stock - :quantity 
+            WHERE product_id = :product_id
+        ", [
+            'quantity' => $item['quantity'],
+            'product_id' => $item['product_id']
+        ]);
+    }
+
     //get new order id
     $order_id = 'ORD_' . date('YmdHis') . substr(uniqid(), -5);
-    $order_date = date('Y-m-d');
-    $status = 'completed'; 
+    $order_date = date('Y-m-d H:i:s');
+    $shipping_date = date('Y-m-d H:i:s', strtotime('+2 minutes'));
+    
 
     //transfer to order table
-    $db->query("INSERT INTO `order` (order_id, user_id, total_price, status, order_date)
-                VALUES (:order_id, :user_id, :total_price, :status, :order_date)", [
+    $db->query("INSERT INTO `order` (order_id, user_id, total_price, status, order_date, Payment_method, shipping_date)
+                VALUES (:order_id, :user_id, :total_price, :status, :order_date, :payment_method, :shipping_date)", [
         'order_id'   => $order_id,
         'user_id'    => $user_id,
         'total_price'=> $total_price,
-        'status'     => $status,
-        'order_date' => $order_date
+        'status'     => 'pending',
+        'order_date' => $order_date,
+        'payment_method' => $payment_method,
+        'shipping_date'  => $shipping_date
     ]);
 
 

@@ -22,13 +22,15 @@ if (is_post() && isset($_POST['add_quantity'], $_POST['product_id'])) {
 
 
 
-$stm = $db->query("
+
+ $stm = $db->query("
     SELECT c.cart_id, c.user_id, cd.price, cd.quantity, p.product_id, p.name, p.image
     FROM `cart` c
     JOIN `cartDetails` cd ON c.cart_id = cd.cart_id
     JOIN `products` p ON cd.product_id = p.product_id
     WHERE c.user_id = :user_id
 ", ['user_id' => $user_id])->fetchAll();
+
 
 
 $carts = $stm;
@@ -40,7 +42,8 @@ foreach ($carts as $c) {
 
 }
 
-$tax = 0;
+
+$tax = $subtotal * 0.06;
 $total = $subtotal + $tax;
 
 $_title = 'Check Out';

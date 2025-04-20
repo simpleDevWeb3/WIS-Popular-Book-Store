@@ -4,15 +4,16 @@
 <?php (auth('Member'));?>
 
 <main>
-  <div class="cart"  style="margin-top: 30px;">
+<div class="cart"  style="margin-top: 30px;">
       <div class="cart-container">
-      <div class="search-bar">
-            <input type="text" placeholder="Search product in cart">
-        </div>
+      <form method="get" class="search-bar">
+        <?php html_search('name', "placeholder='Search product in cart'"); ?>
+        <button type="submit">Search</button>
+      </form>
         <div class="header">
-            <h2>Your Cart (<?= count($carts) ?> item(s))
+            <h2 id="item-count">Your Cart (<?= count($carts) ?> item(s))
                 <form method="post" action="/controller/cart/delete_cart.php" style="display:inline;"  onsubmit="return confirmDelete();">
-                    <input type="hidden" name="user_id" value="<?= $_user['user_id'] ?? '' ?>">
+                    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? '' ?>">
                     <button type="submit" class="delete-btn" title="Delete all items">
                         <img src="/Img/Icon/garbageCan.jpg" alt="Delete All" width="40" height="40">
                     </button>
@@ -37,37 +38,54 @@
               </tr>
               <?php foreach ($carts as $c):  ?>
               <tr>
-                  <td> <img src="/<?=$c['image']?>" alt="Book Cover"  width="110" height="100"> <?= $c['name'] ?></td>
+              <td> <a href="/product?product_id=<?= urlencode($c['product_id']) ?>&category_id=<?= urlencode($c['category_id']) ?>"  style="all: unset; display: inline-block;">
+                        <img src="/<?= $c['image'] ?>" alt="<?= $c['name'] ?>" width="110" height="100">
+                    </a>
+                    <?= $c['name'] ?>
+                  </td>
                   <td><?= $c['price'] ?></td>
                   <td class="quantity-selector">
 
-                  <form method="post" action="/controller/cart/update_cart.php" >
+                  <form method="post" action="/controller/cart/update_cart.php">
                     <input type="hidden" name="cart_id" value="<?= $c['cart_id'] ?>">
                     <input type="hidden" name="product_id" value="<?= $c['product_id'] ?>">
+                    <input type="hidden" name="stock" value="<?= $c['stock'] ?>">
 
                     <button  type="submit" name="action" value="decrease" onclick="return confirmDecrease(this.form)">-</button>
-                      <input type="text" class="quantityInput" name="quantity" value="<?= $c['quantity'] ?>" placeholder="QTY" onkeypress="submitOnEnter(event, this.form)" oninput="return confirmDecrease1(this.form)">
-                    <button type="submit" name="action" value="increase">+</button>
+                      <input type="text" class="quantityInput" name="quantity" value="<?= $c['quantity'] ?>" placeholder="QTY"  data-original="<?= $c['quantity'] ?>" oninput="return confirmDecrease1(this.form)">
+                    <button type="submit" name="action" value="increase" onclick="return InvalidIncrease(this.form)">+</button>
                   </form>
                   </td>
 
+                 
                   <script>
-                    //press enter submit quantity
-                    function submitOnEnter(event, form) {
-                    if (event.key === "Enter") {
-                        event.preventDefault();
-                        form.submit();
-                    }
-                        }
-                </script>
 
-                  <script>
-                    // + - button
+                    // + button
+                    function InvalidIncrease(form) {
+                     // get quantity in <input>
+                    var quantityInput = form.querySelector('input[name="quantity"]');
+                    var quantity = parseInt(quantityInput.value, 10);
+                    const stock = parseInt(form.querySelector('input[name="stock"]').value, 10);
+                    
+                    const originalQuantity = quantityInput.getAttribute('data-original');
+
+                    //prevent quantity exceeds stock
+                    if (quantity === stock) {
+                        alert("The quantity exceeds the available stock.");
+                        quantityInput.value = originalQuantity;
+                    return false;
+                    }
+                        return true;
+                    }
+
+
+
+                    //- button
                     function confirmDecrease(form) {
                      // get quantity in <input>
                     var quantityInput = form.querySelector('input[name="quantity"]');
                     var quantity = parseInt(quantityInput.value, 10);
-                    
+
                     //when quantity = 1
                     if (quantity == 1) {
                         if (confirm("The quantity is 0 or 1. Decreasing will remove this product from your cart. Are you sure you want to delete it?")) {
@@ -85,7 +103,10 @@
                      // get quantity in <input>
                     var quantityInput = form.querySelector('input[name="quantity"]');
                     var quantity = parseInt(quantityInput.value, 10);
+                    const stock = parseInt(form.querySelector('input[name="stock"]').value, 10);
                     
+                    const originalQuantity = quantityInput.getAttribute('data-original');
+
                     // when qty less than 1
                     if (quantity < 1) {
                         if (confirm("The quantity is 0 or 1. Decreasing will remove this product from your cart. Are you sure you want to delete it?")) {
@@ -94,7 +115,15 @@
                         } else {
                             return false;  // cancel delete
                         }
+
+                        
+                    }else if (quantity > stock) {
+                        alert("The quantity exceeds the available stock.");
+                        quantityInput.value = originalQuantity;
+                    return false;
                     }
+                    
+                    
                         return true;
                     }
                     </script>
@@ -105,10 +134,18 @@
                     input.addEventListener('input', function() {
                     this.value = this.value.replace(/[^0-9]/g, '');
                     });
+
+                    input.addEventListener('keydown', function(event) {
+                        if (event.key === "Enter") {
+                            event.preventDefault();
+                            this.form.submit();
+                        }
                     });
+                    });
+
                 </script>
 
-                  <td>RM <?= number_format($c['price'] * $c['quantity'], 2) ?></td>
+                  <td>RM <?= sprintf("%.2f", $c['price'] * $c['quantity']) ?></td>
                   
               </tr>
               <?php endforeach ?>
@@ -119,10 +156,14 @@
           </table>
 
           <div class="checkout-summary">
-              <p>Subtotal: RM <?= number_format($subtotal,2) ?></p>
-              <p>Tax: RM <?= number_format($tax, 2) ?></p>
-              <p>Grand Total: <strong>RM <?= number_format($grand_total, 2) ?></strong></p>
-              <a href="/checkOut" class="checkout-btn">Check out</a>
+              <p>Subtotal: RM <?= sprintf("%.2f", $subtotal) ?></p>
+              <p>Tax: RM <?= sprintf("%.2f", $tax) ?></p>
+              <p>Grand Total: <strong>RM <?= sprintf("%.2f", $grand_total) ?></strong></p>
+              <?php if (!empty($carts)): ?>
+                <a href="/checkOut" class="checkout-btn">Check out</a>
+              <?php else: ?>
+                <button class="checkout-btn" onclick="alert('Your cart is empty. Please add items to your cart before checking out.')">Check out</button>
+              <?php endif; ?>
           </div>
       </div>
 </main>

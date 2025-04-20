@@ -25,13 +25,13 @@
           <div>
             <label  for="first-name">First Name</label>
             <br>
-            <input style="width: 300px;  margin-top:10px;" type="text" name="first-name" id="first-name" value="<?php echo htmlspecialchars($_POST['first-name'] ?? '') ?>"  required placeholder="Enter your username">
+            <input style="width: 300px;  margin-top:10px;" type="text" name="first-name" id="first-name" value="<?php echo htmlspecialchars($_POST['first-name'] ?? '') ?>"  required placeholder="eg.John">
         </div>
 
         <div>
             <label  for="last-name">Last Name</label>
             <br>
-            <input style="width: 300px;  margin-top:10px;" type="text" name="last-name" id="last-name" value="<?php echo htmlspecialchars($_POST['last-name'] ?? '') ?>"  required placeholder="Enter your username">
+            <input style="width: 300px;  margin-top:10px;" type="text" name="last-name" id="last-name" value="<?php echo htmlspecialchars($_POST['last-name'] ?? '') ?>"  required placeholder="eg.Doe">
         </div>
       
        

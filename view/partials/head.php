@@ -23,6 +23,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/shared.js" defer></script>
   <script src="js/admin_crud.js" defer></script>
+  
   <!--icon library--->
  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   
