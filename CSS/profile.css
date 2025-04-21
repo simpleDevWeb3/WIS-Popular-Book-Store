@@ -162,10 +162,9 @@
           .edit-img-window {
             display: none; /* Hidden by default */
             position:fixed;
-           
-            transform: translate(100%, -120%);
-            width: 500px;
-            height: 500px;
+            transform: translate(140%, -140%);
+            width: 400px;
+            height: 400px;
             background-color: white;
             z-index: 999; /* On top of the overlay */
             padding: 20px;

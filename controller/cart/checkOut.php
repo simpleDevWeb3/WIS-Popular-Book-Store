@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Kuala_Lumpur');
+
 require_once __DIR__ . '/../../function.php';
 require_once __DIR__ .'/../../Database.php';
 
@@ -45,6 +47,8 @@ foreach ($carts as $c) {
 
 $tax = $subtotal * 0.06;
 $total = $subtotal + $tax;
+
+$delivery_date = date('Y-m-d', strtotime('+7 days'));
 
 $_title = 'Check Out';
 require __DIR__ . '/../../view/checkOut.view.php';

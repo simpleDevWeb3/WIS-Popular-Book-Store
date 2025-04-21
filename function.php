@@ -95,7 +95,7 @@
         ]);
     }
 
-
+    echo json_encode(["status" => "success", "message" => "Item added to cart"]);
     exit;
 }
 

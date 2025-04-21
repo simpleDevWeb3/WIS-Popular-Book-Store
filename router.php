@@ -35,6 +35,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $routes =[
           '/' => 'controller/index.php',
           '/profile' =>'controller/profile.php',
+          '/profile-view' => 'view/profile.view.php',
           '/register-account'=>'view/register.view.php',
           '/register-address'=>'view/register.address.view.php',
           '/register-general' =>'view/register.general.view.php',

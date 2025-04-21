@@ -120,11 +120,15 @@ function html_select($key, $items, $default = 'Select one', $attr = '') {
 
 function html_search($key, $attr = '') {
     $value = encode($GLOBALS[$key] ?? '');
-    echo "<input type='search' id='$key' name='$key' value='$value' $attr>";
+    echo "
+    <div style='position: relative; width: 100%; max-width: 400px;'>
+      <input type='search' id='$key' name='$key' value='$value' $attr '>
+      <button class = 'search-button-cart' type='submit''>Search</button>
+    </div>";
 }
 
 function html_file($key, $accept = '', $attr = '') {
-    echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
+    echo "<input type='file' id='$key' name='$key' accept='$accept' $attr> ";
 }
 
 function table_headers($fields, $sort, $dir, $href = '') {

@@ -13,7 +13,7 @@
 
 
 
-               <button type="submit" name="user-details"  style="<?= urlIs('/profile') ? 'background-color: #e9ede8; 
+               <button type="submit" name="user-details"  style="<?= urlIs('/profile-view') ? 'background-color: #e9ede8; 
                 box-shadow: 0px  5px  10px rgba(0,0,0,0.1);' : '' ?>"   class="user-details-btn">User Details</button>
            
            

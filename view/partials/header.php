@@ -25,7 +25,7 @@
         <span class="order-text"><a href="/orderHistory">Order & Return</span>
       <?php endif; ?>
         <a href="/cart" style="opacity: 1;">
-          <span class="cart">
+          <span class="cart-icon">
               <div class="cart-container">  
              
                 <?php
@@ -81,7 +81,7 @@
             </div>
         
             </div>
-            <a class="setting" href="/profile">Profile Settigns</a>
+            <a class="setting" href="/profile-view">Profile Settigns</a>
   
             <?php if($_user['role']=='Admin'): ?>
                 <a class="setting" href="/product_list">Inventory</a>

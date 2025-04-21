@@ -1,25 +1,9 @@
  
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
+<<?php require 'controller/profile.php';?>
 
 <?php
-    (auth('Member','Admin')); 
-    
-    if (isset($_POST['reset-password'])) {
-        header('Location: /password');
-    }
-
-    if (isset($_POST['user-details'])) {
-        header('Location: /profile');
-    }
-
-    if (isset($_POST['manage-addrs'])) {
-        header('Location: /address');
-    }
-
-    if (isset($_POST['logout'])) {
-        logout($url = '/');
-    }
 
 
     $db = new Database();

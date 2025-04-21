@@ -1,50 +1,47 @@
 <?php require __DIR__ . '/partials/head.php';?>
 <?php require __DIR__ .'/partials/header.php';?>
+<?php  require 'partials/navbar.php'; ?>
 
 <?php (auth('Member'));?>
 
 <main>
-<div class="cart"  style="margin-top: 30px;">
-      <div class="cart-container">
-      <form method="get" class="search-bar">
-        <?php html_search('name', "placeholder='Search product in cart'"); ?>
-        <button type="submit">Search</button>
-      </form>
-        <div class="header">
-            <h2 id="item-count">Your Cart (<?= count($carts) ?> item(s))
-                <form method="post" action="/controller/cart/delete_cart.php" style="display:inline;"  onsubmit="return confirmDelete();">
-                    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? '' ?>">
-                    <button type="submit" class="delete-btn" title="Delete all items">
-                        <img src="/Img/Icon/garbageCan.jpg" alt="Delete All" width="40" height="40">
-                    </button>
-                </form>
-                
-                <script>
-                    function confirmDelete() {
-                    return confirm("Are you sure you want to delete all items in your cart?");
-                    }
-                </script>
-
-           </h2>
-</div>
-
-          <?php if (!empty($carts)): ?>
+<div class="cart"  style="margin-left:40px; margin-top: 30px; display:flex; gap:20px">
+      
+<div style="width: 800px">
+ <?php if (!empty($carts)): ?>
+   
           <table class="cart-table">
+ 
               <tr>
-                  <th>Item</th>
+
+              
+                  <th style="padding-left:35px">Item</th>
                   <th>Price</th>
                   <th>Quantity</th>
-                  <th>Total</th>
+                  <th style="display:flex; justify-content:center; align-items:center;">
+                         Total
+                    <form method="post" action="/controller/cart/delete_cart.php" style="display:inline;"  onsubmit="return confirmDelete();">
+                            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? '' ?>">
+                            <button type="submit" class="delete-btn" title="Delete all items">
+                            <i style="margin-left: 10px;" class="ri-delete-bin-6-line"></i>
+                            </button>
+                     </form>
+                  
+   
+                 </th>
               </tr>
               <?php foreach ($carts as $c):  ?>
               <tr>
-              <td> <a href="/product?product_id=<?= urlencode($c['product_id']) ?>&category_id=<?= urlencode($c['category_id']) ?>"  style="all: unset; display: inline-block;">
+              <td style="display: flex;text-align: center;align-items: center;">
+                 <a href="/product?product_id=<?= urlencode($c['product_id']) ?>&category_id=<?= urlencode($c['category_id']) ?>"  style="all: unset; display: inline-block;">
                         <img src="/<?= $c['image'] ?>" alt="<?= $c['name'] ?>" width="110" height="100">
-                    </a>
-                    <?= $c['name'] ?>
-                  </td>
-                  <td><?= $c['price'] ?></td>
-                  <td class="quantity-selector">
+                 </a>
+                  <?= $c['name'] ?>
+                </td>
+                  
+                <td><?= $c['price'] ?></td>
+
+               <td class="quantity-selector">
 
                   <form method="post" action="/controller/cart/update_cart.php">
                     <input type="hidden" name="cart_id" value="<?= $c['cart_id'] ?>">
@@ -151,21 +148,52 @@
               <?php endforeach ?>
 
               <?php else: ?>
-              <p>No items found in your cart.</p>
+              <p style="margin-top: 40px;">No items found in your cart.</p>
           <?php endif ?>  
           </table>
+   
 
-          <div class="checkout-summary">
-              <p>Subtotal: RM <?= sprintf("%.2f", $subtotal) ?></p>
-              <p>Tax: RM <?= sprintf("%.2f", $tax) ?></p>
-              <p>Grand Total: <strong>RM <?= sprintf("%.2f", $grand_total) ?></strong></p>
-              <?php if (!empty($carts)): ?>
-                <a href="/checkOut" class="checkout-btn">Check out</a>
-              <?php else: ?>
-                <button class="checkout-btn" onclick="alert('Your cart is empty. Please add items to your cart before checking out.')">Check out</button>
-              <?php endif; ?>
-          </div>
+     </div>
+
+          <div class="cart-container" style="display: flex; ">
+                <div class="header" style="display:flex;  padding-top:20px;     height: 300px;  ">
+                    <div style="display: flex; flex-direction:column; align-items: center;">
+                    
+                        <form method="get" class="search-bar">
+                            <?php html_search('name', "placeholder='Search product in cart'"); ?>
+                        
+                        </form>
+
+
+                        
+
+                        <div class="checkout-summary">
+                    <p>Subtotal: RM <?= sprintf("%.2f", $subtotal) ?></p>
+                    <p>Tax: RM <?= sprintf("%.2f", $tax) ?></p>
+                    <p>Grand Total: <strong>RM <?= sprintf("%.2f", $grand_total) ?></strong></p>
+                    <?php if (!empty($carts)): ?>
+                        <a href="/checkOut" class="checkout-btn">Check out</a>
+                    <?php else: ?>
+                        <button class="checkout-btn" onclick="alert('Your cart is empty. Please add items to your cart before checking out.')">Check out</button>
+                    <?php endif; ?>
+                </div>
+            </div>
+               
+                
+                <script>
+                    function confirmDelete() {
+                    return confirm("Are you sure you want to delete all items in your cart?");
+                    }
+                </script>
+
+           </h2>
+ </div>
+
+         
       </div>
+
+
+      
 </main>
 
    <?php require 'partials/footer.php';?>

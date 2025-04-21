@@ -122,56 +122,9 @@
   cursor: pointer;
 }
 
-input[type="checkbox"]{
-  -webkit-appearance: none; 
-  appearance: none;
-  cursor: pointer;
-  width: 15px; /* Custom size */
-  height: 16px;
-  border: solid;
-  border: solid 1.5px gray;
-  border-radius: 2px;
-  
-}
 
 
-input[type="checkbox"]:checked {
-  background-color: #ffffff;
-  position: relative;
-  
-}
 
-
-input[type="checkbox"]:checked::after {
-  content: "✔"; 
-  font-size: 20px;
-  color: rgb(253, 6, 6);
-  position: absolute;
-  left: 1px;
-  top: -8px;
-}
-
-.filter-rating-grid{
-  display: grid;
-  grid-template-rows: 1fr;
-  margin-top: 10px;
-}
-.filter-rating-grid >div{
-  width: 150px;
-  transition: padding 0.15s, background-color 0.15s,border-radius 0.15s;
-}
-
-.filter-rating-grid >div:hover{
-  padding: 0px 10px;
-  background-color: rgb(230, 229, 229);
-  border-radius: 8px;
- 
-}
-
-.filter-rating-grid >div>img{
-  cursor: pointer;
-  width: 130px;
-}
 
 
 #sortOptions {

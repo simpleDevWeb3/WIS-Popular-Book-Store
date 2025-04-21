@@ -48,7 +48,8 @@ try {
     //get new order id
     $order_id = 'ORD_' . date('YmdHis') . substr(uniqid(), -5);
     $order_date = date('Y-m-d H:i:s');
-    $shipping_date = date('Y-m-d H:i:s', strtotime('+2 minutes'));
+    $shipping_date = date('Y-m-d H:i:s', strtotime('+7 days'));
+
     
 
     //transfer to order table

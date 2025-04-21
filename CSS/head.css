@@ -160,7 +160,7 @@ svg{
   margin-right: 120px;
 }
 
-.cart{
+.cart-icon{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -168,11 +168,11 @@ svg{
   transition: opacity 0.15s;
   
 }
-.cart:hover{
+.cart-icon:hover{
   opacity: 0.7;
 }
 
-.cart svg{
+.cart-icon svg{
   color: gray;
 }
 

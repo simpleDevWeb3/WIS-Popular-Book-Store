@@ -2,24 +2,8 @@
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
 
-<?php
-    (auth('Member','Admin')); 
-    if (isset($_POST['reset-password'])) {
-        header('Location: /password');
-    }
+<<?php require 'controller/profile.php';?>
 
-    if (isset($_POST['user-details'])) {
-        header('Location: /profile');
-    }
-
-    if (isset($_POST['manage-addrs'])) {
-        header('Location: /address');
-    }
-
-    if (isset($_POST['logout'])) {
-        logout($url = '/');
-    }
-  ?>
 <div style=" display:flex; justify-content: left;padding-left: 100px;">
     <?php require 'view/partials/sidebar.php' ?>
  <div class="user-profile">

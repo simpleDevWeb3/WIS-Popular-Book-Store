@@ -51,6 +51,7 @@
     display: grid;
     grid-template-columns: 1fr;
     text-decoration: none;
+    width:100px;
 }
 
 .navigation_bar_button {

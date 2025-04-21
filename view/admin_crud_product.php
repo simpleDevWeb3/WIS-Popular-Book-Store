@@ -11,7 +11,7 @@
         'p.name'        => 'Product Name',
         'p.category_id' => 'Category',
         'pd.stock'      => 'Stock',
-        'p.rating'      => 'Rating',
+      
         'p.price'       => 'Price(RM)',
     ];
 
@@ -82,21 +82,21 @@
 
                         <!-- display products from database -->
                         <?php foreach ($arr as $prod): ?>
-                        <tr>
-                        
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $index++ ?></td>
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $prod['product_id']?></td>
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $prod['name'] ?></td>
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $prod['category_id'] ?></td>
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $prod['stock'] ?><td>
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $prod['rating'] ?></td>
-                            <td class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'"><?= $prod['price'] ?></td>
-                            <td>
-                            
-                             
-                                <button class="admin_crud_delete-btn" data-confirm="Delete this record?" data-post="/delete?id=<?= $prod['product_id'] ?>" >Delete</button>
-                            </td>
-                        </tr> 
+                            <tr>   
+                                
+                                <td><?= $index++ ?></td>
+                                <td><?= $prod['product_id']?></td>
+                                <td><?= $prod['name'] ?></td>
+                                <td><?= $prod['category_id'] ?></td>
+                                <td><?= $prod['stock'] ?></td>
+                                <td><?= $prod['price'] ?></td>
+
+                                <td>
+                                    <button class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'">Detail</button>
+                                    <button class="admin_crud_update-btn" data-get="/update?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'">Update</button>
+                                    <button class="admin_crud_delete-btn" data-confirm="Delete this record?" data-post="/delete?id=<?= $prod['product_id'] ?>" >Delete</button>
+                                </td>
+                            </tr>
 
                         <?php endforeach ?>
                     </table>
