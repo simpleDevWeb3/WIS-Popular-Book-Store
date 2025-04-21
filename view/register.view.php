@@ -43,23 +43,28 @@
         
 
         <label for="new-user-password">Create new Password</label>
-        <input  type="password" name="new-user-password" id="new-user-password" value="<?php echo htmlspecialchars($_POST['new-user-password'] ?? '') ?>"required placeholder="Enter your password">
+          <input  type="password" name="new-user-password" id="new-user-password" value="<?php echo htmlspecialchars($_POST['new-user-password'] ?? '') ?>"required placeholder="Enter your password">
+
+          <i data-target='#new-user-password'  style="font-size:20px; cursor:pointer; position:absolute; bottom:230px; right:590px;"  class="ri-eye-line toggle-password"></i>
 
         <div id="error-password" style="position: absolute; bottom: 190px; ">
           <?php if (!empty($err_password)): ?>
               <p style="color:red; font-weight:bold;"><?php echo $err_password; ?></p>
           <?php endif; ?>
+  
         </div>
 
             <br>
 
-        <label for="confirm-user-password">Confirm Password</label>
-        <input type="password" name="confirm-user-password" id="confirm-user-password" value="<?php echo htmlspecialchars($_POST['confirm-user-password'] ?? '') ?>"  required placeholder="Enter the password before">
+            <label for="confirm-user-password">Confirm Password</label>
+            <input type="password" name="confirm-user-password" id="confirm-user-password" value="<?php echo htmlspecialchars($_POST['confirm-user-password'] ?? '') ?>"  required placeholder="Enter the password before">
 
-        <div id="error-confirm-password" style="position: absolute; bottom: 70px; ">
-          <?php if (!empty($err_password_match)): ?>
-              <p style="color:red; font-weight:bold;"><?php echo $err_password_match; ?></p>
-          <?php endif; ?>
+            <i data-target='#confirm-user-password'  style="font-size:20px; cursor:pointer; position:absolute; bottom:115px; right:590px;"  class="ri-eye-line toggle-password"></i>
+
+            <div id="error-confirm-password" style="position: absolute; bottom: 70px; ">
+              <?php if (!empty($err_password_match)): ?>
+                  <p style="color:red; font-weight:bold;"><?php echo $err_password_match; ?></p>
+              <?php endif; ?>
         </div>
 
         <section style="display: flex; flex-direction:column; margin-top: 20px; ">
@@ -96,6 +101,14 @@
   $('#phone').click(() => {
     $('#phone-error').html('');
   });
+
+  $('.toggle-password').click(function(){
+        const input =$($(this).data('target'));
+        const currentType = input.attr('type');
+        input.attr('type', currentType === 'password' ? 'text' : 'password');
+
+       $(this).toggleClass('ri-eye-line ri-eye-off-line');
+  })
 
 
 </script>

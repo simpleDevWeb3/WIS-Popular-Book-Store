@@ -6,7 +6,7 @@
             <h1><?= $_title ?? "LOGO and NAME"?></h1>
         </div>
             
-        <div class="admin_crud_navigation_bar ">
+        <div class="admin_crud_navigation_bar " style="margin-top: 38px;">
         
 
             <a href="/product_list" class="admin_crud_navigation_bar_button">

@@ -121,9 +121,10 @@ function html_select($key, $items, $default = 'Select one', $attr = '') {
 function html_search($key, $attr = '') {
     $value = encode($GLOBALS[$key] ?? '');
     echo "
-    <div style='position: relative; width: 100%; max-width: 400px;'>
-      <input type='search' id='$key' name='$key' value='$value' $attr '>
-      <button class = 'search-button-cart' type='submit''>Search</button>
+    <div style='position: relative; width: 100%; height: 46px; max-width: 400px; display: flex
+;'>
+      <input type='search' style='border-radius: 25px; width:400px; ' id='$key' name='$key' value='$value' $attr '>
+      <button class = 'search-button-cart' style ='right: 0px;' type='submit''>Search</button>
     </div>";
 }
 

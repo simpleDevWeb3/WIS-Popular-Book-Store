@@ -56,9 +56,7 @@
             <div class="admin_crud_searching-and-filtering">
                 <form>
                     <?= html_search('search', 'placeholder="Search something..."') ?>
-                    <button class="admin_crud_search-button">
-                        <img src="/Img/Icon/search.png" class="admin_crud_search-img">
-                    </button>
+                
                 </form>
             </div>
         </div>

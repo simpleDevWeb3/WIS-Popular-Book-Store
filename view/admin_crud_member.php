@@ -18,7 +18,7 @@ include 'view/partials/header.php';
             'user_id'   => 'User ID',
             'username'  => 'Username',
             'email'    => 'E-mail',
-            'phone_number'    => 'Phone no.',
+            'phone_number' => 'Phone no.',
             'dob'   => 'DOB',
             'gender' => 'Gender',
             'role' => 'Role',
@@ -68,9 +68,7 @@ include 'view/partials/header.php';
                     <div class="admin_crud_searching-and-filtering">
                         <form>
                             <?= html_search('admin_search', 'placeholder="Search something..."') ?>
-                            <button class="admin_crud_search-button">
-                                <img src="/Img/Icon/search.png" class="admin_crud_search-img">
-                            </button>
+                            
                         </form>
                     </div>
                 </div>
@@ -103,8 +101,7 @@ include 'view/partials/header.php';
                                 <td><?= $user['dob'] ?></d>
                                 <td><?= $user['gender'] ?></d>
                                 <td><?= $user['role'] ?></d>
-                                <td>
-                                </td>
+                                <td><button>details</button></td>
                             </tr> 
 
                             <?php endforeach ?>

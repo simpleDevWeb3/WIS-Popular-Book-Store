@@ -1,7 +1,7 @@
  
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
-<<?php require 'controller/profile.php';?>
+<?php require 'controller/address.php';?>
 
 <?php
 
@@ -42,16 +42,37 @@
                             <input style="width: 600px;" type="text" name="street" value="<?=htmlspecialchars($_user['street'])?>" required />
                         </label>
                     </div>
+                    
 
                     <div class="detail-row">
-                        <label>
-                            <strong>City</strong><br>
-                            <input style="width: 300px;" type="text" name="city" value="<?=$city['city_name']?>" required />
-                        </label>
-                        <label>
+
+                    <label style="margin: right 10px;">
                             <strong>State / Province</strong><br>
-                            <input style="width: 300px;" type="text" name="state" value="<?=$state['state_name']?>" required />
+
+                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"   name="states" id="states">
+                                <option ><?=$state['state_name']?></option>
+                                <?php foreach($states as $s): ?>
+                                <option value="<?= $s['state_id'] ?>" 
+                                    <?= (isset($_POST['states']) && $_POST['states'] == $s['state_id']) ? 'selected' : '' ?>>
+                                    <?= ($s['state_name']) ?>
+                                </option>
+                                <?php endforeach?>
+                            </select>  
+                                
                         </label>
+
+                        <label>
+                            <strong style="margin-left:10px;">City</strong><br>
+                      
+                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"  name="cities" id="cities" >
+                                <option ><?=$city['city_name']?></option>
+                            </select>
+
+                        </label>
+
+                      
+
+                     
                     </div>
 
                     
@@ -59,7 +80,10 @@
                     <div class="detail-row">
                         <label>
                             <strong>Postal Code</strong><br>
-                            <input style="width: 300px;" type="text" name="postal_code" value="<?=$postal['postal_code']?>" required />
+                          
+                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"  name="postal-code" id="postal-code" >
+                                <option><?=$postal['postal_code']?></option>
+                            </select>
                         </label>
                     </div>
 
@@ -71,3 +95,60 @@
     </div>
 </div>
 <?php require "view/partials/footer.php" ?>  
+
+<script>
+  $('#street-address').click(()=>{
+    $('#street-error').html('');
+ 
+  })
+
+
+  $('#postal-code').click(()=>{
+    $('#postal-error').html('');
+ 
+  })
+
+  $('#states').click(()=>{
+    $('#state-error').html('');
+    
+  })
+
+  //States-Cities
+  $('#states').on('change', function() {
+  let state_id = this.value;
+
+  console.log(state_id);
+
+  $.ajax({
+    url: '/city',
+    type: 'POST',
+    data: {
+      state_id: state_id
+    },
+    success: function(result) {
+      console.log(result);
+      $('#cities').html(result);
+
+    }
+  });
+});
+
+$('#cities').on('change',function(){
+  let city_id = this.value;
+  console.log(city_id);
+  $.ajax({
+    url : '/postal',
+    type: 'POST',
+    data: {
+      city_id : city_id
+    },
+    success: function(result){
+      console.log(result);
+      $('#postal-code').html(result);
+      
+    }
+  })
+
+})
+
+</script>

@@ -1,3 +1,9 @@
+<body>
+
+  <div id="info">
+
+</div>
+
 <header>
 
 <?php

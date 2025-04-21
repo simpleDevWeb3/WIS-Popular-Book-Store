@@ -35,7 +35,12 @@
          
 
           <label style="margin-top: 20px; margin-bottom: 10px;" for="password">Password</label>
+        
           <input style="margin-bottom: 20px;"   type="password" name="password" id="password" value="<?php echo htmlspecialchars($_POST['password'] ?? '') ?>"required placeholder="Enter your password">
+
+          <i data-target='#password'  style="font-size:20px; cursor:pointer; position:absolute; top:380px; right:340px;"  class="ri-eye-line toggle-password"></i>
+       
+       
 
             <?php if(isset($_POST['email']) && isset($_POST['password'])): ?>
               <span id="error" style="color: red; position:absolute; top:420px;  z-index: 1000;">
@@ -76,6 +81,14 @@
     $('#error').html('');
 
   });
+
+  $('.toggle-password').click(function(){
+        const input =$($(this).data('target'));
+        const currentType = input.attr('type');
+        input.attr('type', currentType === 'password' ? 'text' : 'password');
+
+       $(this).toggleClass('ri-eye-line ri-eye-off-line');
+  })
 
 </script>
 

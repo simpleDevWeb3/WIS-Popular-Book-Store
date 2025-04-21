@@ -2,6 +2,8 @@
   Used library: urlIs()
 -->
 
+
+
 <nav>
 
   <a href="/" style="margin-left: 60px;" class="<?= urlIs('/') ? 'active' : ''; ?>">All</a>

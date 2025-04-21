@@ -1,3 +1,20 @@
+<?php
+  if (isset($_POST['reset-password'])) {
+      header('Location: /password');
+  }
+
+  if (isset($_POST['user-details'])) {
+      header('Location: /profile-view');
+  }
+
+  if (isset($_POST['manage-addrs'])) {
+      header('Location: /address');
+  }
+
+  if (isset($_POST['logout'])) {
+      logout($url = '/');
+  }
+?>
 
 <form method="post"  class="side-bar-setting" style="margin-top:95px;">
   <div>

@@ -1,7 +1,6 @@
 <?php 
 
 
-require 'view/login.view.php';
 
 $db = new Database();
 
@@ -46,6 +45,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 
 
+require 'view/login.view.php';
  
  
 

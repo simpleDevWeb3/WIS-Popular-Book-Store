@@ -7,21 +7,7 @@ $isValid = true;
 
 (auth('Member','Admin')); 
     
-if (isset($_POST['reset-password'])) {
-    header('Location: /password');
-}
 
-if (isset($_POST['user-details'])) {
-    header('Location: /profile-view');
-}
-
-if (isset($_POST['manage-addrs'])) {
-    header('Location: /address');
-}
-
-if (isset($_POST['logout'])) {
-    logout($url = '/');
-}
 
 
 
@@ -31,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $first_name  = $_POST['first_name']?? '';
   $last_name   = $_POST['last_name']?? '';
   $phone       = $_POST['phone_number']?? '';
+
+
 
   // Validate: email
   if ($email === '') {
