@@ -47,7 +47,7 @@ $(() => {
         const targetId = $(e.target).data('target');
 
         // Find the corresponding image using the unique identifier
-        const img = $(`.image-container img[data-id="${targetId}"]`)[0];
+        const img = $(`.admin_crud_product_img_container img[data-id="${targetId}"]`)[0];
 
         if (!img) return;
 
@@ -60,6 +60,34 @@ $(() => {
             img.src = img.dataset.src;
             e.target.value = '';
         }
+    });
+
+
+
+
+    $('form[data-post]').submit(function(e) {
+        e.preventDefault(); // Prevent normal form submission
+
+        let form = $(this); // Get the form element
+        let actionUrl = form.data('post'); // Get the URL from data-post
+        let formData = new FormData(this); // Gather the form data
+
+        // Send the form data via AJAX
+        $.ajax({
+            url: actionUrl,
+            type: 'POST',
+            data: formData,
+            contentType: false, // Don't set content type manually
+            processData: false, // Let jQuery handle the data
+            success: function(response) {
+                // Handle the response (you can update your page here)
+                $('body').html(response); // Or update a specific part of the page
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log('Error:', error);
+            }
+        });
     });
 
 

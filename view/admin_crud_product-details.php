@@ -33,7 +33,7 @@ include 'view/partials/header.php';
 <div class="admin_crud_page_container">
     <div class="admin_crud_product_detail-information">
         <div class="admin_crud_product_img_container">  
-            <img src="/Img/Product<?= $product_detail['image'] ?>" class="admin_crud_product_img">
+            <img src="<?= $product_detail['image'] ?>" class="admin_crud_product_img">
         </div>
 
         <div class="admin_crud_product_information">

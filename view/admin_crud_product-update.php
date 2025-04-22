@@ -3,7 +3,6 @@ auth('Admin');
 require '_form.php';
 require 'controller/_updateValidation.php';
 
-$_db = new Database();
 
 //***************************************************************************get product detail
 if (is_get()) {
@@ -26,8 +25,76 @@ if (is_get()) {
     //temp_image('image', $image);
     $_SESSION['image'] = $image;
 }
-$BS = statOrBook($category_id);
 
+
+
+if(is_post()){
+ // Output
+
+    if (!$_err) {
+
+        //delete old image and save new image
+        if ($f) {
+            unlink("/Img/Product/$image");
+            $image = save_photo($f, '/Img/Product/');
+        }
+
+        // DB operation
+        $stm = $_db->query('UPDATE products 
+                                SET name = ?,
+                                    price = ?,
+                                    image = ?,
+                                    category_id = ?
+                                    WHERE product_id = ?',[$name, $price, $image, $category_id, $product_id]);
+
+
+        if ($BS == 'BOOK' || $BS == null) {
+            $stm = $_db->query('UPDATE product_details 
+                                    SET category_id = ?,
+                                        author = ?,
+                                        publisher = ?,
+                                        publish_date = ?,
+                                        stock = ?,
+                                        genre = ?,
+                                        keywords = ?
+                                        WHERE product_id = ?',[$category_id, $author, $publisher, $publish_date, $stock, $genre, $keywords, $product_id]);
+
+        } else if($_err) {
+      
+            dd($_err);
+         
+           
+        }
+        
+        temp('info', 'Record updated');
+        redirect('/product_list');
+    }
+
+}
+
+
+
+$id = req('id');
+
+$stm = $_db->query('SELECT * FROM products p
+                        INNER JOIN product_details pd
+                        ON p.product_id = pd.product_id
+                        WHERE p.product_id = ?',[$id]);
+$stm->execute();
+$product_detail = $stm->fetch();
+
+if (!$product_detail) {
+    redirect('/product_list');
+}
+
+extract((array)$product_detail);
+
+
+//temp_image('image', $image);
+$_SESSION['image'] = $image;
+
+
+$BS = statOrBook($category_id);
 
 //***************************************************************************fetch category name and id 
 $category_prepare = $_db->query('SELECT c3.category_id, c3.category_name
@@ -41,66 +108,12 @@ $category_prepare = $_db->query('SELECT c3.category_id, c3.category_name
 $category_prepare->execute();
 $category_db = $category_prepare->fetchAll();
 
-//***************************************************************************fetch data list
+
 $author_list = preapreDataList('author');
 $genre_list = preapreDataList('genre');
-$publisher_list = preapreDataList(('publisher'));
+$publisher_list = preapreDataList('publisher');
 $brand_list = preapreDataList('brand');
 $material_list = preapreDataList('material');
-
-
-//***************************************************************************update into DB
-if (is_post()) {
-
-        // Output
-        if (!$_err) {
-
-            //delete old image and save new image
-            if ($f) {
-                unlink("/Img/Product/$image");
-                $image = save_photo($f, '/Img/Product/');
-            }
-    
-            // DB operation
-            $stm = $_db->query('UPDATE products 
-                                    SET name = ?,
-                                        price = ?,
-                                        image = ?,
-                                        category_id = ?
-                                        WHERE product_id = ?',[$name, $price, $image, $category_id, $product_id]);
-        
-    
-            if ($BS == 'BOOK' || $BS == null) {
-                $stm = $_db->query('UPDATE product_details 
-                                        SET category_id = ?,
-                                            author = ?,
-                                            publisher = ?,
-                                            publish_date = ?,
-                                            stock = ?,
-                                            genre = ?,
-                                            keywords = ?
-                                            WHERE product_id = ?',[$category_id, $author, $publisher, $publish_date, $stock, $genre, $keywords, $product_id]);
-    
-            } else {
-                $stm = $_db->query('UPDATE product_details 
-                                        SET category_id = ?,
-                                            brand = ?,
-                                            material = ?,
-                                            stock = ?,
-                                            genre = ?,
-                                            keywords = ?
-                                            WHERE product_id = ?',[$category_id, $brand, $material, $stock, $genre, $keywords, $product_id]);
-              
-    
-            }
-             
-            temp('info', 'Record updated');
-            redirect('/product_list');
-        }else{
-            dd('failed');
-        }    
-}                                    
-
 
 $_title = "Product - Update";
 include 'view/partials/head.php';
@@ -117,12 +130,12 @@ include 'view/partials/header.php';
     <div class="admin_crud_page_container">
 
     <!-------------------------------------------------------------------------------------------------------------------form insert product-->
-
+  
         <div class="admin_crud_form_container">
             
             <div>
-            
-                <?= book_stat_form($BS, $category_db,$product_detail, $image) ?>
+           
+                <?php book_stat_form($BS, $category_db,$product_detail, $image) ?>
 
                 <!-----------------------------------------------------------------------------------------------------------------------------DATALIST-->
                 <datalist id="author_list">
@@ -157,7 +170,7 @@ include 'view/partials/header.php';
             </div>
 
             <div class="admin_crud_product_img_container">
-                <img src="/Img/Product<?= $image ?>" data-id="preview_img">
+                <img src="<?= $image ?>" data-id="preview_img">
             </div>
 
         </div>
@@ -165,7 +178,7 @@ include 'view/partials/header.php';
         <!--buttons-->
             <section class="admin_crud_form_section">
                 <button data-get="/product_detail?id=<?= $product_id ?>" class="admin_crud_close_btn">Cancel</button>
-                <button type="submit" class="admin_crud_submit_btn">Submit</button>
+                <button  data-post="/update?id=<?= $product_id ?>" type="submit" class="admin_crud_submit_btn">Submit</button>
             </section>
 
             

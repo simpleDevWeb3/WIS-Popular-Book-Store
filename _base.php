@@ -94,7 +94,7 @@ function encode($value) {
 
 function html_input($type, $key,$name, $attr = '') {
  
-    echo "<input type='$type' id='$key' name='$name' value='$key' $attr>";
+    echo "<input type='$type' id='$name' name='$name' value='$key' $attr>";
 
 }
 /*
@@ -104,18 +104,19 @@ function html_number($key, $attr = '') {
 }*/
 
 // Generate <select>
-function html_select($key, $items, $default = 'Select one', $attr = '') {
-
-    echo '<select name="category_id">';
+function html_select($items, $selected = '', $default = 'Select one', $attr = '') {
+    echo "<select name='category_id' $attr>";
     
-    foreach ($key as $id => $name) {
-        echo "<option value=\"$id\">$name - $id</option>";
+    if ($default) {
+        echo "<option value=''>$default</option>";
     }
 
-    echo '</select>';
+    foreach ($items as $id => $name) {
+        $isSelected = $id == $selected ? 'selected' : '';
+        echo "<option value='$id' $isSelected>$name</option>";
+    }
 
- 
-    
+    echo "</select>";
 }
 
 function html_search($key, $attr = '') {

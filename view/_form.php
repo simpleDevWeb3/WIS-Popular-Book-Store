@@ -10,7 +10,7 @@ function book_stat_form ($BS, $cat,$product_detail, $photo = null) {
         }    
         
        
-    echo "<form class='admin_crud_form' method='post' class='form' enctype='multipart/form-data'>";
+    echo "<form class='admin_crud_form' method='post' enctype='multipart/form-data'>";
 
     //<!------------------------------------------------------------------------------------------ID-->
         echo '<label class="admin_crud_label" for="product_id">Product ID</label>';

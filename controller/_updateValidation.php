@@ -1,6 +1,11 @@
 <?php
 
 
+$_db = new Database();
+
+
+
+
 if (is_post()) {
 
     $input = [
@@ -12,7 +17,10 @@ if (is_post()) {
         'keywords'    => $keywords      = req('keywords'),
         'stock'       => $stock         = req('stock'),
     ];
-    $f             = get_file('image');
+
+      
+
+    $f = get_file('image');
 
     // save value from temp to image
     $image = $_SESSION['image'];
@@ -81,4 +89,8 @@ if (is_post()) {
     }
 
 
+     
+
 }
+
+            
