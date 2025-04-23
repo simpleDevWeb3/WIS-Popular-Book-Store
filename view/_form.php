@@ -10,7 +10,7 @@ function book_stat_form ($BS, $cat,$product_detail, $photo = null) {
         }    
         
        
-    echo "<form class='admin_crud_form' method='post' enctype='multipart/form-data'>";
+       echo "<form class='admin_crud_form' method='post' enctype='multipart/form-data'>";
 
     //<!------------------------------------------------------------------------------------------ID-->
         echo '<label class="admin_crud_label" for="product_id">Product ID</label>';
@@ -29,7 +29,7 @@ function book_stat_form ($BS, $cat,$product_detail, $photo = null) {
                 
 //<!-----------------------------------------------------------------------------------------CATEGORY-->
         echo '<label class="admin_crud_label" for="category_id">Category</label>';
-        echo html_select($flat_categories, $cat);
+        echo html_select($flat_categories, $cats['category_id']);
         echo err('category_id');
     
         

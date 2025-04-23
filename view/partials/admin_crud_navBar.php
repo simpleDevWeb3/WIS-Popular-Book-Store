@@ -32,9 +32,9 @@
 
           
 
-            <a class="admin_crud_navigation_bar_button  ">
-                <button style="padding-top:10px;align-items:center;"  class="admin_crud_insert-btn" data-get='/insert'>
-                     <img style="width: 10px; " src="/Img/Icon/user.png">
+            <a class="admin_crud_navigation_bar_button">
+                <button style="padding-top:10px;align-items:center;"  class="navigation_bar_button " data-get='/insert'>
+                     <img class="navigation_bar_button_icon_image" src="/Img/Icon/user.png">
                      
                     <p>Insert</p>
                 </button>

@@ -104,16 +104,18 @@ function html_number($key, $attr = '') {
 }*/
 
 // Generate <select>
-function html_select($items, $selected = '', $default = 'Select one', $attr = '') {
-    echo "<select name='category_id' $attr>";
-    
-    if ($default) {
+function html_select($k, $v, $selected = '', $default = 'Select one', $attr = '') {
+    echo "<select name='category_id' id='category_id' class='form-select' $attr>";
+
+    if ($default !== null) {
         echo "<option value=''>$default</option>";
     }
 
-    foreach ($items as $id => $name) {
-        $isSelected = $id == $selected ? 'selected' : '';
-        echo "<option value='$id' $isSelected>$name</option>";
+    for ($i = 0; $i < count($k); $i++) {
+        $key = $k[$i];
+        $value = $v[$i];
+        $state = ($key == $selected) ? 'selected' : '';
+        echo "<option value='$key' $state>$value</option>";
     }
 
     echo "</select>";
@@ -152,12 +154,16 @@ function table_headers($fields, $sort, $dir, $href = '') {
 ////////////////////////////////////////////////////////////////////
 
 function preapreDataList($column) {
-    global  $_db;
-    $query = "SELECT DISTINCT $column FROM product_details ORDER BY $column ASC";
-    $prepare = $_db->query($query);
+    global $_db;
 
-    return $prepare->fetchAll();
+    $query = "SELECT DISTINCT $column FROM product_details ORDER BY $column ASC";
+    $prepare = $_db->query($query)->fetchAll();
+
+ 
+
+    return  $prepare;
 }
+
 
 /////////////////////////////////////////////////////////////////////
 // ---------------------------------get all  category --------------------------------------------------
@@ -188,16 +194,15 @@ function statOrBook($cat_id) {
 /////////////////////////////////////////////////////////////////////
 // ---------------------------------IMAGE --------------------------------------------------
 ////////////////////////////////////////////////////////////////////
-
-// Crop, resize and save photo
 function save_photo($f, $folder, $width = 500, $height = 500) {
-    $photo = 'Img/Product/' . uniqid() . '.jpg';
-    
-    require_once 'LIB/SimpleImage.php';
+    $photo = 'product/' . uniqid() . '.jpg';
+  
+ 
     $img = new SimpleImage();
     $img->fromFile($f->tmp_name)
         ->thumbnail($width, $height)
         ->toFile("$folder/$photo", 'image/jpeg');
 
-    return $photo;
+      return 'img/' .  $photo; 
 }
+

@@ -35,15 +35,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+ 
    
 }
 
 
 .admin_crud_navigation_bar_button {
     border-style: solid;
-    border-color: red;
     border-width: 1px;
-    background-color: rgb(249, 229, 229);
+    opacity: 1;
     transition: background-color 0.15ms;
     margin-bottom: 10px;
     cursor: pointer;
@@ -56,7 +56,7 @@
 
 .navigation_bar_button {
     border: none;
-    background-color: rgb(249, 229, 229);
+
 }
 
 .navigation_bar_button:hover {
@@ -160,17 +160,19 @@
 /*                  image container                         */
 /***********************************************************/
 .admin_crud_product_img_container {
-    padding: 0 100px;
+    padding-top: 10px;
+    padding-left: 50px;
     display: flex;
-    background-color: rgb(249, 231, 231);
+    
     justify-content: center;
 }
 
 .admin_crud_product_img_container > img {
     display: block;
-    border: 1px solid #333;
-    width: 300px;
-    height: 400px;
+    border: none;
+    width: 310px;
+    height: 480px;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
     object-fit: cover;
 }
 
@@ -182,8 +184,34 @@
 /*                  form container                         */
 /***********************************************************/
 .admin_crud_form_container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+   justify-content: center;
+}
+
+.update-form {
+    margin-bottom: 20px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 20px; 
+}
+
+.input-row > label {
+    width: 150px; 
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.input-row > input,
+.input-row > select,
+.input-row > textarea {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 /***********************************************************/
@@ -221,23 +249,28 @@
 .admin_crud_table {
     border-collapse: collapse;
     width: 100%;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+ 
 }
 
 .admin_crud_table th, .admin_crud_table td {
-    border: 1px solid black;
-    padding: 5px;
+    border: none;
+    padding: 10px;
+    border: solid 2px rgb(186, 186, 186);
+  
 }
 
 .admin_crud_table th {
-    background-color: rgb(244, 197, 197);
+   color: #000000;
+   opacity:1;
 }
 
 .admin_crud_table tr {
-    background-color: rgb(245, 236, 236);
+    
 }
 
 .admin_crud_table tr:hover td {
-    background-color: rgb(249, 229, 229);
+   
     cursor: pointer;
 }
 
@@ -276,28 +309,28 @@
 /*                      FORM BUTTON                        */
 /***********************************************************/
 .admin_crud_form_section  {
-    text-align: center;
+    text-align: right;
 }
 
 
 .admin_crud_form_section > button {
-    margin: 5px 10px ;
+    margin: 0px 10px ;
     height: 50px;
     width: 100px;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 6px;
     border: none;
     cursor: pointer;
 }
 
 .admin_crud_close_btn {
-    background: red;
-    color: white;
+    background: rgb(211, 43, 43);
+    color: rgb(255, 255, 255);
 }
 
 .admin_crud_submit_btn {
     color: white;
-    background: green;
+    background: rgb(24, 183, 21);
 }
 
 .admin_crud_reset_btn {
@@ -325,7 +358,7 @@
     border-style: solid;
     border-color: red;
     border-width: 1px;
-    background-color: rgb(249, 229, 229);
+ 
     transition: background-color 0.15ms;
     margin-bottom: 10px;
     cursor: pointer;
@@ -333,7 +366,7 @@
   
     text-decoration: none;
     border: none;
-    background-color: rgb(249, 229, 229);
+  
     
 }
 
@@ -404,6 +437,7 @@
     color: inherit;
     display: block;
     text-decoration: none;
+    opacity: 1;
 }
 
 .admin_crud_table th a.asc::after {

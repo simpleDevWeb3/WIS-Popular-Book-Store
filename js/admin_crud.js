@@ -65,30 +65,6 @@ $(() => {
 
 
 
-    $('form[data-post]').submit(function(e) {
-        e.preventDefault(); // Prevent normal form submission
-
-        let form = $(this); // Get the form element
-        let actionUrl = form.data('post'); // Get the URL from data-post
-        let formData = new FormData(this); // Gather the form data
-
-        // Send the form data via AJAX
-        $.ajax({
-            url: actionUrl,
-            type: 'POST',
-            data: formData,
-            contentType: false, // Don't set content type manually
-            processData: false, // Let jQuery handle the data
-            success: function(response) {
-                // Handle the response (you can update your page here)
-                $('body').html(response); // Or update a specific part of the page
-            },
-            error: function(xhr, status, error) {
-                // Handle errors
-                console.log('Error:', error);
-            }
-        });
-    });
 
 
 });
