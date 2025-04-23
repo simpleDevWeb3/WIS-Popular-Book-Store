@@ -126,7 +126,7 @@ function html_search($key, $attr = '') {
     echo "
     <div style='position: relative; width: 100%; height: 46px; max-width: 400px; display: flex
 ;'>
-      <input type='search' style='border-radius: 25px; width:400px; ' id='$key' name='$key' value='$value' $attr '>
+      <input type='search' style='padding-left:10px; border-radius: 25px; width:400px; border:none; box-shadow:0px 1px 10px rgba(0,0,0,0.2) ' id='$key' name='$key' value='$value' $attr '>
       <button class = 'search-button-cart' style ='right: 0px;' type='submit''>Search</button>
     </div>";
 }

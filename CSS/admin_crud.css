@@ -35,14 +35,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
- 
+    width: 200px;
+   gap: 20px;
+
    
 }
 
 
 .admin_crud_navigation_bar_button {
-    border-style: solid;
-    border-width: 1px;
+
     opacity: 1;
     transition: background-color 0.15ms;
     margin-bottom: 10px;
@@ -51,12 +52,14 @@
     display: grid;
     grid-template-columns: 1fr;
     text-decoration: none;
-    width:100px;
+
+   
 }
 
 .navigation_bar_button {
     border: none;
-
+    border-radius: 25px;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
 }
 
 .navigation_bar_button:hover {

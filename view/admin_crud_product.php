@@ -41,71 +41,76 @@
 
     $index = 1;
     ?>
-<main style="padding-top:120px ;">
-<div style="display:flex; justify-content:center; gap:20px; ">
-    <div>
+<div style="display: flex; justify-content:center; align-items:center; margin:auto; gap:10px;">
+    <div style=" margin-bottom:400px; margin-left:0px;">
         <?php include 'view/partials/admin_crud_navBar.php'; ?>
     </div>
- 
+    <main style="padding-top:50x; margin-top:100px; height:700px ">
+    <div style="display:flex; justify-content:center; gap:20px; ">
+    
+    
 
-    <div>
-        <!-----------------------------------------------------------------------------------------HTML-->
-        <div class="admin_crud_function-toolsbar">
-          
+        <div>
+            <!-----------------------------------------------------------------------------------------HTML-->
             
-            <div class="admin_crud_searching-and-filtering">
-                <form>
-                    <?= html_search('search', 'placeholder="Search something..."') ?>
-                
-                </form>
-            </div>
-        </div>
 
-        <div class="admin_crud_page_container">
-            <div class="product-content">
-                <p>
-                    <?= $p->count ?> of <?= $p->item_count ?> record(s) |
-                    Page <?= $p->page ?> of <?= $p->page_count ?>
-                </p>
+            <div class="admin_crud_page_container">
+                <div class="product-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-right:40px; ">
+                        <p>
+                            <?= $p->count ?> of <?= $p->item_count ?> record(s) |
+                            Page <?= $p->page ?> of <?= $p->page_count ?>
+                        </p>
 
-                <!-- table -->
-                <div class="product-content-table">
-                    <!--display total products-->
-                    <table class="admin_crud_table">
-                        <tr>
-                            <th>No.</th>        
-                            <?= table_headers($fields, $sort, $dir, "page=$page") ?>   
-                            <th></th>     <!--empty th for buttons-->           
-                        </tr>
 
-                        <!-- display products from database -->
-                        <?php foreach ($arr as $prod): ?>
-                            <tr>   
-                                
-                                <td><?= $index++ ?></td>
-                                <td><?= $prod['product_id']?></td>
-                                <td><?= $prod['name'] ?></td>
-                                <td><?= $prod['category_id'] ?></td>
-                                <td><?= $prod['stock'] ?></td>
-                                <td><?= $prod['price'] ?></td>
 
-                                <td>
-                                    <button class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'">Detail</button>
-                                    <button class="admin_crud_update-btn" data-get="/update?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'">Update</button>
-                                    <button class="admin_crud_delete-btn" data-confirm="Delete this record?" data-post="/delete?id=<?= $prod['product_id'] ?>" >Delete</button>
-                                </td>
+                        <div class="admin_crud_searching-and-filtering" ">
+                            <form>
+                                <?= html_search('search', 'placeholder="Search something..."') ?>  
+                            </form>
+                        </div>
+
+                    </div>
+                  
+                    <!-- table -->
+                    <div class="product-content-table">
+                        <!--display total products-->
+                        <table class="admin_crud_table">
+                            <tr>
+                                <th>No.</th>        
+                                <?= table_headers($fields, $sort, $dir, "page=$page") ?>   
+                                <th></th>     <!--empty th for buttons-->           
                             </tr>
 
-                        <?php endforeach ?>
-                    </table>
+                            <!-- display products from database -->
+                            <?php foreach ($arr as $prod): ?>
+                                <tr>   
+                                    
+                                    <td><?= $index++ ?></td>
+                                    <td><?= $prod['product_id']?></td>
+                                    <td><?= $prod['name'] ?></td>
+                                    <td><?= $prod['category_id'] ?></td>
+                                    <td><?= $prod['stock'] ?></td>
+                                    <td><?= $prod['price'] ?></td>
 
+                                    <td>
+                                        <button class="admin_crud_detail-btn" data-get="/product_detail?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'">Detail</button>
+                                        <button class="admin_crud_update-btn" data-get="/update?id=<?= $prod['product_id'] ?>&page='<?= $page ?>'">Update</button>
+                                        <button class="admin_crud_delete-btn" data-confirm="Delete this record?" data-post="/delete?id=<?= $prod['product_id'] ?>" >Delete</button>
+                                    </td>
+                                </tr>
+
+                            <?php endforeach ?>
+                        </table>
+
+                    </div>
                 </div>
-            </div>
 
-            <br>
-            <?= $p->html("sort=$sort&dir=$dir&search=$search") ?>
+                <br>
+                <?= $p->html("sort=$sort&dir=$dir&search=$search") ?>
+            </div>
         </div>
     </div>
+    </main>
 </div>
-</main>
 <?php require 'view/partials/footer.php' ?>

@@ -2,11 +2,8 @@
     <!-- Flash message -->
     <div id="info"><?= temp('info') ?></div>
 
-        <div>
-            <h1><?= $_title ?? "LOGO and NAME"?></h1>
-        </div>
-            
-        <div class="admin_crud_navigation_bar " style="margin-top: 38px;">
+        
+        <div class="admin_crud_navigation_bar " style=" margin-top: 138px; margin-right: 30px;">
         
 
             <a href="/product_list" class="admin_crud_navigation_bar_button">
