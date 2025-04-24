@@ -60,7 +60,7 @@ function temp_image($key, $value = null) {
 // Obtain uploaded file --> cast to object
 function get_file($key) {
     $f = $_FILES[$key] ?? null;
-    
+  
     if ($f && $f['error'] == 0) {
         return (object)$f;
     }
@@ -184,10 +184,10 @@ function statOrBook($cat_id) {
 /////////////////////////////////////////////////////////////////////
 // ---------------------------------IMAGE --------------------------------------------------
 ////////////////////////////////////////////////////////////////////
-function save_photo($f, $folder, $width = 500, $height = 500) {
-    $photo = 'product/' . uniqid() . '.jpg';
+function save_photo($f, $folder,$path = 'product/', $width = 500, $height = 500 ,) {
+    $photo = $path . uniqid() . '.jpg';
   
- 
+
     $img = new SimpleImage();
     $img->fromFile($f->tmp_name)
         ->thumbnail($width, $height)

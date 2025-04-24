@@ -7,7 +7,7 @@ $isValid = true;
 
 (auth('Member','Admin')); 
     
-
+$image = $_user['profile_image'] ?? "img/user/default.jpg";
 
 
 
@@ -17,9 +17,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $first_name  = $_POST['first_name']?? '';
   $last_name   = $_POST['last_name']?? '';
   $phone       = $_POST['phone_number']?? '';
+ 
+
+  
+  $f = get_file('image');
 
 
+  if ($f) {
 
+    $allowedTypes = ['image/jpeg', 'image/png'];
+
+    if (!str_starts_with($f->type, 'image/')) {
+        $_err['image'] = 'Only image files allowed';
+    }
+    else if (!in_array($f->type, $allowedTypes)) {
+        $_err['image'] = 'Only JPG images are allowed';
+    }
+    elseif ($f->size > 1 * 1024 * 1024) {
+        $_err['image'] = 'Maximum image size is 1MB';
+    } else {
+     
+        $image = save_photo($f, 'Img/','/profile');
+       
+       
+        $_SESSION['image'] = $image; 
+        
+    }
+}
+ 
   // Validate: email
   if ($email === '') {
     $_err['email'] = 'Required';
@@ -69,13 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   
   if ($isValid) {
-   
   
-    var_dump($email, $_username, $first_name, $last_name, $phone);
+
+        if ($f) {
+          unlink("$image");
+          $image = save_photo($f,'Img/','/profile');
+      }
 
     $stmt =$db->query(
-      'UPDATE users SET email = ?, username = ?, first_name = ?, last_name = ?, phone_number = ? WHERE user_id = ?',
-      [$email, $_username, $first_name, $last_name, $phone, $_user['user_id']]
+      'UPDATE users SET email = ?, username = ?, first_name = ?, last_name = ?, phone_number = ? ,profile_image = ? WHERE user_id = ?',
+      [$email, $_username, $first_name, $last_name, $phone,$image, $_user['user_id']]
     );
    
  
@@ -87,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['user']['first_name'] = $first_name;
       $_SESSION['user']['last_name'] = $last_name;
       $_SESSION['user']['phone_number'] = $phone;
+      $_SESSION['user']['profile_image'] = $image;
     
       redirect('/profile-view');
       echo "Profile updated successfully!";

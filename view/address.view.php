@@ -8,20 +8,21 @@
 
     $db = new Database();
 
-    $state = $db->query(
-        'SELECT state_name FROM States WHERE state_id = :state_id',
-        ['state_id' => $_user['state_id']]
-    )->fetch();
+    $user_address =  $db->query(
+      'SELECT * FROM addresses WHERE user_id = :user_id',
+      ['user_id' => $_user['user_id']]
+  )->fetch();
+
 
 
     $city = $db->query(
         'SELECT city_name FROM Cities WHERE city_id = :city_id',
-        ['city_id' => $_user['city_id']]
+        ['city_id' => $user_address['city_id']]
     )->fetch();
 
     $postal = $db->query(
         'SELECT postal_code FROM Cities WHERE city_id = :city_id',
-        ['city_id' => $_user['city_id']]
+        ['city_id' =>$user_address['city_id']]
     )->fetch();
     
     
@@ -39,7 +40,7 @@
                     <div class="detail-row">
                         <label>
                             <strong>Street Address</strong><br>
-                            <input style="width: 600px;" type="text" name="street" value="<?=htmlspecialchars($_user['street'])?>" required />
+                            <input style="width: 600px;" type="text" name="street" value="<?=htmlspecialchars(    $user_address['street'])?>" required />
                         </label>
                     </div>
                     
@@ -49,14 +50,15 @@
                     <label style="margin: right 10px;">
                             <strong>State / Province</strong><br>
 
-                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"   name="states" id="states">
-                                <option ><?=$state['state_name']?></option>
+                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"   name="states" id="states" >
+                                <option disabled selected>Select a state</option>
                                 <?php foreach($states as $s): ?>
-                                <option value="<?= $s['state_id'] ?>" 
-                                    <?= (isset($_POST['states']) && $_POST['states'] == $s['state_id']) ? 'selected' : '' ?>>
-                                    <?= ($s['state_name']) ?>
-                                </option>
-                                <?php endforeach?>
+                                  <option value="<?= $s['state_id'] ?>"
+                                    <?= ($_POST['states'] ?? $user_address['state_id']) == $s['state_id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($s['state_name']) ?>
+                                  </option>
+                                <?php endforeach; ?>
+                
                             </select>  
                                 
                         </label>
@@ -64,8 +66,9 @@
                         <label>
                             <strong style="margin-left:10px;">City</strong><br>
                       
-                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"  name="cities" id="cities" >
-                                <option ><?=$city['city_name']?></option>
+                            <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"  name="cities" id="cities"  >
+                              
+                                <option value =<?=$user_address['city_id']?> ><?=$city['city_name']?></option>
                             </select>
 
                         </label>
@@ -82,7 +85,7 @@
                             <strong>Postal Code</strong><br>
                           
                             <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"  name="postal-code" id="postal-code" >
-                                <option><?=$postal['postal_code']?></option>
+                                <option><?= $user_address['postal_code']?></option>
                             </select>
                         </label>
                     </div>

@@ -158,7 +158,7 @@ include 'view/partials/header.php';
          </form>
 
               <div class="admin_crud_product_img_container">
-                        <img src="<?= $image ?>" data-id="preview_img">
+                        <img src="<?= $image ??$product_detail['image'] ?>" data-id="preview_img">
                 </div>
         </div>
    
