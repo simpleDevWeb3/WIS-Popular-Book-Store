@@ -10,6 +10,7 @@ $user_id = $_user['user_id'];
 $payment_method = $_POST['payment_method'] ?? 'Unknown';
 
 
+
 try {
     $db->conn->beginTransaction();
 
@@ -29,10 +30,12 @@ try {
     ])->fetchAll();
 
     // calculate total price
-    $total_price = 0;
+    $subtotal = 0;
     foreach ($cartItems as $item) {
-        $total_price += $item['price'] * $item['quantity'];
+        $subtotal += $item['price'] * $item['quantity'];
     }
+    $tax = $subtotal * 0.06;
+    $total_price = $subtotal + $tax;
 
     foreach ($cartItems as $item) {
         $db->query("
@@ -49,7 +52,6 @@ try {
     $order_id = 'ORD_' . date('YmdHis') . substr(uniqid(), -5);
     $order_date = date('Y-m-d H:i:s');
     $shipping_date = date('Y-m-d H:i:s', strtotime('+7 days'));
-
     
 
     //transfer to order table

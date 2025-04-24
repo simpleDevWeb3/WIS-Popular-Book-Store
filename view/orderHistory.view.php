@@ -51,8 +51,9 @@
               <section class="order" data-order-date="<?= $o['order_date'] ?>">
               <div class="order-header"> 
                   <span>Order No: <?= $o['order_id'] ?></span>
-                  <span>Order Date: <?= $o['order_date'] ?></span>
-                  <span>Shipping Date: <?= $o['shipping_date'] ?></span>
+                  <span>Total: RM <?= sprintf("%.2f", $o['total_price']) ?></span>
+                  <span>Order Date: <?= date('Y-m-d', strtotime($o['order_date'])) ?></span>
+                  <span>Shipping Date: <?= date('Y-m-d', strtotime($o['shipping_date'])) ?></span>
                   <span class="status <?= strtolower($o['status']); ?>"><?= ucfirst(strtolower($o['status'])) ?></span>
               </div>
 
@@ -134,7 +135,7 @@
           const diffDays = (now - orderDate) / (1000 * 60 * 60 * 24);
 
           // if All
-          if (selected === 'all' || diffDays <= parseInt(selected, 10)) {
+          if (selected === 'all' || diffDays > parseInt(selected, 10)) {
             section.style.display = '';
           } else {
             section.style.display = 'none';
