@@ -32,10 +32,18 @@ include 'view/partials/header.php';
 
 <div class="admin_crud_page_container">
     <div class="admin_crud_product_detail-information">
-        <div class="admin_crud_product_img_container">  
-            <img src="<?= $product_detail['image'] ?>" class="admin_crud_product_img">
-        </div>
+        <div style="display: flex; flex-direction:column;justify-content:top; align-items:center;">
+            <div class="admin_crud_product_img_container" style="padding-left:0;">  
+                <img src="<?= $product_detail['image'] ?>" class="admin_crud_product_img">
+            </div>
 
+
+            <div class="admin_crud_detail_button">
+                <button data-get="/product_list" class="admin_crud_detail_back_button" >Back</button>
+                <button data-get="/update?id=<?= $product_detail['product_id'] ?>" class="admin_crud_detail_edit_button">Edit</button>
+                <button data-confirm="Delete this record?" data-post="/controller/_delete.php?id=<?= $product_detail['product_id'] ?>" class="admin_crud_detail_delete_button">Delete</button>
+            </div>
+        </div>
         <div class="admin_crud_product_information">
             <div>
                 <div class="admin_crud_product_information_header">
@@ -167,11 +175,7 @@ include 'view/partials/header.php';
     </div>
 
 
-    <div class="admin_crud_detail_button">
-        <button data-get="/product_list" class="admin_crud_detail_back_button" >Back</button>
-        <button data-get="/update?id=<?= $product_detail['product_id'] ?>" class="admin_crud_detail_edit_button">Edit</button>
-        <button data-confirm="Delete this record?" data-post="/controller/_delete.php?id=<?= $product_detail['product_id'] ?>" class="admin_crud_detail_delete_button">Delete</button>
-    </div>
+   
 
 </div>
 </main>

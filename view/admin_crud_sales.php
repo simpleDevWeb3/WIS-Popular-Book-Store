@@ -105,3 +105,4 @@ $index = 1;
         </div>
     </main>
  </div>
+ <?php require 'view/partials/footer.php' ?>

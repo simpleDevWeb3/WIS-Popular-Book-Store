@@ -69,20 +69,10 @@ function get_file($key) {
 }
 
 //error-------------------------------------------------------------------
-// Global error array
-$_err = [];
 
-// Generate <span class='err'>
-function err($key) {
-    global $_err;
-   
-    if ($_err[$key] ?? false) {
-        echo "<span class='err'>$_err[$key]</span>";
-    }
-    else {
-        echo '<span></span>';
-    }
-}
+
+
+
 
 /////////////////////////////////////////////////////////////////////
 // ---------------------------------HTML helper --------------------------------------------------
@@ -108,7 +98,7 @@ function html_select($k, $v, $selected = '', $default = 'Select one', $attr = ''
     echo "<select name='category_id' id='category_id' class='form-select' $attr>";
 
     if ($default !== null) {
-        echo "<option value=''>$default</option>";
+        echo "<option value='select-one'>$default</option>";
     }
 
     for ($i = 0; $i < count($k); $i++) {

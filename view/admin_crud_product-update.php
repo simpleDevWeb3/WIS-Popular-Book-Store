@@ -20,16 +20,20 @@ include 'view/partials/header.php';
         <div class="admin_crud_form_container">
               
        <form class="update-form" method="POST" enctype="multipart/form-data" >
-            <p class="input-row"">
+            <p class="input-row">
                 <label class="admin_crud_label" for="product_id">Product ID</label>
                 <?php html_input('text',$product_detail['product_id'],'product_id')?>
+               
            </p>
 
 
            <p class="input-row">
 
             <label class="admin_crud_label" for="product_name">Product Name</label>
-            <?php html_input('text', $product_detail['name'],'product_name')?>     
+            <?php html_input('text', $product_detail['name'],'product_name')?>   
+            <span style="color:red"><?=$_err["product_name"] ??""?></span>
+      
+          
 
             </p>
 
@@ -41,7 +45,7 @@ include 'view/partials/header.php';
             <?php 
                 html_input('number', $product_detail['price'],'product_price' ,'min="0.5" max="9999.99", step="0.01"');   
             ?>
-
+              <span style="color:red"><?=$_err["product_price"] ??""?></span>
             </p>
 
 
@@ -49,6 +53,7 @@ include 'view/partials/header.php';
                 <label class="admin_crud_label" for="category_id">Category</label>
                 <?php html_select(
                 $catValue, $catName,$product_detail['category_id'])?>
+                 <span style="color:red"><?=$_err["product_category"] ??""?></span>
             </p>
 
       <?php if($category_id === 'BOOK-MAIN-001'):?>
@@ -56,6 +61,10 @@ include 'view/partials/header.php';
                 <label class="admin_crud_label" for="genre">Genre</label>
                 <?php html_input(
                 'text', $product_detail['genre'],'genre')?>
+
+                
+                <span style="color:red"><?=$_err["product_genre"] ??""?></span>
+                
             </p>
 
 
@@ -63,33 +72,37 @@ include 'view/partials/header.php';
                 <label class="admin_crud_label" for="publisher">Publisher</label>
                 <?php html_input(
                 'text', $product_detail['publisher'],'publisher')?>
+                 <span style="color:red"><?=$_err["product_publisher"] ??""?></span>
             </p>
 
 
             <p class="input-row">
-                <label class="admin_crud_label" for="publish_date">Publisher</label>
+                <label class="admin_crud_label" for="publish_date">Publish Date</label>
                 <?php html_input(
                 'date', $product_detail['publish_date'],'publish_date')?>
+
+                <span style="color:red"><?=$_err["publish_date"] ??""?></span>
+
             </p>
 
             <p class="input-row">
                 <label class="admin_crud_label" for="author">Author</label>
                 <?php html_input(
                 'text', $product_detail['author'],'author')?>
+
+                <span style="color:red"><?=$_err["product_author"] ??""?></span>
             </p>
 
 
-            <p class="input-row">
-                <label class="admin_crud_label" for="keyword">Keyword</label>
-                <?php html_input(
-                'text', $product_detail['keywords'],'keywords')?>
-            </p>
+      
 
             <?php elseif($category_id === 'STAT-MAIN-002'): ?>
 
                 <p class="input-row">          
                     <label class="admin_crud_label" for="brand">Brand</label>
-                    <?php html_input('text', $product_detail['brand'] ?? '','brand') ?>       
+                    <?php html_input('text', $product_detail['brand'] ?? '','brand') ?>   
+                    
+                    <span style="color:red"><?=$_err["brand"] ??""?></span>
                 </p>
 
 
@@ -98,6 +111,10 @@ include 'view/partials/header.php';
                   <label class="admin_crud_label" for="material">Material</label>
 
                   <?php html_input('text', $product_detail['material'] ?? '','material')?>
+
+
+                  
+                  <span style="color:red"><?=$_err["material"] ??""?></span>
                 
                 </p>
 
@@ -106,23 +123,34 @@ include 'view/partials/header.php';
 
         <?php endif?>
 
+
+        <p class="input-row">
+                <label class="admin_crud_label" for="keyword">Keyword</label>
+                <?php html_input(
+                'text', $product_detail['keywords'] ,'keywords')?>
+
+                <span style="color:red"><?=$_err["product_keywords"] ??""?></span>
+         </p>
+
            <p class="input-row">
                 <label class="admin_crud_label" for="stock">Stock</label>
                 <?php html_input(
                 'number', $product_detail['stock'],'stock','min=1','max=9999','step=1')?>
+                  <span style="color:red"><?=$_err["stock"] ??""?></span>
             </p>
 
             <p class="input-row">
                 <label class="admin_crud_label" for="image">Product Picture</label>
 
                <?php html_file('image', 'image/*', 'data-target="preview_img"')?>
+               <span style="color:red"><?=$_err["image"] ??""?></span>
             </p>
 
        
 
            
             <section style="margin-top:20px;" class="admin_crud_form_section">
-                <button data-get="/product_detail?id=<?= $product_id ?>" class="admin_crud_close_btn">Cancel</button>
+                <button data-get="/product_detail?id=<?= $product_detail['product_id']?>" class="admin_crud_close_btn">Cancel</button>
                 <button type="submit" class="admin_crud_submit_btn">Submit</button>
             </section>
 

@@ -5,65 +5,9 @@ $_db = new Database();
 require 'controller/_insertValidation.php';
 require '_form.php';
 
-$BS = req('BS') ?: 'BOOK';
-if ($BS == 'BOOK') {
-    $prod_title = 'Book';
-} else {
-    $prod_title = 'Stationary';
-}
-$image = temp_image('image');
 
-//***************************************************************************category
-$category_prepare = $_db->query('SELECT c3.category_id, c3.category_name
-                        FROM categories c1
-                        INNER JOIN categories c2
-                        ON c1.category_id = c2.parent_id
-                        INNER JOIN categories c3
-                        ON c2.category_id = c3.parent_id
-                        WHERE c3.category_id LIKE ?
-                        ORDER BY c3.category_name ASC',["$BS%"]);
 
-$category_db = $category_prepare->fetchAll();
 
-//**************************************************************************prepare datalist
-$author_list = preapreDataList('author');
-$genre_list = preapreDataList('genre');
-$publisher_list = preapreDataList(('publisher'));
-$brand_list = preapreDataList('brand');
-$material_list = preapreDataList('material');
-
-//----------------------------------------------------------------------------------------INSERT INTO DB
-
-if (is_post()) {
-
-    // Output
-    if (!$_err) {
-        $image = save_photo($f, '/Img/Product');
-
-        $stm = $_db->query('INSERT INTO products
-                            (product_id, name, price, image, category_id, rating)
-                            VALUES(?, ?, ?, ?, ?, null)',[$product_id, $name, $price, $image, $category_id]);
-  
-
-        if ($BS == 'BOOK' || $BS == null) {
-            $stm = $_db->query('INSERT INTO product_details
-                                (product_id, category_id, author, publisher, publish_date, brand, material, stock, genre, keywords) 
-                                VALUES(?, ?, ?, ?, ?, null, null, ?, ?, ?)',[$product_id, $category_id, $author, $publisher, $publish_date, $stock, $genre, $keywords]);
-     
-
-        } else {
-            $stm = $_db->query('INSERT INTO product_details
-                                (product_id, category_id, author, publisher, publish_date, brand, material, stock, genre, keywords) 
-                                VALUES(?, ?, null, null, null, ?, ?, ?, null, ?)',[$product_id, $category_id, $brand, $material, $stock, $genre, $keywords]);
-
-        
-
-        }
-
-        temp('info', 'Record inserted');
-        redirect('/product_list');
-    }
-}
 
 $_title = "Product - Insert";
 include 'view/partials/head.php';
@@ -94,57 +38,159 @@ include 'view/partials/header.php';
         <P><?= $prod_title ?></p>
 
     <!-------------------------------------------------------------------------------------------------------------------form insert product-->
+    <main style="padding-top: 120px;">
+    <a href="/product_list">
+        <button class="back"><img src="/Img/Icon/arrow.png" class="back-img"></button>
+    </a>
+
+    <div class="admin_crud_page_container">
         <div class="admin_crud_form_container">
-            <div>
-                <?= book_stat_form($BS, $category_db, $image) ?>
-
-                <!-----------------------------------------------------------------------------------------------------------------------------DATALIST-->
-                <datalist id="author_list">
-                    <?php foreach ($author_list as $data): ?>
-                        <option value=<?= $data['author'] ?>>
-                    <?php endforeach ?>
-                </datalist>
-
-                <datalist id="publisher_list">
-                    <?php foreach ($publisher_list as $data): ?>
-                        <option value=<?= $data['publisher'] ?>>
-                    <?php endforeach ?>
-                </datalist>
-
-                <datalist id="brand_list">
-                    <?php foreach ($brand_list as $data): ?>
-                        <option value=<?= $data['brand'] ?>>
-                    <?php endforeach ?>
-                </datalist>
-
-                <datalist id="genre_list">
-                    <?php foreach ($genre_list as $data): ?>
-                        <option value=<?= $data['genre'] ?>>
-                    <?php endforeach ?>
-                </datalist>
-
-                <datalist id="material_list">
-                    <?php foreach ($material_list as $data): ?>
-                        <option value=<?= $data['material'] ?>>
-                    <?php endforeach ?>
-                </datalist>
-            </div>
-
-            <div class="admin_crud_product_img_container">
-                <img src="/Img/Icon/photo.jpg" data-id="preview_img">
-            </div>
-
-        </div>
+              
+       <form class="update-form" method="POST" enctype="multipart/form-data" >
+            <p class="input-row">
+                <label class="admin_crud_label" for="product_id">Product ID</label>
+                <?php html_input('text',$product_detail['product_id'] ?? '','product_id')?>
+               
+           </p>
 
 
-        <!--buttons-->
-            <section class="admin_crud_form_section">
-                <button data-get="\product_list" class="admin_crud_close_btn">Cancel</button>
-                <button type="reset" class="admin_crud_reset_btn">Reset</button>
+           <p class="input-row">
+
+            <label class="admin_crud_label" for="product_name">Product Name</label>
+            <?php html_input('text', $product_detail['name'] ?? '','product_name')?>   
+            <span style="color:red"><?=$_err["product_name"] ??""?></span>
+      
+          
+
+            </p>
+
+
+
+            <p class="input-row">
+
+            <label class="admin_crud_label" for="product_price">Price</label>
+            <?php 
+                html_input('number', $product_detail['price'] ?? "",'product_price' ,'min="0.5" max="9999.99", step="0.01"');   
+            ?>
+              <span style="color:red"><?=$_err["product_price"] ??""?></span>
+            </p>
+
+
+            <p class="input-row">
+                <label class="admin_crud_label" for="category_id">Category</label>
+                <?php html_select(
+                $catValue, $catName,$product_detail['category_id'] ?? '')?>
+                 <span style="color:red"><?=$_err["product_category"] ??""?></span>
+            </p>
+
+      <?php if($category_id === 'BOOK-MAIN-001'):?>
+        <p class="input-row"">
+                <label class="admin_crud_label" for="genre">Genre</label>
+                <?php html_input(
+                'text', $product_detail['genre'] ?? "",'genre')?>
+
+                
+                <span style="color:red"><?=$_err["product_genre"] ??""?></span>
+                
+            </p>
+
+
+            <p class="input-row">
+                <label class="admin_crud_label" for="publisher">Publisher</label>
+                <?php html_input(
+                'text', $product_detail['publisher'] ?? "",'publisher')?>
+                 <span style="color:red"><?=$_err["product_publisher"] ??""?></span>
+            </p>
+
+
+            <p class="input-row">
+                <label class="admin_crud_label" for="publish_date">Publish Date</label>
+                <?php html_input(
+                'date', $product_detail['publish_date'] ?? "",'publish_date')?>
+
+                <span style="color:red"><?=$_err["publish_date"] ??""?></span>
+
+            </p>
+
+            <p class="input-row">
+                <label class="admin_crud_label" for="author">Author</label>
+                <?php html_input(
+                'text', $product_detail['author'] ?? "",'author')?>
+
+                <span style="color:red"><?=$_err["product_author"] ??""?></span>
+            </p>
+
+
+
+            <?php elseif($category_id === 'STAT-MAIN-002'): ?>
+
+                <p class="input-row">          
+                    <label class="admin_crud_label" for="brand">Brand</label>
+                    <?php html_input('text', $product_detail['brand'] ?? "",'brand') ?>   
+                    
+                    <span style="color:red"><?=$_err["brand"] ??""?></span>
+                </p>
+
+
+                <p class="input-row">
+
+                  <label class="admin_crud_label" for="material">Material</label>
+
+                  <?php html_input('text', $product_detail['material'] ?? '','material')?>
+
+
+                  
+                  <span style="color:red"><?=$_err["material"] ??""?></span>
+                
+                </p>
+
+
+
+
+        <?php endif?>
+
+
+        
+        <p class="input-row">
+                <label class="admin_crud_label" for="keyword">Keyword</label>
+                <?php html_input(
+                'text', $product_detail['keywords'] ?? "",'keywords')?>
+
+                <span style="color:red"><?=$_err["product_keywords"] ??""?></span>
+        </p>
+
+           <p class="input-row">
+                <label class="admin_crud_label" for="stock">Stock</label>
+                <?php html_input(
+                'number', $product_detail['stock'] ?? "",'stock','min=1','max=9999','step=1')?>
+                  <span style="color:red"><?=$_err["stock"] ??""?></span>
+            </p>
+
+            <p class="input-row">
+                <label class="admin_crud_label" for="image">Product Picture</label>
+
+               <?php html_file('image', 'image/*', 'data-target="preview_img"')?>
+               <span style="color:red"><?=$_err["image"] ??""?></span>
+            </p>
+
+       
+
+           
+            <section style="margin-top:20px;" class="admin_crud_form_section">
+                <button data-get="/product_detail?id=<?= $product_detail['product_id']?>" class="admin_crud_close_btn">Cancel</button>
                 <button type="submit" class="admin_crud_submit_btn">Submit</button>
             </section>
-        </form><!--!!!!!dont delete this form tag!!!!!-->
+
+       
+         </form>
+
+              <div class="admin_crud_product_img_container">
+                        <img src="<?= $image ?? 'img/Icon/photo.jpg'  ?>" data-id="preview_img">
+                </div>
+        </div>
+   
     </div>
+
 </main>
 
 
