@@ -38,7 +38,8 @@
                
                   $db = new Database();
                    $user_id = $_user['user_id'] ?? null;
-                  if( $_user['role'] === 'Member'){
+                   $role =  $_user['role']?? null; 
+                  if( $role === 'Member'){
                     $cQuantity = $db->query("SELECT SUM(cd.quantity) AS total_items FROM cartdetails cd JOIN cart c ON cd.cart_id = c.cart_id WHERE  c.user_id = ?",[$user_id])->fetch();
 
                     $cartCount =  $cQuantity['total_items']??0;
@@ -48,12 +49,12 @@
              
                  
                 ?>
-                  <?php if ($_user && $_user['role'] == 'Member'): ?>
-                      <?php if ($_user['role'] === 'Member'): ?>
+                  <?php if ($_user && $role == 'Member'): ?>
+                      <?php if ( $role  === 'Member'): ?>
                           <div id="cart-count" class="cart-quantity"><?= $cartCount; ?></div>
                           <img src="/Img/Icon/Icon.svg">
                       <?php endif; ?>
-                  <?php elseif($_user['role'] === 'Admin'): ?>
+                  <?php elseif( $role  === 'Admin'): ?>
                     <a  style=" font-size:20px; left: -150px;"< href="/login">
                         
                       </a>

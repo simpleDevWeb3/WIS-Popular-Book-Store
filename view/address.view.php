@@ -32,8 +32,10 @@
 <?php require 'view/partials/sidebar.php' ?>
     <div class="user-profile">
     <div class="profile-main" style="margin-top: 105px; height:auto; display:flex; align-items:top; ">
+        <div style="display: flex; flex-direction:column; align-items:center;  ">
             <h1 style=" margin-bottom:20px; margin-left:10px">My Address</h1>
-            
+             <i style="font-size: 180px;" class="ri-user-location-line"></i>
+          </div>    
                 
         
                 <form method="post" class="user-details">

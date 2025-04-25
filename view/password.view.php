@@ -7,13 +7,12 @@
 <div style=" display:flex; justify-content: left;padding-left: 100px;">
     <?php require 'view/partials/sidebar.php' ?>
  <div class="user-profile">
- <div class="profile-main" style="margin-top: 105px; height:auto; display:flex; align-items:top; ">
-
+ <div class="profile-main" style="margin-top: 105px; height:auto; display:flex; align-items:top;">
+    <div style="display: flex; flex-direction:column; align-items:center;  ">
         <h1 style=" margin-bottom:20px; margin-left:10px">My Password</h1>
 
-
-        
-                    
+        <i  style="font-size: 180px;"  class="ri-lock-2-fill"></i>       
+    </div>              
 
                 <form method="post" class="user-details">
                 

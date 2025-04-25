@@ -83,7 +83,7 @@ foreach($sub_subcategoriesArr as $k){
 
 if (is_post()) {
  
-  $p_id       = $_POST['product_id'] ?? '';
+
   $p_name     = $_POST['product_name'] ?? '';
   $p_price    = $_POST['product_price'] ?? '';
   $p_category = $_POST['category_id'] ?? '';
@@ -167,36 +167,11 @@ if($category_id === 'BOOK-MAIN-001'){
 }
 
 
-// debugging purpose
-$result;
-
-
-if($category_id ===  'BOOK-MAIN-001'){
-
-    $result = "$p_id.$p_name.$p_price.$p_category.$p_genre.$p_keywords.$p_stock.  $p_publisher .  $p_publish_date.  $p_author . $image ";
-
-}elseif($category_id === 'STAT-MAIN-002'){
-    $result = "$p_id.$p_name.$p_price.$p_category.$p_stock.$brand.$material . $image ";
-}
-///
 
 
 
 
-if ($p_id != '') {
-    if (!preg_match('/^PROD-\d{4}$/', $p_id)) {
-        $_err['product_id']= "Invalid format. The code must start with 'PROD-' followed by exactly 3 digits (e.g., PROD-123).";}
 
-
-    // exclude the $id from the exising array 
-    //not change id will not trigger the
-    else if($p_id !== $id && in_array($p_id,  $EXIST_PROD_ID)){
-        $_err['product_id']= "Duplicated";
-    }
-
-}else{
-    $_err['product_id'] = "Required";
-}
 
 if ($p_name != '') {
     if (strlen($p_name) > 51) {

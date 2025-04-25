@@ -20,12 +20,7 @@ include 'view/partials/header.php';
         <div class="admin_crud_form_container">
               
        <form class="update-form" method="POST" enctype="multipart/form-data" >
-            <p class="input-row">
-                <label class="admin_crud_label" for="product_id">Product ID</label>
-                <?php html_input('text',$product_detail['product_id'],'product_id')?>
-               
-           </p>
-
+        
 
            <p class="input-row">
 
