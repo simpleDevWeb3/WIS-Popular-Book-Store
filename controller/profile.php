@@ -29,15 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!str_starts_with($f->type, 'image/')) {
         $_err['image'] = 'Only image files allowed';
+        $isValid = false;
     }
     else if (!in_array($f->type, $allowedTypes)) {
         $_err['image'] = 'Only JPG images are allowed';
+        $isValid = false;
     }
     elseif ($f->size > 1 * 1024 * 1024) {
         $_err['image'] = 'Maximum image size is 1MB';
+            $isValid = false;
     } else {
      
-        $image = save_photo($f, 'Img/','/profile');
+        $image = save_photo($f, 'Img/','user/');
        
        
         $_SESSION['image'] = $image; 
@@ -98,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($f) {
           unlink("$image");
-          $image = save_photo($f,'Img/','/profile');
+          $image = save_photo($f,'Img/','user/');
       }
 
     $stmt =$db->query(
