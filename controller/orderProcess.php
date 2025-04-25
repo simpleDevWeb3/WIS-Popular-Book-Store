@@ -48,6 +48,27 @@ try {
         ]);
     }
 
+    //get user address
+    $addressData = $db->query("
+    SELECT a.street, a.postal_code, c.city_name, s.state_name
+    FROM addresses a
+    JOIN cities c ON a.city_id = c.city_id
+    JOIN states s ON a.state_id = s.state_id
+    WHERE a.user_id = :user_id
+    LIMIT 1
+    ", [
+        'user_id' => $user_id
+    ])->fetch();
+
+    if (!$addressData) {
+        throw new Exception("Address not found.");
+    }
+
+    $fullAddress = $addressData['street'] . ', ' . 
+               $addressData['postal_code'] . ' ' . 
+               $addressData['city_name'] . ', ' . 
+               $addressData['state_name'];
+
     //get new order id
     $order_id = 'ORD_' . date('YmdHis') . substr(uniqid(), -5);
     $order_date = date('Y-m-d H:i:s');
@@ -55,15 +76,16 @@ try {
     
 
     //transfer to order table
-    $db->query("INSERT INTO `order` (order_id, user_id, total_price, status, order_date, Payment_method, shipping_date)
-                VALUES (:order_id, :user_id, :total_price, :status, :order_date, :payment_method, :shipping_date)", [
+    $db->query("INSERT INTO `order` (order_id, user_id, total_price, status, order_date, Payment_method, shipping_date, address)
+                VALUES (:order_id, :user_id, :total_price, :status, :order_date, :payment_method, :shipping_date, :address)", [
         'order_id'   => $order_id,
         'user_id'    => $user_id,
         'total_price'=> $total_price,
         'status'     => 'pending',
         'order_date' => $order_date,
         'payment_method' => $payment_method,
-        'shipping_date'  => $shipping_date
+        'shipping_date'  => $shipping_date,
+        'address'    => $fullAddress
     ]);
 
 

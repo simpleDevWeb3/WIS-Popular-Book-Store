@@ -64,10 +64,8 @@
            
                     
              <?php  
-                if (auth('Admin')) {
-                  echo '<span class="add-to-cart-button-no-stock" >Add To Cart </span>';
-                }
-                else if ($product["stock"] > 0) {
+              
+                if ($product["stock"] > 0) {
                     echo '<button id="add-to-cart-btn" class="add-to-cart-button" data-product-id="'.$product['product_id'].'">Add To Cart</button>';
                 } 
                 else {

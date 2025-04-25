@@ -35,9 +35,17 @@
                             <input type="file" id="image" name='image' accept="image/*" data-target="preview_img" style="display: none;">              
                           
                         </label>
+                        <br><br><br><br><br><br><br>
+
+                        <?php if(!empty($_err['image'])): ?>
+                                 <div style="color:#db1f1f; margin-left: 20px;  width: 120px; text-align: center;; font-weight:bold;"><?php echo $_err['image'] ?></div>
+                         <?php else: ?>  
+                                <div style="color:gray; margin-left: 20px;  width: 120px; text-align: center;; font-weight:bold;">File size: maximum 1 MB<p style="margin-top: 10px;">
+                                File extension: .JPEG, .PNG</p></div>
+                         <?php endif ?>   
                     </div>
                  <br><br><br><br><br><br>
-                        
+                         
                    
                             <div>
                                 
@@ -49,17 +57,17 @@
                                                 <br>
                                                 <input type="text" name="first_name" value="<?=htmlspecialchars($_user['first_name'])?>"/>
                                             
-                                            </label>
+                                            </label> 
                                             <label>
                                                 <strong>Last Name</strong>
                                                 <br>
                                                 <input  type="text" name="last_name" value="<?=htmlspecialchars($_user['last_name'])?>"/>
                                             </label>
 
-                                            <div  id="error-msg"  style="position: absolute; top:220px;  color:#db1f1f; font-weight:bolder; right:50px; ">
+                                            <div  id="error-msg"  style="position: absolute; top:220px;  color:#db1f1f; font-weight:bolder; right:50px; ">           
                                                     <?php if(!empty($_err['name'])): ?>
                                                     <span><?php echo $_err['name'] ?></span>
-                                                    <?php endif ?>
+                                                    <?php endif ?>          
                                             </div>
                                         </div>
 

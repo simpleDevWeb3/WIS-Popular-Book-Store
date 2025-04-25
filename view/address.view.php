@@ -60,7 +60,7 @@
                                 <?php endforeach; ?>
                 
                             </select>  
-                                
+                            <span style="color:red"><?=$_err["stock"] ??""?></span>
                         </label>
 
                         <label>

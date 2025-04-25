@@ -23,6 +23,7 @@ $stm = $_db->query('SELECT * FROM `order` o
                       WHERE o.order_id = ?',[$id]);
 
 $sales = $stm->fetch();
+
 /*
 $stm = $_db->prepare('SELECT * FROM `order` o
                       INNER JOIN orderdetails od ON o.order_id = od.order_id 
@@ -92,7 +93,7 @@ include 'view/partials/header.php';
                     </tr>
                     <tr>
                         <th>Address:</th>
-                        <td style="padding: 6px;"><?= $sales['street']. ", " . $sales['state_name'] . ", ". $sales['city_name'] ?></td>             
+                        <td style="padding: 6px;"><?= $sales['address']?></td>             
                     </tr>
                 </table>
             </div>

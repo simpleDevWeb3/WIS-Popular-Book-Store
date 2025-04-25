@@ -23,30 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $f = get_file('image');
 
 
-  if ($f) {
 
-    $allowedTypes = ['image/jpeg', 'image/png'];
-
-    if (!str_starts_with($f->type, 'image/')) {
-        $_err['image'] = 'Only image files allowed';
-        $isValid = false;
-    }
-    else if (!in_array($f->type, $allowedTypes)) {
-        $_err['image'] = 'Only JPG images are allowed';
-        $isValid = false;
-    }
-    elseif ($f->size > 1 * 1024 * 1024) {
-        $_err['image'] = 'Maximum image size is 1MB';
-            $isValid = false;
-    } else {
-     
-        $image = save_photo($f, 'Img/','user/');
-       
-       
-        $_SESSION['image'] = $image; 
-        
-    }
-}
  
   // Validate: email
   if ($email === '') {
@@ -95,6 +72,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isValid = false;
   }
 
+
+  if ($f) {
+
+    $allowedTypes = ['image/jpeg', 'image/png'];
+
+    if (!str_starts_with($f->type, 'image/')) {
+        $_err['image'] = 'Only image files allowed';
+        $isValid = false;
+    }
+    else if (!in_array($f->type, $allowedTypes)) {
+        $_err['image'] = 'Only JPG or PNG are allowed';
+        $isValid = false;
+    }
+    elseif ($f->size > 1 * 1024 * 1024) {
+        $_err['image'] = 'Maximum image size is 1MB';
+            $isValid = false;
+    } else {
+     
+        $image = save_photo($f, 'Img/','user/');
+       
+       
+        $_SESSION['image'] = $image; 
+        
+    }
+}
+
   
   if ($isValid) {
   
@@ -103,6 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           unlink("$image");
           $image = save_photo($f,'Img/','user/');
       }
+
+
 
     $stmt =$db->query(
       'UPDATE users SET email = ?, username = ?, first_name = ?, last_name = ?, phone_number = ? ,profile_image = ? WHERE user_id = ?',
