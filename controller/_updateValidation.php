@@ -246,7 +246,8 @@ if ($p_stock != '') {
             
         }
     }
-    
+
+   
     // Final update if no error
     if (!$_err) {
 
@@ -259,7 +260,7 @@ if ($p_stock != '') {
         // Update product
         $_db->query('UPDATE products 
                         SET name = ?, price = ?, image = ?, category_id = ?
-                        WHERE product_id = ?', [$p_name, $p_price, $image, $p_category, $p_id]);
+                        WHERE product_id = ?', [$p_name, $p_price, $image, $p_category, $id]);
 
         // Update product details
         if ($BS === 'BOOK') {
@@ -267,18 +268,21 @@ if ($p_stock != '') {
                             SET category_id = ?, author = ?, publisher = ?, publish_date = ?, 
                                 stock = ?, genre = ?, keywords = ?
                             WHERE product_id = ?', 
-                            [$p_category, $p_author, $p_publisher, $p_publish_date, $p_stock, $p_genre, $p_keywords, $p_id]);
+                            [$p_category, $p_author, $p_publisher, $p_publish_date, $p_stock, $p_genre, $p_keywords, $id]);
         } elseif ($BS === 'STAT') {
             $_db->query('UPDATE product_details 
                             SET category_id = ?, brand = ?, material = ?,  stock = ?, keywords = ?
                             WHERE product_id = ?', 
-                            [$p_category, $brand, $material, $p_stock, $p_keywords, $p_id]);
+                            [$p_category, $brand, $material, $p_stock, $p_keywords, $id]);
         }
 
-        redirect('/product_list');
-        temp('info', 'Record updated');
+    
+   
     
         $_SESSION['image'] = $image;
+    
+        temp('info', 'Record updated');
+        redirect('/product_list');
     }
 
 

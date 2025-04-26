@@ -1,4 +1,4 @@
- 
+ <?php $_title="Address"  ?>
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
 <?php require 'controller/address.php';?>
@@ -42,14 +42,19 @@
                     <div class="detail-row">
                         <label>
                             <strong>Street Address</strong><br>
-                            <input style="width: 600px;" type="text" name="street" value="<?=htmlspecialchars(    $user_address['street'])?>" required />
+                            <input style="width: 600px;" type="text" name="street" value="<?= $streetAddress ?? $user_address['street'] ?>" required />
                         </label>
+
+                       <div  id="error-msg"  style="position: absolute; top:155px;  color:#db1f1f; font-weight:bolder; right:80px; ">           
+                          <span><?= $_err['street']?? '' ?></span>                      
+                       </div>
+                       
                     </div>
                     
 
-                    <div class="detail-row">
+                    <div class="detail-row" style="margin-top:30px;">
 
-                    <label style="margin: right 10px;">
+                    <label style="margin: right 10px; ">
                             <strong>State / Province</strong><br>
 
                             <select style="width:200px; margin:10px; padding:10px 20px; font-size: 20px;"   name="states" id="states" >
@@ -75,6 +80,10 @@
 
                         </label>
 
+                        <div  id="error-msg"  style="position: absolute; top:265px;  color:#db1f1f; font-weight:bolder; right:220px; ">           
+                          <span><?= $_err['city'] ?? '' ?></span>                      
+                       </div>
+                       
                       
 
                      
@@ -82,7 +91,7 @@
 
                     
 
-                    <div class="detail-row">
+                    <div class="detail-row" style="margin-top:30px;">
                         <label>
                             <strong>Postal Code</strong><br>
                           
@@ -90,6 +99,10 @@
                                 <option><?= $user_address['postal_code']?></option>
                             </select>
                         </label>
+
+                        <div  id="error-msg"  style="position: absolute; top:380px;  color:#db1f1f; font-weight:bolder; right:380px; ">           
+                          <span><?= $_err['postal'] ?? '' ?></span>                      
+                       </div>
                     </div>
 
                     <button class="update-btn" type="submit" name="update_address">Update Address</button>

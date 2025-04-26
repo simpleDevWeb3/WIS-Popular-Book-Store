@@ -1,4 +1,5 @@
 
+<?php $_title = "Available Books"?>
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
 <?php require 'partials/navbar.php';?>

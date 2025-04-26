@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome To Popular</title>
+  <title><?= $_title  ?? "welcome To Popular" ?></title>
   <link rel="shoutcut icon" href="Img/Logo/Popular app.png">
   <!---CSS File--->
   <link rel="stylesheet" href="/CSS/head.css">

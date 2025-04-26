@@ -25,7 +25,7 @@ include 'view/partials/header.php';
            <p class="input-row">
 
             <label class="admin_crud_label" for="product_name">Product Name</label>
-            <?php html_input('text', $product_detail['name'],'product_name')?>   
+            <?php html_input('text',  $p_name ?? $product_detail['name'],'product_name')?>   
             <span style="color:red"><?=$_err["product_name"] ??""?></span>
       
           
@@ -38,7 +38,7 @@ include 'view/partials/header.php';
 
             <label class="admin_crud_label" for="product_price">Price</label>
             <?php 
-                html_input('number', $product_detail['price'],'product_price' ,'min="0.5" max="9999.99", step="0.01"');   
+                html_input('number',$p_price ??  $product_detail['price'],'product_price' ,'min="0.5" max="9999.99", step="0.01"');   
             ?>
               <span style="color:red"><?=$_err["product_price"] ??""?></span>
             </p>
@@ -47,7 +47,7 @@ include 'view/partials/header.php';
             <p class="input-row">
                 <label class="admin_crud_label" for="category_id">Category</label>
                 <?php html_select(
-                $catValue, $catName,$product_detail['category_id'])?>
+                $catValue, $catName,$p_category ?? $product_detail['category_id'])?>
                  <span style="color:red"><?=$_err["product_category"] ??""?></span>
             </p>
 
@@ -55,7 +55,7 @@ include 'view/partials/header.php';
         <p class="input-row"">
                 <label class="admin_crud_label" for="genre">Genre</label>
                 <?php html_input(
-                'text', $product_detail['genre'],'genre')?>
+                'text',$p_genre ?? $product_detail['genre'],'genre')?>
 
                 
                 <span style="color:red"><?=$_err["product_genre"] ??""?></span>
@@ -66,7 +66,7 @@ include 'view/partials/header.php';
             <p class="input-row">
                 <label class="admin_crud_label" for="publisher">Publisher</label>
                 <?php html_input(
-                'text', $product_detail['publisher'],'publisher')?>
+                'text',$p_publisher ?? $product_detail['publisher'],'publisher')?>
                  <span style="color:red"><?=$_err["product_publisher"] ??""?></span>
             </p>
 
@@ -74,7 +74,7 @@ include 'view/partials/header.php';
             <p class="input-row">
                 <label class="admin_crud_label" for="publish_date">Publish Date</label>
                 <?php html_input(
-                'date', $product_detail['publish_date'],'publish_date')?>
+                'date',$p_publish_date ??  $product_detail['publish_date'],'publish_date')?>
 
                 <span style="color:red"><?=$_err["publish_date"] ??""?></span>
 
@@ -83,7 +83,7 @@ include 'view/partials/header.php';
             <p class="input-row">
                 <label class="admin_crud_label" for="author">Author</label>
                 <?php html_input(
-                'text', $product_detail['author'],'author')?>
+                'text',$p_author ?? $product_detail['author'],'author')?>
 
                 <span style="color:red"><?=$_err["product_author"] ??""?></span>
             </p>
@@ -95,7 +95,7 @@ include 'view/partials/header.php';
 
                 <p class="input-row">          
                     <label class="admin_crud_label" for="brand">Brand</label>
-                    <?php html_input('text', $product_detail['brand'] ?? '','brand') ?>   
+                    <?php html_input('text',$brand ?? $product_detail['brand'] ?? '','brand') ?>   
                     
                     <span style="color:red"><?=$_err["brand"] ??""?></span>
                 </p>
@@ -105,7 +105,7 @@ include 'view/partials/header.php';
 
                   <label class="admin_crud_label" for="material">Material</label>
 
-                  <?php html_input('text', $product_detail['material'] ?? '','material')?>
+                  <?php html_input('text',$material ?? $product_detail['material'] ?? '','material')?>
 
 
                   
@@ -122,7 +122,7 @@ include 'view/partials/header.php';
         <p class="input-row">
                 <label class="admin_crud_label" for="keyword">Keyword</label>
                 <?php html_input(
-                'text', $product_detail['keywords'] ,'keywords')?>
+                'text',$p_keywords ?? $product_detail['keywords'] ,'keywords')?>
 
                 <span style="color:red"><?=$_err["product_keywords"] ??""?></span>
          </p>
@@ -130,7 +130,7 @@ include 'view/partials/header.php';
            <p class="input-row">
                 <label class="admin_crud_label" for="stock">Stock</label>
                 <?php html_input(
-                'number', $product_detail['stock'],'stock','min=1','max=9999','step=1')?>
+                'number',$p_stock ?? $product_detail['stock'],'stock','min=1','max=9999','step=1')?>
                   <span style="color:red"><?=$_err["stock"] ??""?></span>
             </p>
 

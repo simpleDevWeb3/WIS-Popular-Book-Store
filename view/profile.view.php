@@ -1,4 +1,4 @@
- 
+<?php $_title="Profile Details"?>
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
 <?php require 'controller/profile.php';?>
@@ -55,13 +55,13 @@
                                             <label>
                                                 <strong>First Name</strong>
                                                 <br>
-                                                <input type="text" name="first_name" value="<?=htmlspecialchars($_user['first_name'])?>"/>
+                                                <input type="text" name="first_name" value="<?=  $first_name  ?? $_user['first_name']?>"/>
                                             
                                             </label> 
                                             <label>
                                                 <strong>Last Name</strong>
                                                 <br>
-                                                <input  type="text" name="last_name" value="<?=htmlspecialchars($_user['last_name'])?>"/>
+                                                <input  type="text" name="last_name" value="<?=$last_name ?? $_user['last_name'] ?>"/>
                                             </label>
 
                                             <div  id="error-msg"  style="position: absolute; top:220px;  color:#db1f1f; font-weight:bolder; right:50px; ">           
@@ -75,7 +75,7 @@
                                             <label>
                                                 <strong>Username</strong>
                                                 <br>
-                                                <input style=" width: 600px;" type="text" name="username" value="<?=htmlspecialchars($_user['username'])?>"  />
+                                                <input style=" width: 600px;" type="text" name="username" value="<?=$_username ?? $_user['username'] ?>"  />
 
                                                 <div id="error-msg"  style="position: absolute; top:275px; right:120px; color:#db1f1f; font-weight:bolder; ">
                                                     <?php if(!empty($_err['username'])): ?>
@@ -91,7 +91,7 @@
                                             <label>
                                                 <strong>Email</strong>
                                                 <br>
-                                                <input style=" width: 600px;" type="email" name="email" value="<?=htmlspecialchars($_user['email'])?>"  />
+                                                <input style=" width: 600px;" type="email" name="email" value="<?=$email ?? $_user['email']?>"  />
 
                                                 <div  id="error-msg"  style="position: absolute; top:365px; right:120px; color:#db1f1f; font-weight:bolder; ">
                                                     <?php if(!empty($_err['email'])): ?>
@@ -105,7 +105,7 @@
                                             <label>
                                                 <strong>Phone</strong>
                                                 <br>
-                                                <input style=" width: 600px;" type="text" name="phone_number" value="<?=htmlspecialchars($_user['phone_number'] ?? '')?>" />
+                                                <input style=" width: 600px;" type="text" name="phone_number" value="<?=$phone ??$_user['phone_number']?>" />
                                             </label>
 
                                             <div  id="error-msg"  style="position: absolute; top:455px; right:120px; color:#db1f1f; font-weight:bolder; ">
@@ -117,7 +117,7 @@
 
                                         <button class="update-btn" type="submit">Update Details</button>
 
-                                        <button class="update-reset-btn" >Reset</button>
+                                        <button class="update-reset-btn" type="reset">Reset</button>
                             </div>
                     </form>
 

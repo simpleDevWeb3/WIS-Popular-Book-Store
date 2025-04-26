@@ -1,4 +1,5 @@
 
+<?php $_title = $product['name'] ?>
 <?php require 'partials/head.php' ?>
 <?php require 'partials/header.php' ?>
 

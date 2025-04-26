@@ -121,7 +121,7 @@ if($p_genre !== ''){
     }
     
     }else{
-    $_err['product_genre'] = "Required";
+      $_err['product_genre'] = "Required";
     }
    
   }else{
@@ -251,6 +251,8 @@ if ($p_stock != '') {
             $_SESSION['image'] = $image; 
             
         }
+    }else{
+          $_err['image'] = 'Required';
     }
     
     // Final update if no error

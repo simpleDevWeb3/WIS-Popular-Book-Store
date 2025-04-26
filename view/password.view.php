@@ -1,4 +1,4 @@
- 
+<?php $_title="Password Reset"  ?>
 <?php require 'partials/head.php';?>
 <?php require 'partials/header.php';?>
 
@@ -65,7 +65,7 @@
 
                     <button class="update-btn" type="submit">Update Password</button>
 
-                    <button class="update-reset-btn" >Reset</button>
+                    <button class="update-reset-btn" type="reset" >Reset</button>
                 </form>
 
         
