@@ -4,17 +4,18 @@ auth('Admin');
 $_db = new Database();
 //accept parameters from product.php (detail button)\
 $page = req('page');
-
+// order_id
 $id = req('id');
 
-
+/*
 $stm = $_db->query('SELECT * FROM `order` o
                       INNER JOIN orderdetails od ON o.order_id = od.order_id 
                       INNER JOIN products p ON p.product_id = od.product_id
                       WHERE o.order_id = ?',[$id]);
 
-$sales_detail = $stm->fetchAll();
+$sales_detail = $stm->fetchAll();*/
 
+//fetch order join user 
 $stm = $_db->query('SELECT * FROM `order` o
                       INNER JOIN users u ON o.user_id = u.user_id 
                       INNER JOIN addresses a ON a.user_id = u.user_id 
@@ -23,6 +24,20 @@ $stm = $_db->query('SELECT * FROM `order` o
                       WHERE o.order_id = ?',[$id]);
 
 $sales = $stm->fetch();
+
+
+
+
+//fetch order_item  from order detail table
+$query = "
+    SELECT od.*, p.name 
+    FROM orderdetails od
+    JOIN products p ON od.product_id = p.product_id
+    WHERE od.order_id = :order_id
+";
+
+$order_items = $_db->query($query, ["order_id" => $id])->fetchAll();
+
 
 /*
 $stm = $_db->prepare('SELECT * FROM `order` o
@@ -111,26 +126,42 @@ include 'view/partials/header.php';
                     <th>Quantity</th>
                     <th>Total</th>                      
                 </tr>
-
-                <?php foreach ($sales_detail as $arr): ?>
+                <?php $_sum = 0;?>
+                <?php foreach ($order_items  as $arr): ?>
                     <tr>
                         <td style="padding: 10px;"><?= $index++ ?></td>
                         <td><?= $arr['product_id'] ?></td>
                         <td><?= $arr['name'] ?></td>
                         <td><?= $arr['quantity'] ?></td>
-                        <td><?= $arr['quantity'] * $arr['price'] ?><td>
-
+                        <td><?=number_format( $arr['quantity'] * $arr['price'],2) ?><td>
+                        <?php $_sum += $arr['quantity'] * $arr['price'] ?>
                     </tr> 
                 <?php endforeach ?>
             </table>
-
+  
            
         </div>
 
-        <div style="background-color:rgb(234, 229, 229); font-size:20px; padding:20px;" >
+        <div style=" font-size:20px; padding:20px;" >
             <div style="display:flex; justify-content:space-between;">
+                
                 <p style="font-weight: bold;">Total </p>
-                <p style="font-weight: bold; class="total"><?= $sales['total_price'] ?></p>
+                <p style="font-weight: bold;" class="total"><?=   number_format($_sum,2) ?></p>
+            </div>
+
+              <div style="display:flex; justify-content:space-between;">
+                <p style="font-weight: bold;">Tax(6%) </p>
+                <p style="font-weight: bold;" class="total"><?=number_format($_sum  * 0.06,2) ?></p>
+            </div>
+       </div>
+
+        <div style="background-color:rgb(234, 229, 229); font-size:20px; padding:20px;" >
+           
+
+            <div style="display:flex; justify-content:space-between;">
+
+                <p style="font-weight: bold;">Total Sum </p>
+                <p style="font-weight: bold;" class="total"><?= $sales['total_price'] ?></p>
             </div>
     
         </div>

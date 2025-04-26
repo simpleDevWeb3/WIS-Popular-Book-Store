@@ -42,30 +42,64 @@
             <br>
         
 
-        <label for="new-user-password">Create new Password</label>
-          <input  type="password" name="new-user-password" id="new-user-password" value="<?php echo htmlspecialchars($_POST['new-user-password'] ?? '') ?>"required placeholder="Enter your password">
+       <!-- Create New Password -->
+<div style="margin-bottom: 40px; position: relative;">
+    <label for="new-user-password">Create New Password</label>
+    
+    <div style="position: relative; display: flex; align-items: center;">
+        <input 
+            style="flex: 1; padding-right: 40px;" 
+            type="password" 
+            name="new-user-password" 
+            id="new-user-password" 
+            value="<?php echo htmlspecialchars($_POST['new-user-password'] ?? '') ?>" 
+            required 
+            placeholder="Enter your password"
+        >
 
-          <i data-target='#new-user-password'  style="font-size:20px; cursor:pointer; position:absolute; bottom:230px; right:590px;"  class="ri-eye-line toggle-password"></i>
+        <i 
+            data-target="#new-user-password" 
+            style="position: absolute; right: 10px; font-size: 20px; cursor: pointer;" 
+            class="ri-eye-line toggle-password"
+        ></i>
+    </div>
 
-        <div id="error-password" style="position: absolute; bottom: 190px; ">
-          <?php if (!empty($err_password)): ?>
-              <p style="color:red; font-weight:bold;"><?php echo $err_password; ?></p>
+    <div id="error-password" style="margin-top: 5px;">
+        <?php if (!empty($err_password)): ?>
+            <p style="color:red; font-weight:bold;"><?php echo $err_password; ?></p>
+        <?php endif; ?>
+    </div>
+</div>
+
+  <!-- Confirm Password -->
+  <div style="margin-bottom: 40px; position: relative;">
+      <label for="confirm-user-password">Confirm Password</label>
+      
+      <div style="position: relative; display: flex; align-items: center;">
+          <input 
+              style="flex: 1; padding-right: 40px;" 
+              type="password" 
+              name="confirm-user-password" 
+              id="confirm-user-password" 
+              value="<?php echo htmlspecialchars($_POST['confirm-user-password'] ?? '') ?>" 
+              required 
+              placeholder="Enter the password again"
+          >
+
+          <i 
+              data-target="#confirm-user-password" 
+              style="position: absolute; right: 10px; font-size: 20px; cursor: pointer;" 
+              class="ri-eye-line toggle-password"
+          ></i>
+      </div>
+
+      <div id="error-confirm-password" style="margin-top: 5px;">
+          <?php if (!empty($err_password_match)): ?>
+              <p style="color:red; font-weight:bold;"><?php echo $err_password_match; ?></p>
           <?php endif; ?>
-  
-        </div>
+      </div>
+  </div>
 
-            <br>
-
-            <label for="confirm-user-password">Confirm Password</label>
-            <input type="password" name="confirm-user-password" id="confirm-user-password" value="<?php echo htmlspecialchars($_POST['confirm-user-password'] ?? '') ?>"  required placeholder="Enter the password before">
-
-            <i data-target='#confirm-user-password'  style="font-size:20px; cursor:pointer; position:absolute; bottom:115px; right:590px;"  class="ri-eye-line toggle-password"></i>
-
-            <div id="error-confirm-password" style="position: absolute; bottom: 70px; ">
-              <?php if (!empty($err_password_match)): ?>
-                  <p style="color:red; font-weight:bold;"><?php echo $err_password_match; ?></p>
-              <?php endif; ?>
-        </div>
 
         <section style="display: flex; flex-direction:column; margin-top: 20px; ">
 

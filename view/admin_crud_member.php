@@ -99,7 +99,9 @@ include 'view/partials/header.php';
                                         <td><?= $user['dob'] ?></d>
                                         <td><?= $user['gender'] ?></d>
                                         <td><?= $user['role'] ?></d>
-                                        <td><button>details</button></td>
+                                        <td>
+                                            <button class="admin_crud_detail-btn" data-get="/member_detail?id=<?= $user['user_id'] ?>&page='<?= $page ?>'">Detail</button>
+                                        </td>
                                     </tr> 
 
                                     <?php endforeach ?>

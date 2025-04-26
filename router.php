@@ -67,6 +67,7 @@ $routes =[
           '/sales_list' => 'view/admin_crud_sales.php',
           '/sales_detail' => 'view/admin_crud_sales_detail.php',
           '/memebr_list' => 'view/admin_crud_member.php',
+          '/member_detail' => 'view/admin_crud_member_details.php',
           '/delete' => 'controller/_delete.php'   
         ];
 

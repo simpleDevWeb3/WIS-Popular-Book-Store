@@ -33,13 +33,29 @@
           <label style=" margin-bottom: 10px;"   for="email">Email</label>
           <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? '') ?>" required placeholder="Enter your email">
          
+          <div style="display: flex; flex-direction: column; position: relative;">
+            <label style="margin-top: 20px; margin-bottom: 10px;" for="password">Password</label>
 
-          <label style="margin-top: 20px; margin-bottom: 10px;" for="password">Password</label>
-        
-          <input style="margin-bottom: 20px;"   type="password" name="password" id="password" value="<?php echo htmlspecialchars($_POST['password'] ?? '') ?>"required placeholder="Enter your password">
+            <div style="position: relative; display: flex; align-items: center;">
+                <input 
+                    style="flex: 1; padding-right: 40px; margin-bottom: 20px;" 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    value="<?php echo htmlspecialchars($_POST['password'] ?? '') ?>" 
+                    required 
+                    placeholder="Enter your password"
+                >
 
-          <i data-target='#password'  style="font-size:20px; cursor:pointer; position:absolute; top:380px; right:340px;"  class="ri-eye-line toggle-password"></i>
-       
+                <i 
+                    data-target="#password" 
+                    style="position: absolute;top:13px; right: 13px; font-size: 20px; cursor: pointer;"
+                    class="ri-eye-line toggle-password"
+                ></i>
+            </div>
+        </div>
+
+
        
 
             <?php if(isset($_POST['email']) && isset($_POST['password'])): ?>
