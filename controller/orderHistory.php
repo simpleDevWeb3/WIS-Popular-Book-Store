@@ -22,10 +22,9 @@ if ($user_id) {
 
 
 $sql = "
-  SELECT o.user_id, o.order_id, o.order_date, o.total_price, o.status, o.Payment_method, o.shipping_date, od.price, od.quantity, p.product_id, p.name, p.image
+  SELECT o.user_id, o.order_id, o.order_date, o.total_price, o.status, o.Payment_method, o.shipping_date, od.price, od.quantity, od.product_id, od.product_name, od.product_image
   FROM `order` o
   JOIN orderDetails od ON o.order_id = od.order_id
-  JOIN products p ON od.product_id = p.product_id
   WHERE o.user_id = :user_id
   
 ";

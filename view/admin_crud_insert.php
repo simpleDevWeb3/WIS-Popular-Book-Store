@@ -35,10 +35,10 @@ include 'view/partials/header.php';
 
 
                 <div class="book-stat">
-                        <a href="?BS=BOOK" class="book-stat-book" >
+                       <a href="?BS=Book" class="book-stat-stat" style="<?= urlIs('/insert?BS=Book')|| urlIs('/insert')? '':'background-color:rgb(237, 232, 233); color:black; box-shadow: 0px  5px  10px rgba(0,0,0,0.1);'?>">
                             <div>Book</div>
                         </a>
-                        <a href="?BS=STAT" class="book-stat-stat">
+                        <a href="?BS=STAT" class="book-stat-stat" style="<?= urlIs('/insert?BS=STAT') ? '':'background-color:rgb(237, 232, 233); color:black; box-shadow: 0px  5px  10px rgba(0,0,0,0.1);'?>">
                             <div>Stationary</div>
                         </a>
                 </div>

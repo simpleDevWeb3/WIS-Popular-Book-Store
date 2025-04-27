@@ -67,10 +67,10 @@
 
               <div class="order-details">
                   <a href="/product?product_id=<?= $o['product_id'] ?>&category_id=<?= getProductCategoryId($db, $o['product_id']) ?>"  style="all: unset; display: inline-block;">
-                  <img src="/<?=$o['image']?>" alt="Book Cover">
+                  <img src="/<?=$o['product_image']?>" alt="Book Cover">
                   </a>
                   <div class="info">
-                      <h2><?= $o['name'] ?></h2>
+                      <h2><?= $o['product_name'] ?></h2>
                       <p><br>Price: RM <?= sprintf("%.2f", $o['price']) ?></p>
                       <p>QTY: <?= $o['quantity'] ?></p>
                       <div style="text-align: right;  margin-bottom:20px;"  >

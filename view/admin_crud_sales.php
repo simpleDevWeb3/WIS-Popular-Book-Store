@@ -2,8 +2,9 @@
 auth('Admin');
 //require $_SERVER['DOCUMENT_ROOT'] . '/_base.php';
 //************************************************************************ */ Searching
-$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : temp('search');
-temp('search', $search);
+$search = isset($_REQUEST['sales_search']) ? $_REQUEST['sales_search'] : temp('sales_search');
+temp('sales_search', $search);
+
 
 //************************************************************************ */ Sorting
 $fields = [
@@ -52,6 +53,7 @@ $index = 1;
 
                 <div class="admin_crud_page_container">
                     <div class="product-content">
+                        <h1>Sales List</h1>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-right:40px; ">
                             <p>
                                 <?= $p->count ?> of <?= $p->item_count ?> record(s) |
@@ -62,7 +64,7 @@ $index = 1;
 
                             <div class="admin_crud_searching-and-filtering" ">
                                 <form>
-                                    <?= html_search('search', 'placeholder="Search something..."') ?>  
+                                <?= html_search('sales_search', 'placeholder="Search Order ID"', $search) ?> 
                                 </form>
                             </div>
 

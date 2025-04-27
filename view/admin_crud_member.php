@@ -65,6 +65,7 @@ include 'view/partials/header.php';
 
                         <div class="product-content">
 
+                        <h1>Member List</h1>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-right:40px; ">
                             <p>
                                 <?= $p->count ?> of <?= $p->item_count ?> record(s) |
@@ -73,7 +74,7 @@ include 'view/partials/header.php';
 
                             <div class="admin_crud_searching-and-filtering">
                                 <form>
-                                    <?= html_search('admin_search', 'placeholder="Search something..."') ?>
+                                  <?= html_search('admin_search', 'placeholder="Search name"', $search) ?>
                                     
                                 </form>
                             </div>

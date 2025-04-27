@@ -2,8 +2,8 @@
     <?php
     auth('Admin');
     //************************************************************************ */ Searching
-    $search = isset($_REQUEST['search']) ? $_REQUEST['search'] : temp('search');
-    temp('search', $search);
+    $search = isset($_REQUEST['product_search']) ? $_REQUEST['product_search'] : temp('product_search');
+    temp('product_search', $search);
 
     //************************************************************************ */ Sorting
     $fields = [
@@ -40,6 +40,12 @@
     include 'view/partials/header.php';
 
     $index = 1;
+
+
+    
+
+
+
     ?>
 <div style="display: flex; justify-content:center; align-items:center; margin:auto; gap:10px;">
     <div style=" margin-bottom:400px; margin-left:0px;">
@@ -56,6 +62,7 @@
 
             <div class="admin_crud_page_container">
                 <div class="product-content">
+                    <h1>Product List</h1>
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-right:40px; ">
                         <p>
                             <?= $p->count ?> of <?= $p->item_count ?> record(s) |
@@ -66,7 +73,7 @@
 
                         <div class="admin_crud_searching-and-filtering" ">
                             <form>
-                                <?= html_search('search', 'placeholder="Search something..."') ?>  
+                            <?= html_search('product_search', 'placeholder="Search name"', $search) ?>
                             </form>
                         </div>
 

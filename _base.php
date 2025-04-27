@@ -111,8 +111,8 @@ function html_select($k, $v, $selected = '', $default = 'Select one', $attr = ''
     echo "</select>";
 }
 
-function html_search($key, $attr = '') {
-    $value = encode($GLOBALS[$key] ?? '');
+function html_search($key, $attr = '', $value='') {
+    
     echo "
     <div style='position: relative; width: 100%; height: 46px; max-width: 400px; display: flex
 ;'>

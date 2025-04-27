@@ -92,12 +92,23 @@ try {
 
     //product in cartDetails table transfer to orderDetails table
     foreach ($cartItems as $item) {
-        $db->query("INSERT INTO orderDetails (order_id, product_id, quantity, price)
-                    VALUES (:order_id, :product_id, :quantity, :price)", [
+        //get product name and image
+        $productData = $db->query("SELECT name, image FROM products WHERE product_id = :product_id", [
+            'product_id' => $item['product_id']
+        ])->fetch();
+    
+        if (!$productData) {
+            throw new Exception("Product not found for product_id: " . $item['product_id']);
+        }
+
+        $db->query("INSERT INTO orderDetails (order_id, product_id, quantity, price, product_name, product_image)
+                    VALUES (:order_id, :product_id, :quantity, :price, :product_name, :product_image)", [
             'order_id'   => $order_id,
             'product_id' => $item['product_id'],
             'quantity'   => $item['quantity'],
-            'price'      => $item['price']
+            'price'      => $item['price'],
+            'product_name'  => $productData['name'],
+            'product_image' => $productData['image']
         ]);
     }
 

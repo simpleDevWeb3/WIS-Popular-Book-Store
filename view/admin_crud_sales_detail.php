@@ -7,13 +7,7 @@ $page = req('page');
 // order_id
 $id = req('id');
 
-/*
-$stm = $_db->query('SELECT * FROM `order` o
-                      INNER JOIN orderdetails od ON o.order_id = od.order_id 
-                      INNER JOIN products p ON p.product_id = od.product_id
-                      WHERE o.order_id = ?',[$id]);
 
-$sales_detail = $stm->fetchAll();*/
 
 //fetch order join user 
 $stm = $_db->query('SELECT * FROM `order` o
@@ -22,6 +16,7 @@ $stm = $_db->query('SELECT * FROM `order` o
                       INNER JOIN states s ON s.state_id = a.state_id 
                       INNER JOIN cities c ON c.city_id = a.city_id
                       WHERE o.order_id = ?',[$id]);
+                      
 
 $sales = $stm->fetch();
 
@@ -29,25 +24,11 @@ $sales = $stm->fetch();
 
 
 //fetch order_item  from order detail table
-$query = "
-    SELECT od.*, p.name 
-    FROM orderdetails od
-    JOIN products p ON od.product_id = p.product_id
-    WHERE od.order_id = :order_id
-";
+$query = "SELECT * FROM orderdetails WHERE order_id = :order_id";
 
 $order_items = $_db->query($query, ["order_id" => $id])->fetchAll();
 
 
-/*
-$stm = $_db->prepare('SELECT * FROM `order` o
-                      INNER JOIN orderdetails od ON o.order_id = od.order_id 
-                      INNER JOIN products p ON p.product_id = od.product_id
-                      INNER JOIN users u ON o.user_id = u.user_id 
-                      WHERE o.order_id = ?');
-$stm->execute([$id]);
-$sales_detail = $stm->fetch();
-*/
 
 $_title = "Sales - Details";
 $index = 1;
@@ -131,7 +112,7 @@ include 'view/partials/header.php';
                     <tr>
                         <td style="padding: 10px;"><?= $index++ ?></td>
                         <td><?= $arr['product_id'] ?></td>
-                        <td><?= $arr['name'] ?></td>
+                        <td><?= $arr['product_name'] ?></td>
                         <td><?= $arr['quantity'] ?></td>
                         <td><?=number_format( $arr['quantity'] * $arr['price'],2) ?><td>
                         <?php $_sum += $arr['quantity'] * $arr['price'] ?>

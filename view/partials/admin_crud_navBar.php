@@ -29,8 +29,8 @@
 
           
 
-            <a class="admin_crud_navigation_bar_button">
-                <button style="padding-top:10px;align-items:center;"  class="navigation_bar_button " data-get='/insert'>
+            <a class="admin_crud_navigation_bar_button" href='/insert'> <!--   i change the dataget from button to heref on a tag -->
+                <button style="padding-top:10px;align-items:center;"  class="navigation_bar_button ">
                      <img class="navigation_bar_button_icon_image" src="/Img/Icon/user.png">
                      
                     <p>Insert</p>
