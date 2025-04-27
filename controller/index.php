@@ -20,7 +20,7 @@ $query = "SELECT p.*, pd.stock
           LEFT JOIN product_details pd ON p.product_id = pd.product_id
           ORDER BY $orderBy";
 
-// Initialize Pagination (Assuming Paging accepts query, params, limit, page)
+// Initialize Pagination ( Paging accepts query, params, limit, page)
 $p = new Paging($db,$query, [], 12, $page, $db);
 
 // Get paginated results from Paging class

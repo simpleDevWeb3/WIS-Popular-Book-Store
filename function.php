@@ -228,7 +228,7 @@
 
 
 
-   $p = new Paging($db,$query,  ['cat_id' => $cat_id], 10, $page, $db);
+   $p = new Paging($db,$query,  ['cat_id' => $cat_id], 12, $page, $db);
 
     // Execute the query with the provided category ID
     return $p;

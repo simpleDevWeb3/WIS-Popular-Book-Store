@@ -23,7 +23,17 @@ $query_product = "SELECT p.*, pd.stock
                  WHERE p.product_id = :product_id";
 
 $product = $db->query($query_product, ['product_id' => $product_id])->fetch();//GET THE PRODUCT DATA
-$product_details = $db->query("SELECT * FROM product_details WHERE product_id = :product_id", ['product_id' => $product_id])->fetch(); //GET THE PRODUCT DETAILS
+$product_details = $db->query("SELECT * FROM product_details WHERE product_id = :product_id", ['product_id' => $product_id])->fetch() ; //GET THE PRODUCT DETAILS
+
+if (!$product) {
+  die("
+    <main>
+    <br>
+      <h1>Product Got Deleted.</h1>
+    </main>
+  ");
+}
+
 
 $currentStock = $product_details['stock'];
 $query = "SELECT p.*, pd.stock 
@@ -36,14 +46,6 @@ $related_product = $db->query($query,
 ['category_id' => $category_id, 'product_id' => $product_id])->fetchAll() ;// fetch product that in same sub_Subcategory 
 
 
-if (!$product) {
-  die("
-    <main>
-    <br>
-      <h1>Product not found.</h1>
-    </main>
-  ");
-}
 
 
 
